@@ -1,0 +1,18 @@
+/* My to-dos: the page (pages/MyTasks.tsx) and the to-do panel (components/task.tsx). Tokens only. */
+
+/* The post form pinned under the panel already sits on the footer's own rule. */
+.sp-foot .dp-complete { margin-top: 0; padding-top: 0; border-top: 0; gap: var(--s-2); max-height: 60vh; overflow-y: auto; }
+.todo-field-bad { margin: 0; color: var(--bad); }
+.todo-field-warn { margin: 0; color: var(--warn); }
+
+.todo-just {
+  margin: 0; padding: var(--s-1) var(--s-2); border: 1px dashed var(--border-strong); border-radius: var(--r-control);
+  color: var(--text-2); font-size: var(--fs-meta); word-break: keep-all; overflow-wrap: anywhere;
+}
+.dq-page > .todo-just { margin-bottom: var(--s-2); }
+.todo-closed { margin-top: var(--s-2); }
+
+/* the channel's rules under Where: a quiet label over the summary (owner.css .dp-rules is the bullet list's grid) */
+.todo-rules { margin: var(--s-2) 0 var(--s-1); overflow-wrap: anywhere; }
+.todo-rules p { margin: 0; }
+.todo-rules p + p { margin-top: 2px; }

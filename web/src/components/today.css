@@ -1,0 +1,23 @@
+/* The owner's list shared by Today, Decisions and My to-dos (components/today.tsx). */
+
+.elsewhere {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-1) var(--s-2);
+  margin: 0 0 var(--s-4);
+  font-size: var(--fs-row);
+  color: var(--text-2);
+}
+.elsewhere .sdot { align-self: center; }
+.sdot.t-warn { background: var(--warn); }
+.sdot.t-bad { background: var(--bad); }
+.sdot.t-run { background: var(--run); }
+.sdot.t-ok { background: var(--ok); }
+.elsewhere-b { min-width: 0; overflow-wrap: anywhere; }
+.elsewhere-b a { font-weight: 550; }
+
+/* one quiet line about something that is not on the owner's list (the kickoff chat while the CEO writes) */
+.owner-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-2); margin: 0 0 var(--s-3);
+  font-size: var(--fs-row); color: var(--text-2); }
+.owner-line .sdot { align-self: center; }

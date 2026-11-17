@@ -1,0 +1,158 @@
+# Just Ship It — operating policy.
+# Agents cannot modify this file. It is enforced by the application, not by prompts.
+
+company:
+  name: "My AI Company"
+  mission: "사업 기회를 근거 기반으로 검증하고, 승인된 제품을 개발·운영한다."
+  principles:
+    - "출처가 있는 사실과 AI의 추론(가설)을 반드시 구분한다."
+    - "인터넷 조사로 확인할 수 없는 구매 의사·현장 업무 부담은 검증되었다고 주장하지 않고 후속 현장 검증 업무로 만든다."
+    - "재무 수치는 결정적인 코드로 재계산한다."
+    - "외부 실행·지출·배포는 사람의 승인 없이는 하지 않는다."
+
+limits:
+  # Subscription CLIs are rate limited, not billed per call. The USD figures below are
+  # list-price equivalents reported by the CLIs and are used as an internal budget unit.
+  monthly_budget_usd: 300
+  project_budget_usd: 40
+  task_budget_usd: 3
+  max_concurrent_tasks: 4
+  # One planning round (the plan, or one follow-up) holds at most this many planned tasks and spends at most this share
+  # of the project budget left for analysis (less engineering.dev_budget_usd when the project builds software).
+  # Measured 2026-11-04: round 1 ran 8-10 planned tasks and spent $12-20 of $40. services/rounds.py.
+  max_tasks_per_round: 6
+  round_budget_share: 0.4
+  max_rework_iterations: 2
+  max_plan_rounds: 3          # the Project Manager's first plan + follow-up planning rounds
+  max_meetings_per_run: 2
+  meeting_rebuttal_rounds: 1
+  llm_call_timeout_s: 900
+
+providers:
+  claude:
+    max_concurrency: 3
+    default_model: sonnet
+
+autonomy:
+  # auto: execute without asking · approve: ask once, then delegated within grant scope
+  # strong_approve: ask every time, with explicit confirmation text · deny: never
+  default_by_request_type:
+    QUESTION: approve
+    APPROVAL: approve
+    PROPOSAL: approve
+    RESOURCE: approve
+    SKILL: auto
+    ESCALATION: approve
+    DEVELOPMENT: auto       # the owner approves the spec, once; see tool_policy dev.implementation_start
+    CLARIFICATION: auto     # answered by CPO first; escalated to human only if unresolved
+  grant_ttl_hours: 72
+
+engineering:
+  worktrees_dir: .worktrees
+  # What one development (spec, engineer, reviews, acceptance) needs of the project budget, kept out of reach of
+  # every other call while the project has an open development request and nothing delivered (budget.dev_hold).
+  # Measured: J-1 spent 5.83 through two review rounds, and each engineer call reserves 4.0 before it starts.
+  dev_budget_usd: 12
+  # What a fix round on a delivered build needs left in the project budget before it starts (engineering/revise.py):
+  # one engineer call, the tests and both reviews with a fix, and the acceptance, about half a development.
+  fix_budget_usd: 6
+  max_fix_iterations: 2
+  # Fix rounds a build that failed its acceptance check starts on its own before the owner is asked to fix or drop it
+  # (engineering/revise.py failed_check). Each needs fix_budget_usd left.
+  auto_fix_rounds: 1
+  test_sandbox: docker      # always docker: tests run only in the spec's test image, never in a host shell
+  test_timeout_s: 1200      # one test run; with limits.llm_call_timeout_s it bounds how long a reclaimed job waits
+  # container: every engineer and code-review call runs Claude Code inside ship/engineer, with only its own
+  #            workspace mounted, on the internal ship-sandbox network whose one way out is the egress proxy
+  #            (docker/egress/allowlist). Auth: host subscription login, see runtime/host_auth.py.
+  # host: UNSAFE. The engineer runs on this PC with bypassPermissions, so its Bash reads var/api_token, var/secrets,
+  #       .env and the owner's Claude login, and reaches Postgres and the console API. The deny rules do not
+  #       stop that. host is refused unless unsafe_host_isolation_ack is true.
+  isolation: container
+  unsafe_host_isolation_ack: false
+  sandbox:
+    image: ship/engineer:4   # 3 adds chromium and CJK fonts (screen checks); 4 answers to `python` as test images do
+    memory: 6g
+    cpus: 4
+    pids: 2048
+  # Enforced through Claude Code permission deny rules (deny wins even in bypass mode).
+  # Pushing, PR creation and merging are performed by the worker itself after policy checks.
+  disallowed_tools:
+    - "Bash(git push:*)"
+    - "Bash(git remote:*)"
+    - "Bash(git merge:*)"
+    - "Bash(git rebase:*)"
+    - "Bash(git reset --hard:*)"
+    - "Bash(git branch -D:*)"
+    - "Bash(git worktree:*)"
+    - "Bash(gh:*)"
+    - "Skill(pstack:babysit)"
+    - "Skill(pstack:fix-ci)"
+    - "Skill(pstack:setup-pstack)"
+
+# Team chat (services/chat.py). An answer is reading, not building, so it runs on a lighter model than the engineer's.
+chat:
+  reply_model: sonnet
+  # One owner message causes at most this many agent replies, escalations and handoffs included, so two agents cannot
+  # pass a message back and forth on the owner's subscription.
+  max_hops: 3
+  history: 20          # thread lines in a reply's prompt
+  line_chars: 600      # of each of those lines
+  body_chars: 20000    # of one message: the check-result memo limit, so a pasted install log fits
+
+analysis:
+  image: ship/analysis:1
+  max_steps: 6              # model turns per task attempt (each run = one LLM call)
+  max_inputs: 12
+  max_download_mb: 100      # per file; only http(s) to public addresses, fetched by the server
+  download_timeout_s: 300   # per file, the whole download including redirects
+  run_timeout_s: 300
+  memory: 2g
+  cpus: 2
+
+skills:
+  eval_cases: 3             # past tasks replayed per candidate (A/B)
+  min_gap_reports: 2
+  max_injected_chars: 12000
+
+operations:
+  scheduler_tick_s: 60
+  job_heartbeat_s: 60           # a worker renews the lease of every job it runs this often
+  job_lease_s: 600              # a running job with no heartbeat for this long is reclaimed (or failed at max_attempts)
+  max_deferrals: 48             # a job that has waited on usage this often fails instead of waiting again
+  backups_kept: 7               # daily database dumps kept in var/backups/
+  evidence_watch_hours: 168     # weekly change watch per finished project
+  kpi_review_hours: 24
+  portfolio_review_hours: 168
+  skill_factory_hours: 168
+
+connectors:
+  # outbox: write the message/file to var/outbox for a human to send (default, nothing leaves the machine)
+  # live:   actually send (email via SMTP env SHIP_SMTP_*). Live email only goes to CRM contacts with consent.
+  email: {mode: outbox}
+  calendar: {mode: outbox}
+  survey: {mode: outbox}
+
+people:
+  # Developer forums the people finder may open for a business whose buyers are developers, exact hosts only. A host not
+  # listed here is dropped, whatever the model says. Other businesses search other places (services/people.py `where`).
+  forum_hosts:
+    - dev.to
+    - lobste.rs
+    - meta.discourse.org
+    - discuss.python.org
+    - users.rust-lang.org
+    - discuss.kubernetes.io
+    - discuss.elastic.co
+    - community.grafana.com
+    - discourse.nixos.org
+    - forum.djangoproject.com
+    - discuss.hashicorp.com
+    - discuss.pytorch.org
+    - forums.swift.org
+    - discuss.ocaml.org
+
+retention:
+  call_transcript_days: 30      # var/calls: raw prompts and answers of every model call, pruned by age only
+  people_found_days: 90         # a person found and never contacted is archived after this long
+  people_dropped_days: 90       # a person the owner dropped is archived after this long

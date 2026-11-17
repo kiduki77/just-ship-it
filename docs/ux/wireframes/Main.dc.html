@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>홈</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#f6f7f9}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+.b{display:inline-block;font-size:11px;line-height:18px;padding:0 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.bad{background:#fdecea;color:#b42318}.warn{background:#fef4e6;color:#b54708}.ok{background:#e7f6ee;color:#067647}.run{background:#e8f0fe;color:#175cd3}.info{background:#f2ecfe;color:#5b21b6}.mut{background:#f1f3f6;color:#5b6475}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;font-variant-numeric:tabular-nums}
+.nav a{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:8px;color:#1b1f27;font-size:14px}
+.cnt{background:#b42318;color:#fff;border-radius:999px;font-size:11px;font-weight:600;padding:0 7px}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 1060px; font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif; color: #1b1f27; font-size: 14px; line-height: 1.55">
+  <nav class="nav" aria-label="주 메뉴" style="flex: 1 1 220px; max-width: 240px; background: #ffffff; border-right: 1px solid #e2e5ea; padding: 20px 12px; display: flex; flex-direction: column; gap: 2px; box-sizing: border-box">
+    <div style="font-weight: 700; padding: 0 10px 16px">Just Ship It</div>
+    <a href="Main.dc.html" style="background: #eef0ff; color: #4f46e5; font-weight: 600">홈</a>
+    <a href="Inbox.dc.html">결정함 <span class="cnt">4</span></a>
+    <div style="font-size: 12px; color: #5b6475; font-weight: 600; padding: 16px 10px 4px">프로젝트</div>
+    <a href="Project.dc.html"><span><span style="color: #b54708">●</span> <span class="mono" style="color: #5b6475">P-5</span> Just Ship It 사업화</span></a>
+    <div style="font-size: 12px; color: #5b6475; padding: 2px 10px">모든 프로젝트 · 테스트 3개 숨김</div>
+    <div style="font-size: 12px; color: #5b6475; font-weight: 600; padding: 16px 10px 4px">회사 ▸</div>
+    <div style="flex-grow: 1"></div>
+    <div style="font-size: 12px; color: #5b6475; border-top: 1px solid #e2e5ea; padding: 10px 10px 0"><span style="color: #067647">●</span> 실시간 갱신 중</div>
+  </nav>
+  <main style="flex: 999 1 560px; min-width: 0; padding: 24px 32px; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box; max-width: 1200px">
+    <header style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px">
+      <div>
+        <h1 style="margin: 0; font-size: 22px; line-height: 1.3">홈</h1>
+        <div style="color: #5b6475; font-size: 13px">지난 확인 24시간 전 · 2026-11-01</div>
+      </div>
+      <a href="#new" style="border: 1px solid #c9ced6; border-radius: 8px; padding: 7px 12px; color: #1b1f27; background: #ffffff">새 사업 목표</a>
+    </header>
+
+    <section aria-labelledby="h-wait" style="background: #ffffff; border: 1px solid #b42318; border-radius: 10px; padding: 16px 20px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px">
+        <h2 id="h-wait" style="margin: 0; font-size: 17px">나를 기다리는 결정 4건 <span style="font-size: 13px; color: #b42318; font-weight: 500">· 1건이 프로젝트를 멈추고 있습니다</span></h2>
+        <a href="Inbox.dc.html">결정함 열기 →</a>
+      </div>
+      <ol style="list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column">
+        <li style="border-top: 1px solid #e2e5ea; padding: 10px 0; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; align-items: baseline">
+          <span class="mono" style="color: #5b6475">REQ-66</span>
+          <a href="Inbox.dc.html" style="color: #1b1f27; font-weight: 600">CEO 최종 결정 승인: 조건부, 90일 오픈소스 퍼널 실험만 진행</a>
+          <span style="display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5b6475"><span class="b bad">진행 차단</span><span class="b info">승인</span> P-5 · AI CEO · 7시간 전 · 만료 5일 후</span>
+        </li>
+        <li style="border-top: 1px solid #e2e5ea; padding: 10px 0; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; align-items: baseline">
+          <span class="mono" style="color: #5b6475">REQ-67</span>
+          <a href="Inbox.dc.html" style="color: #1b1f27; font-weight: 600">머지 승인: AICOMP-0001 오픈소스 공개 준비 (수용 기준 일부 미충족)</a>
+          <span style="display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5b6475"><span class="b warn">강한 승인</span><span class="b info">승인</span> P-5 · 제품 · 3시간 전</span>
+        </li>
+        <li style="border-top: 1px solid #e2e5ea; padding: 10px 0; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; align-items: baseline">
+          <span class="mono" style="color: #5b6475">REQ-64</span>
+          <a href="Inbox.dc.html" style="color: #1b1f27; font-weight: 600">저장소 공개 승인: 공개 준비가 끝난 뒤 products/ai-company-os 공개</a>
+          <span style="display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5b6475"><span class="b warn">강한 승인</span><span class="b info">승인</span> P-5 · 전략 · 7시간 전</span>
+        </li>
+        <li style="border-top: 1px solid #e2e5ea; padding: 10px 0; display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; align-items: baseline">
+          <span class="mono" style="color: #5b6475">REQ-65</span>
+          <a href="Inbox.dc.html" style="color: #1b1f27; font-weight: 600">90일 퍼널 W12 판정 시점에 사업화 판정 재평가</a>
+          <span style="display: flex; gap: 6px; align-items: center; font-size: 12px; color: #5b6475"><span class="b info">제안</span> P-5 · AI CEO · 7시간 전</span>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="h-since" style="background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 16px 20px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px">
+        <h2 id="h-since" style="margin: 0; font-size: 16px">지난 확인 이후 <span style="font-size: 13px; color: #5b6475; font-weight: 400">· 24시간</span></h2>
+        <button type="button" style="font: inherit; font-size: 12px; border: 1px solid #e2e5ea; background: #f1f3f6; border-radius: 8px; padding: 3px 10px">확인함</button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 12px">
+        <div>
+          <div style="font-size: 12px; color: #5b6475">완료된 업무</div>
+          <div style="font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums">19</div>
+          <div style="font-size: 12px"><a href="Tasks.dc.html">T-38</a> 약관 조항 수집 · <a href="Tasks.dc.html">T-39</a> 경쟁 비교표 · <a href="Tasks.dc.html">T-40</a> 세그먼트 근거 · 외 16</div>
+        </div>
+        <div>
+          <div style="font-size: 12px; color: #5b6475">새 결정</div>
+          <div style="font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums">3</div>
+          <div style="font-size: 12px"><a href="Project.dc.html">DEC-4</a> 유효 · <a href="Project.dc.html">DEC-5</a> · <a href="Project.dc.html">DEC-6</a> 승인 대기</div>
+        </div>
+        <div>
+          <div style="font-size: 12px; color: #5b6475">요청</div>
+          <div style="font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums">23 <span style="font-size: 13px; font-weight: 500; color: #5b6475">새로 · 16 처리함</span></div>
+          <div style="font-size: 12px; color: #5b6475">나머지는 병합·철회로 시스템이 정리</div>
+        </div>
+        <div>
+          <div style="font-size: 12px; color: #5b6475">실패 · 재정렬</div>
+          <div style="font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums">0 · 0</div>
+          <div style="font-size: 12px; color: #5b6475">최근 재정렬: REQ-46 이후 (10-31)</div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-proj" style="background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 16px 20px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 id="h-proj" style="margin: 0; font-size: 16px">프로젝트</h2>
+        <a href="#all" style="font-size: 13px">모든 프로젝트 →</a>
+      </div>
+      <div style="margin-top: 12px; border-top: 1px solid #e2e5ea; padding: 12px 0; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 16px; align-items: center">
+        <div><span style="color: #b54708">●</span> <span class="mono" style="color: #5b6475">P-5</span> <a href="Project.dc.html" style="color: #1b1f27; font-weight: 600">Just Ship It 사업화</a></div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <div style="display: flex; gap: 4px; flex-wrap: wrap; font-size: 11px">
+            <span class="b mut">계획 ✓</span><span class="b mut">실행 ✓</span><span class="b mut">CEO 검토 ✓</span><span class="b mut">회의 ✓</span><span class="b warn" aria-current="step">결정 · 오너 대기</span><span class="b mut" style="background: #ffffff; border: 1px dashed #c9ced6">종료</span>
+          </div>
+          <div style="font-size: 13px"><a href="Inbox.dc.html" class="mono">REQ-66</a> 승인을 기다립니다 · 업무 19/19 · <span style="font-variant-numeric: tabular-nums">$57.16 / $80</span> 환산</div>
+        </div>
+        <a href="Inbox.dc.html" style="background: #4f46e5; color: #ffffff; border-radius: 8px; padding: 7px 12px; font-weight: 600; white-space: nowrap">결정하러 가기</a>
+      </div>
+      <div style="border: 1px dashed #c9ced6; border-radius: 8px; padding: 12px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto; gap: 16px; align-items: center">
+        <div><span style="color: #b42318">●</span> <span class="mono" style="color: #5b6475">P-n</span> <span style="font-weight: 600">[프로젝트 이름]</span> <span style="font-size: 11px; color: #5b6475">상태 예시</span></div>
+        <div style="font-size: 13px"><span class="b bad">실패</span> 예산 한도 [$40] 도달 · 결정 단계에서 멈춤</div>
+        <span style="border: 1px solid #c9ced6; border-radius: 8px; padding: 7px 12px; white-space: nowrap">예산 조정 후 재실행</span>
+      </div>
+    </section>
+
+    <div style="font-size: 13px; color: #5b6475">이번 달 사용 <b style="color: #1b1f27; font-variant-numeric: tabular-nums">$116.46 / $300.00</b> 환산 · 구독 기반이라 실제 청구 아님 · <a href="#usage">사용량 →</a></div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

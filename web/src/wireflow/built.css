@@ -1,0 +1,24 @@
+/* The merge card's planned-vs-built pairs (wireflow/PlannedVsBuilt.tsx): the sketch and the capture of one screen side
+ * by side, one line under them. A sketch reuses the spec card's frame (wireflow.css), a capture is the real screen. */
+
+.wfb { display: grid; gap: var(--s-3); }
+.wfb h3 { margin: 0; }
+.wfb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.wfb-pair { display: grid; gap: 6px; min-width: 0; }
+.wfb-name { font-weight: 600; overflow-wrap: anywhere; }
+.wfb-cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); align-items: start; }
+.wfb-half { display: grid; gap: 3px; min-width: 0; }
+.wfb-lbl { font-size: var(--fs-meta); color: var(--text-2); }
+.wfb-verdict { display: flex; flex-wrap: wrap; gap: 4px var(--s-2); align-items: baseline; overflow-wrap: anywhere; }
+
+button.wfb-f { --wf-w: 100%; --u: 8px; max-height: 220px; }
+button.wfb-s { display: block; width: 100%; min-height: 0; padding: 0; overflow: hidden; background: var(--surface);
+  border-color: var(--border-control); border-radius: var(--r-control); }
+button.wfb-s:hover:not(:disabled) { background: var(--surface); border-color: var(--text); }
+button.wfb-s[aria-expanded="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.wfb-img { display: block; width: 100%; height: auto; background: var(--surface-2); }
+.wfb-none { display: grid; place-items: center; min-height: 96px; padding: var(--s-2); border: 1px dashed var(--border-control);
+  border-radius: var(--r-control); color: var(--text-2); text-align: center; overflow-wrap: anywhere; }
+
+.wfb-acts { display: flex; align-items: center; gap: var(--s-2); }
+.wfb-big .wfb-img-big { border: 1px solid var(--border-control); border-radius: var(--r-control); }

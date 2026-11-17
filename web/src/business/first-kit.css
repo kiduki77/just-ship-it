@@ -1,0 +1,74 @@
+/*
+ * The First 10 kit at the top of the People tab (business/Kit.tsx). Colors are the console's tokens, so dark mode needs
+ * nothing of its own. It is rows on hairlines inside the console's boxes, not cards in cards; a text sits on a tinted
+ * block with its Copy button beside it, and wraps under it when the column is narrow. No length of either language is assumed.
+ */
+.kt { scroll-margin-top: 72px; margin-bottom: var(--s-6); container: kit / inline-size; }
+.kt h3 { margin: 0; font-size: var(--fs-section); color: var(--text); }
+.kt h4 { margin: 0; font-size: var(--fs-row); font-weight: 600; color: var(--text); }
+.kt-lead { margin: 0 0 var(--s-3); max-width: 72ch; color: var(--text-2); font-size: var(--fs-row); line-height: 1.55; }
+.kt-lead b { color: var(--text); font-weight: 600; margin-right: var(--s-1); }
+.kt-help { margin: var(--s-1) 0 var(--s-3); max-width: 72ch; color: var(--text-2); font-size: var(--fs-meta); line-height: 1.55; }
+.kt-block { margin-top: var(--s-4); }
+.kt-pair { margin-top: var(--s-4); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); align-items: start; }
+.kt-pair > .kt-block { margin-top: 0; }
+@container kit (min-width: 880px) { .kt-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kt-block > h3 { margin-bottom: var(--s-2); }
+.kt-writing { display: inline-flex; align-items: center; gap: var(--s-2); min-height: var(--h-control); color: var(--text-2); font-size: var(--fs-row); }
+.kt-writing::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--run); animation: kt-pulse 1.6s var(--ease-out) infinite; }
+@keyframes kt-pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .kt-writing::before { animation: none; } }
+.kt-writing-note { margin: 0 0 var(--s-3); padding: var(--s-2) var(--s-3); background: var(--surface-2); border-radius: var(--r-container); max-width: 80ch; font-size: var(--fs-row); line-height: 1.5; }
+.kt-note { margin: var(--s-2) 0 0; width: fit-content; padding: var(--s-1) var(--s-3); border: 1px dashed var(--border-strong); border-radius: var(--r-container); max-width: 72ch; font-size: var(--fs-meta); line-height: 1.55; overflow-wrap: anywhere; }
+.kt-stale { border-style: solid; border-color: color-mix(in srgb, var(--warn) 55%, var(--border-strong)); background: var(--warn-bg); }
+.kt-fold > summary { cursor: pointer; padding: var(--s-1) 0; font-size: var(--fs-row); line-height: 1.5; }
+.kt-fold > summary b { margin-right: var(--s-2); }
+.kt-fold[open] > summary { margin-bottom: var(--s-2); }
+
+.kt-people { list-style: none; margin: 0; padding: 0; }
+.kt-person { padding: var(--s-4) var(--s-4) var(--s-3); border-top: 1px solid var(--border); min-width: 0; }
+.kt-person:first-child { border-top: 0; }
+.kt-person-t { margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-1) var(--s-2); min-width: 0; }
+.kt-name { font-weight: 600; font-size: var(--fs-section); line-height: 1.4; overflow-wrap: anywhere; }
+.kt-why { margin: var(--s-1) 0 0; max-width: 72ch; color: var(--text-2); font-size: var(--fs-row); line-height: 1.5; overflow-wrap: anywhere; }
+.kt-quote { margin: var(--s-2) 0 0; padding-left: 10px; border-left: 1px solid var(--border-strong); max-width: 72ch; font-size: var(--fs-body); line-height: 1.55; overflow-wrap: anywhere; }
+.kt-next { margin: var(--s-2) 0 0; max-width: 72ch; font-size: var(--fs-body); line-height: 1.55; overflow-wrap: anywhere; }
+.kt-next .k, .kt-quote .k { color: var(--text-2); font-size: var(--fs-meta); margin-right: var(--s-1); }
+.kt-draft { margin-top: var(--s-3); }
+.kt-label { margin: 0 0 var(--s-1); color: var(--text-2); font-size: var(--fs-meta); font-weight: 600; }
+.kt-nodraft { margin: var(--s-3) 0 0; max-width: 72ch; color: var(--text-2); font-size: var(--fs-row); line-height: 1.55; }
+.kt-row-a { margin-top: var(--s-3); display: flex; gap: var(--s-2); flex-wrap: wrap; }
+
+.kt-textrow { display: flex; align-items: flex-start; gap: var(--s-2); }
+.kt-text { flex: 1 1 auto; min-width: 0; margin: 0; padding: var(--s-2) var(--s-3); background: var(--surface-2); border-radius: var(--r-container); font: inherit; font-size: var(--fs-body); line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 72ch; }
+.kt-textrow .btn-copy { flex: none; margin-top: 2px; }
+.kt-meta { margin: var(--s-1) 0 0; display: flex; flex-wrap: wrap; gap: 0 var(--s-3); color: var(--text-2); font-size: var(--fs-meta); line-height: 1.6; font-variant-numeric: tabular-nums; }
+.kt-from { margin-top: var(--s-1); font-size: var(--fs-meta); color: var(--text-2); }
+.kt-from > summary { cursor: pointer; padding: 2px 0; }
+.kt-from ul { margin: var(--s-1) 0 0; padding-left: var(--s-4); display: flex; flex-direction: column; gap: var(--s-1); max-width: 72ch; line-height: 1.5; overflow-wrap: anywhere; }
+.kt-from-none { margin: var(--s-1) 0 0; color: var(--text-2); font-size: var(--fs-meta); }
+.kt-refused { max-width: 72ch; padding: var(--s-2) var(--s-3); background: var(--bad-bg); border-radius: var(--r-container); font-size: var(--fs-row); line-height: 1.55; overflow-wrap: anywhere; }
+.kt-refused p { margin: 0; }
+.kt-refused b { display: block; margin-bottom: 2px; }
+.kt-refused .btn-ghost { margin-top: var(--s-2); }
+.kt-unwritten { margin: var(--s-1) 0 0; color: var(--text-2); font-size: var(--fs-row); }
+
+.kt-group-h { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+.kt-texts { list-style: none; margin: 0; padding: 0; }
+.kt-item { padding: var(--s-3) 0; border-top: 1px solid var(--border); min-width: 0; }
+.kt-item:first-child { border-top: 0; }
+.kt-item h4 { margin-bottom: var(--s-1); }
+.kt-link { margin: var(--s-2) 0 0; padding-top: var(--s-3); border-top: 1px solid var(--border); color: var(--text-2); font-size: var(--fs-meta); line-height: 1.6; overflow-wrap: anywhere; }
+.kt-link .code { color: var(--text); }
+.kt-nobody-t { margin: 0; font-weight: 600; font-size: var(--fs-body); }
+.kt .row { display: flex; gap: var(--s-2); align-items: center; }
+.kt-nobody .row { margin-top: var(--s-2); }
+
+@media (max-width: 560px) {
+  .kt-textrow { flex-direction: column; align-items: stretch; }
+  .kt-textrow .btn-copy { align-self: flex-start; margin-top: 0; }
+  .kt-person { padding-inline: var(--s-3); }
+  .kt .btn-ghost.small, .kt .btn-primary.small, .kt .btn-copy { min-height: 36px; padding-inline: 12px; }
+  .kt-from > summary, .kt-fold > summary { padding-block: var(--s-2); }
+}
+.kt .btn-primary.small { min-height: 26px; padding: 2px 9px; font-size: var(--fs-meta); }

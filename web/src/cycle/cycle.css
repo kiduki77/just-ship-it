@@ -1,0 +1,214 @@
+/* The dashboard's cycle board (web/src/cycle). Control Room tokens only: state hues mean state, boxes never nest. */
+
+.cy-board { display: flex; flex-direction: column; gap: 18px; margin-bottom: 22px; min-width: 0; }
+.cy-board p { margin: 0; }
+.cy-waiting { display: flex; flex-direction: column; gap: 14px; }
+
+.cy-k { font-size: var(--fs-meta); font-weight: 600; color: var(--text-2); }
+.cy-fine { font-size: var(--fs-meta); color: var(--text-2); margin-top: 1px !important; overflow-wrap: anywhere; }
+.cy-fine .cy-k { margin-right: 4px; }
+.cy-h { display: flex; align-items: center; gap: 8px; font-size: var(--fs-section); font-weight: 600; margin: 0 0 10px; }
+h4.cy-h { font-size: var(--fs-section); }
+
+.cy-card { display: flex; flex-direction: column; gap: 10px; padding: 14px 18px; }
+.cy-card-h { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.cy-card-h h2 { margin: 0; font-size: var(--fs-section); font-weight: 600; overflow-wrap: anywhere; word-break: keep-all; }
+.cy-card-tag { margin-left: auto; }
+.cy-intro { word-break: keep-all; overflow-wrap: anywhere; }
+.cy-reply { background: var(--surface-2); border-radius: var(--r-container); padding: 10px 14px; display: flex; flex-direction: column; gap: 3px; max-width: 90ch; word-break: keep-all; overflow-wrap: anywhere; }
+.cy-changes ul { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.cy-changes li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: var(--fs-body); }
+
+/* the stages as the owner agrees to them: a hairline-separated list, four cells wide on a wide screen */
+.cy-stages { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.cy-stage { display: grid; grid-template-columns: minmax(150px, .7fr) minmax(0, 1.5fr) minmax(0, 1.1fr) minmax(150px, .6fr); gap: 0 12px;
+  padding: 2px 0; border-bottom: 1px solid var(--border); min-width: 0; }
+.cy-stage-name { display: flex; gap: 10px; align-items: flex-start; min-width: 0; }
+.cy-stage-name p { overflow-wrap: anywhere; word-break: keep-all; font-size: var(--fs-row); }
+.cy-stage-name .tag { margin-top: 4px; }
+.cy-n { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2);
+  font-size: var(--fs-meta); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+.cy-stage-cell { min-width: 0; display: flex; flex-direction: column; gap: 0; font-size: var(--fs-row); line-height: 1.35; word-break: keep-all; overflow-wrap: anywhere; max-width: 72ch; }
+.cy-stage-more { grid-column: 2 / -1; }
+.cy-stage .cy-fine { margin-top: 0 !important; line-height: 1.3; }
+/* wide screens: every row shares the column widths --cy-cols sets from the amount of text in each column */
+@media (min-width: 1101px) {
+  .cy-stages-fit { display: grid; grid-template-columns: var(--cy-cols); column-gap: 12px; }
+  .cy-stages-fit .cy-stage { grid-template-columns: subgrid; grid-column: 1 / -1; }
+  .cy-stages-fit .cy-stage-cell { max-width: none; }
+  /* the columns line up across rows, so the first row's labels name them for every row */
+  .cy-stages-fit .cy-stage:not(:first-child) .cy-stage-cell > .cy-k:first-child { display: none; }
+}
+
+.cy-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 12px; }
+.cy-act { display: grid; gap: 4px; max-width: 34ch; }
+.cy-act p { margin: 0; }
+.cy-foot { margin-top: -6px !important; max-width: 90ch; }
+.cy-revise { display: flex; flex-direction: column; gap: 8px; flex: 1 0 100%; max-width: 640px; }
+.cy-revise textarea { width: 100%; resize: vertical; }
+
+.cy-summary { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.cy-headline { font-size: var(--fs-section); font-weight: 600; word-break: keep-all; overflow-wrap: anywhere; }
+.cy-list { list-style: none; margin: 3px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-body); word-break: keep-all; overflow-wrap: anywhere; }
+.cy-list li::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--border-strong); margin: 0 8px 2px 0; }
+.cy-claims { list-style: none; margin: 4px 0 0; padding: 0; font-size: var(--fs-body); word-break: keep-all; overflow-wrap: anywhere; }
+.cy-claims li { padding: 8px 0; border-top: 1px solid var(--border); }
+.cy-claims li:first-child { border-top: 0; padding-top: 2px; }
+
+.cy-decisions { list-style: none; margin: 0; padding: 0; }
+.cy-decisions li { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-top: 1px solid var(--border); min-width: 0; }
+.cy-decisions li:first-child { border-top: 0; }
+.cy-decisions .grow { min-width: 0; overflow-wrap: anywhere; }
+
+.cy-ceo { padding: 6px 20px; }
+
+/* the strip: one cell per stage, a dot and a tinted hairline for its state */
+.cy-strip-sec { min-width: 0; }
+.cy-strip { list-style: none; margin: 0; padding: 0 0 4px; display: grid; grid-template-columns: repeat(var(--cols, 6), minmax(136px, 1fr)); gap: 10px; overflow-x: auto; }
+.cy-step { min-width: 0; display: flex; }
+.cy-step button { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; text-align: left; min-width: 0;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-container); padding: 10px 12px;
+  color: var(--text); transition: border-color .15s ease-out, box-shadow .15s ease-out; }
+.cy-step button:hover:not(:disabled) { border-color: var(--border-strong); box-shadow: 0 4px 14px rgb(16 18 24 / .06); }
+.cy-step.s-done button { border-color: color-mix(in srgb, var(--ok) 45%, var(--border)); }
+.cy-step.s-running button, .cy-step.s-closing button { border-color: color-mix(in srgb, var(--run) 45%, var(--border)); }
+.cy-step.s-awaiting_owner button, .cy-step.s-stopped button { border-color: color-mix(in srgb, var(--warn) 45%, var(--border)); }
+.cy-step.s-skipped button { border-style: dashed; }
+.cy-step button.on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.cy-step-top::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); }
+.cy-step.s-done .cy-step-top::before { background: var(--ok); }
+.cy-step.s-running .cy-step-top::before, .cy-step.s-closing .cy-step-top::before { background: var(--run); }
+.cy-step.s-awaiting_owner .cy-step-top::before, .cy-step.s-stopped .cy-step-top::before { background: var(--warn); }
+.cy-step-top { display: flex; align-items: center; gap: 8px; width: 100%; }
+.cy-step-n { font-size: var(--fs-meta); font-weight: 600; color: var(--text-2); }
+.cy-step-status { font-size: var(--fs-meta); font-weight: 600; color: var(--text-2); margin-left: auto; }
+.cy-step.s-done .cy-step-status { color: var(--ok); }
+.cy-step.s-running .cy-step-status, .cy-step.s-closing .cy-step-status { color: var(--run); }
+.cy-step.s-awaiting_owner .cy-step-status, .cy-step.s-stopped .cy-step-status { color: var(--warn); }
+/* a running stage while no worker runs reads in the waiting colour, as its chip does */
+.cy-step.is-held .cy-step-status { color: var(--warn); }
+.cy-step.is-held .cy-step-top::before { background: var(--warn); }
+
+/* a running stage shows it is alive: the dot gives off a slow ring and a thin line sweeps along the card's foot.
+   Nothing moves while the work is held (worker off) or finished, so stillness means no progress. */
+.cy-step.s-running:not(.is-held) button { position: relative; overflow: hidden; }
+.cy-step.s-running:not(.is-held) .cy-step-top::before { animation: cy-ring 2.2s ease-out infinite; }
+.cy-step.s-running:not(.is-held) button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 38%; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--run), transparent); animation: cy-sweep 2.6s ease-in-out infinite; }
+@keyframes cy-ring { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--run) 50%, transparent); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
+@keyframes cy-sweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(263%); } }
+.cy-step-title { font-weight: 600; font-size: var(--fs-section); line-height: 1.35; overflow-wrap: anywhere; word-break: keep-all; }
+.cy-step-meta { min-height: 1.4em; }
+.cy-step-stop { display: inline-flex; align-items: center; gap: 0; color: var(--text-2); font-weight: 500; line-height: 1.3; }
+.cy-step-stop::before { content: ""; flex: none; width: 3px; height: 10px; background: currentColor; border-radius: 1px; box-shadow: 5px 0 0 currentColor; margin-right: 12px; }
+
+/* the running stage beside the agents' cards */
+.cy-run { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.cy-current { display: flex; flex-direction: column; gap: 10px; }
+.cy-current-h { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.cy-current-h h3 { margin: 0; font-size: var(--fs-section); font-weight: 600; overflow-wrap: anywhere; word-break: keep-all; }
+.cy-current-h .link { margin-left: auto; }
+.cy-current-a { margin-left: auto; }
+.cy-current-since { align-self: flex-end; }
+.cy-doing { font-size: var(--fs-prose); line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+.cy-tasks { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px; }
+.cy-tasks .ilist > li { padding-left: 0; padding-right: 0; }
+.cy-tasks > summary.cy-h { display: list-item; cursor: pointer; margin: 0; }
+.cy-tasks > summary .sec-n { margin-left: 8px; }
+.cy-tasks[open] > summary.cy-h { margin-bottom: 10px; }
+.cy-task-state { color: var(--text-2); }
+.warn-t { color: var(--warn); }
+
+.cy-working { min-width: 0; }
+.cy-actions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin-bottom: 10px; }
+.cy-action { gap: 6px; }
+.cy-item { display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px solid var(--border); color: var(--text); min-width: 0; }
+.cy-action-h + .cy-item { border-top: 0; padding-top: 0; }
+a.cy-item:hover { text-decoration: none; }
+.cy-item p { margin: 0; }
+.cy-action-h { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.cy-action-h .live-dot, .cy-action-h .chip { margin-left: auto; flex: none; }
+.cy-action-a { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; padding-top: 8px;
+  border-top: 1px solid var(--border); }
+.cy-action-a .small { margin-right: auto; }
+.s-stopped .cy-action-where { color: var(--text-2); }
+.cy-action-where { color: var(--run); font-weight: 600; overflow-wrap: anywhere; word-break: keep-all; }
+.cy-action .agent-work { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
+.cy-action-f { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+
+/* a stage card inside the narrower left column of the run row stacks its cells in two columns */
+.cy-run .cy-stage { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.cy-run .cy-stage-name, .cy-run .cy-stage-more { grid-column: 1 / -1; }
+
+@media (max-width: 1200px) {
+  .cy-run { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 1100px) {
+  .cy-stage { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .cy-stage-name { grid-column: 1 / -1; }
+  .cy-stage-more { grid-column: 1 / -1; }
+}
+@media (max-width: 900px) {
+  .cy-card { padding: 14px 14px; }
+  .cy-stage { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cy-step button { transition: none; }
+  .cy-step.s-running:not(.is-held) .cy-step-top::before { animation: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--run) 30%, transparent); }
+  .cy-step.s-running:not(.is-held) button::after { animation: none; width: 100%; opacity: .5; transform: none; }
+}
+
+/* Business page: past cycles, each opening to its stages */
+.cy-hist ul { list-style: none; margin: 0; padding: 0; }
+.cy-hist > ul > li { border-top: 1px solid var(--border); }
+.cy-hist > ul > li:first-child { border-top: 0; }
+.cy-hist summary { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 11px 16px; cursor: pointer; list-style: none; }
+.cy-hist summary::-webkit-details-marker { display: none; }
+.cy-hist summary:hover { background: var(--surface-2); }
+.cy-hist summary .end { margin-left: auto; }
+.cy-hist details > p, .cy-hist details > ol, .cy-hist details > .quiet-line { margin: 0; padding: 0 16px 10px; }
+.cy-hist-stages { list-style: none; }
+.cy-hist-stages li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
+.cy-hist-stages li:first-child { border-top: 0; }
+.cy-hist-stages .grow { min-width: 0; overflow-wrap: anywhere; word-break: keep-all; }
+.cy-hist-stages li > .chip { flex: none; width: 96px; justify-content: flex-start; }
+.cy-hist-stages p { margin: 0; }
+
+/* the board's place while it loads, so the list under it does not jump */
+.cy-skel { min-height: 180px; margin-bottom: var(--s-6); padding: var(--s-4); border-radius: var(--r-container); background: var(--surface-2); }
+.cy-fix { margin-top: var(--s-2) !important; color: var(--text-2); }
+.cy-outside { margin-top: var(--s-2) !important; }
+#cycle-waiting:focus { outline: none; }
+
+/* the stage-end card as a decision: the recommendation, the options with their cost and buttons, what to check, the record folded (GateView) */
+.gv { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.gv-lead { border-left: 3px solid var(--accent); background: var(--surface-2); border-radius: 0 var(--r-container) var(--r-container) 0; padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.gv-lead p { margin: 0; }
+.gv-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; align-items: stretch; }
+.gv-opt { border: 1px solid var(--border-strong); border-radius: var(--r-container); padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.gv-opt p { margin: 0; word-break: keep-all; overflow-wrap: anywhere; }
+.gv-opt-k { font-weight: 600; }
+.gv-opt-act { margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+.gv-watch { display: flex; flex-direction: column; gap: 10px; background: var(--warn-bg); border-radius: var(--r-container); padding: 10px 14px; }
+.gv-watch p { margin: 0; }
+.gv-h { font-weight: 600; font-size: var(--fs-section); }
+.gv-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: var(--fs-body); }
+.gv-rows li { word-break: keep-all; overflow-wrap: anywhere; }
+.gv-rows li p { margin: 0; }
+.gv-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; color: var(--text-2); margin-top: 2px !important; }
+.gv-pips { display: inline-flex; gap: 2px; flex: none; }
+.gv-pips i { width: 14px; height: 6px; border-radius: 3px; background: var(--border-strong); }
+.gv-pips i.on { background: currentColor; }
+.gv-pips.t-ok { color: var(--ok); }
+.gv-pips.t-run { color: var(--run); }
+.gv-pips.t-warn { color: var(--warn); }
+.gv-more > summary { font-weight: 600; }
+.gv-more[open] > summary { margin-bottom: 8px; }
+.gv-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; margin-top: 12px; }
+.gv-checks { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-body); word-break: keep-all; overflow-wrap: anywhere; }
+.gv-checks li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 6px; }
+.gv-checks li::before { content: "\2713"; color: var(--ok); font-weight: 600; }
+.gv-checks.is-open li::before { content: "\25CB"; color: var(--text-3); }
+.gv-foot { list-style: none; margin: 0; padding: 8px 0 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 2px; }
+.gv-end { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.gv-end p { margin: 0; flex: 1 1 260px; }

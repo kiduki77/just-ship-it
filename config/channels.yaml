@@ -1,0 +1,844 @@
+# Where the owner posts by hand, and how much the company may write for each place. The company never posts.
+# mode: outline gives facts, expected questions and a checklist, never sentences to post. draft gives a title and body.
+# self_written: the owner writes the words (true for every outline channel). A place that bans generated text, or a
+#   community that spots it, gets no sentence from the company.
+# basis: verified = the rule text was read at its source; secondary = known from a summary or a case study only;
+# none = the research found no rule for this place. source_url is where the rule was read, or null: it is set exactly
+#   when basis is not none.
+# checked_on, unchecked_why, background_url: whether the place's rules were read (services/channels.state). A place is
+#   "checked" only when basis is verified, and then checked_on says the day the rules were read at source_url. Every
+#   other place is "unchecked", and the company writes nothing for it: unchecked_why says why, one of not_read (a source
+#   exists and could not be read), per_unit (the rules belong to each server, list, newsletter or subreddit, so no single
+#   text exists) or no_source (no rule page was found). checked_on is set exactly when basis is verified, unchecked_why
+#   exactly when it is not; the registry fails at load otherwise. background_url is a page that was read but is not the
+#   place's rule text (a platform page for a place whose rules are per unit), so source_url stays null.
+#   `rules` says only what the source says; a limit (name length, a waiting time) is in it only when the place states it.
+# unit: what one entry of a bigger site is (a subreddit, a group), or null when the entry is the whole place.
+# repost: when the same place may be posted to again. min_interval_days is the company's own floor between two posts
+#   there. needs_new_material means a post must carry something no earlier post there carried (a release, a milestone,
+#   a use case, a bet result). basis and source_url are for the repost rule itself; a place whose repost rule was not
+#   found has basis none and a floor the company chose, not one the place stated.
+# requires: launch gate items that must be true before a card is made (see services/promotion.py GATE_ITEMS). A one-shot
+#   launch is gated, a community post is not.
+# same_day_exclusive: no other post goes out the same day as a post here.
+# name, rules: the owner's words for the place and its rules, one per language (en, ko). The card shows them in the
+#   owner's language.
+# region: who the place is for. global: an English-language place open to every market (Hacker News, Reddit); it comes
+#   first in the weekly promotion. ko: a Korean place, for a business whose market is Korean. en: an English-speaking
+#   market's local place (Nextdoor), for a business whose market is English. A business's market is the language its
+#   owner wrote its name and one-liner in (services/audience.market_of_business).
+# generic: true marks an entry that names no particular place (any subreddit, anything else). The weekly promotion never
+#   picks it, so it posts to the specific units; an agent's own request may still use it.
+# fits: what the place is, in the customer description's words (services/profile/vocab.py): `buyer` codes for who it
+#   reaches there, `reach` codes for how people are reached there. A line left out means any, `{}` names no particular
+#   place. The place fits a business when every declared line shares a code with its description (services/profile/core.py
+#   `fit`); a declared line the description does not know yet leaves the place unpicked until the owner says. A
+#   neighborhood place (daangn_community, reddit_local, nextdoor) says only
+#   `reach: [local]` and `buyer: [consumers]`: an app reached through online communities is not in the neighborhood.
+# weekly: false keeps a place out of the weekly promotion although it names one place: a job board is for hiring, not
+#   for telling people about the product. An agent's own request may still use it.
+# Before 100 users every community channel (Reddit and each subreddit, Product Hunt, X, Hacker News) is outline: the
+#   owner writes the words and the company gives facts and questions (the expert panel's item 8, adopted by the owner).
+# aliases: other names people write for the place, per language ("동네생활", "당근", "Karrot"), so a card filed under
+#   other that names it is read as it (services/channels.named). Every language's names and aliases are matched at once,
+#   because a card keeps the language it was written in.
+# post_link: for a place whose post address has a known shape, `patterns` the post link must match whole (host, path and
+#   query, case ignored) and `example`, the shape the owner reads when a link is refused. A submit page, a list or a
+#   profile is not a post, and the company collects reactions only from the post itself. Patterns keep to syntax
+#   JavaScript reads the same way, since the to-do form runs them too. A place without one takes any page on its domains.
+# tag, link, link_basis: the owner's own link on the card (services/tracking.py). tag is 2-4 lowercase letters, unique in this
+#   file, and only makes a tag readable. link says what the card gives: tagged (the address carries the tag), plain (the address as
+#   it is, because the place names itself as the source or the owner's readers distrust a tracking link) or none (no link; the
+#   card gives a line to say). link_basis is as for rules: verified, secondary, or none when the company chose it.
+# Rules come from docs/ux/research/launch-paths.md section 2, and from the pages named in each source_url.
+channels:
+  hacker_news:
+    name:
+      en: "Hacker News"
+      ko: "Hacker News 글·댓글"
+    mode: outline
+    rules:
+      en: "Don't put generated text in a post, and don't automate posting. Comments may not hold generated or AI-edited text either. Don't ask for votes, comments or submissions, and don't use it mainly to promote. You write it yourself, in your own words. Reposts: \"If a story has not had significant attention in the last year or so, a small number of reposts is ok. Otherwise we bury reposts as duplicates.\""
+      ko: "글에 생성한 문장을 넣지 않고, 자동으로 올리지도 않아요. 댓글에도 생성한 글이나 AI가 고친 글은 올리지 않아요. 투표·댓글·제출은 부탁하지 않아요. 홍보하려고만 쓰는 곳이 아니에요. 오너님이 자기 말로 직접 써요. 다시 올리기: \"If a story has not had significant attention in the last year or so, a small number of reposts is ok. Otherwise we bury reposts as duplicates.\""
+    basis: verified
+    source_url: https://news.ycombinator.com/newsguidelines.html
+    checked_on: 2026-11-16
+    domains: [news.ycombinator.com]
+    post_link: &hn_post
+      patterns: ['news\.ycombinator\.com/item\?(?:.*&)?id=\d+(?:&.*)?']
+      example: "news.ycombinator.com/item?id=…"
+    unit: null
+    repost: {min_interval_days: 30, needs_new_material: true, source_url: "https://news.ycombinator.com/newsfaq.html", basis: verified}
+    requires: []
+    same_day_exclusive: true
+    region: global
+    tag: hn
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  show_hn:
+    name:
+      en: "Show HN"
+      ko: "Show HN"
+    mode: outline
+    rules:
+      en: "Only for something you made that people can run on their computers or hold in their hands, ideally without barriers such as signups or emails. Blog posts, sign-up pages, newsletters, lists and other reading material don't count. Don't ask friends to upvote or comment. This page says nothing on generated text, but the Hacker News guidelines ask you not to put it in a post. You write it yourself, in your own words. Reposts: \"New features and upgrades ... generally aren't substantive enough to be Show HNs. A major overhaul is probably ok.\" It's a one-time launch, so post only after every launch check passes."
+      ko: "직접 만들었고 사람들이 자기 컴퓨터에서 실행하거나 손에 쥘 수 있는 것만 올려요. 가능하면 가입이나 이메일 같은 장벽이 없어야 해요. 블로그 글, 가입 페이지, 뉴스레터, 목록 같은 읽을거리는 안 돼요. 친구에게 업보트나 댓글을 부탁하지 않아요. 생성한 글에 대한 말은 이 페이지에는 없지만, Hacker News 가이드라인은 글에 넣지 말라고 해요. 오너님이 자기 말로 직접 써요. 다시 올리기: \"New features and upgrades ... generally aren't substantive enough to be Show HNs. A major overhaul is probably ok.\" 한 번뿐인 큰 출시라 출시 전 점검을 모두 마친 뒤에만 올려요."
+    basis: verified
+    source_url: https://news.ycombinator.com/showhn.html
+    checked_on: 2026-11-16
+    domains: [news.ycombinator.com]
+    post_link: *hn_post
+    unit: null
+    repost: {min_interval_days: 365, needs_new_material: true, source_url: "https://news.ycombinator.com/showhn.html", basis: verified}
+    requires: [demo, outside_install_3, readme_checked, first_value_20]
+    same_day_exclusive: true
+    region: global
+    tag: sh
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  reddit:
+    name:
+      en: "Reddit"
+      ko: "Reddit"
+    aliases:
+      en: ["subreddit", "r/"]
+      ko: ["레딧", "서브레딧"]
+    mode: outline
+    rules:
+      en: "We could not read Reddit's own rules, and every subreddit has its own. Read the rules of the subreddit yourself before you post. You write it yourself, in your own words."
+      ko: "Reddit 공식 규칙 원문은 읽지 못했고, 서브레딧마다 규칙이 따로 있어요. 올리기 전에 그 서브레딧의 규칙을 직접 읽어 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [reddit.com, redd.it]
+    post_link: &reddit_post
+      patterns:
+        - '(?:[a-z0-9-]+\.)?reddit\.com/(?:r/[^/?#]+/)?comments/[a-z0-9]+(?:[/?].*)?'
+        - '(?:[a-z0-9-]+\.)?reddit\.com/r/[^/?#]+/s/[a-z0-9]+/?(?:\?.*)?'
+        - 'redd\.it/[a-z0-9]+/?(?:\?.*)?'
+      example: "reddit.com/r/…/comments/…"
+    unit: subreddit
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: true
+    region: global
+    tag: rd
+    link: plain
+    link_basis: none
+    self_written: true
+    generic: true
+    fits: {}
+  reddit_opensource:
+    name:
+      en: "Reddit r/opensource"
+      ko: "Reddit r/opensource"
+    aliases:
+      en: ["r/opensource"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We could not read the subreddit's rules. Read r/opensource's rules yourself before you post, and check whether it limits self-promotion or asks you to take part first. You write it yourself, in your own words."
+      ko: "서브레딧 규칙 원문은 읽지 못했어요. 올리기 전에 r/opensource의 규칙을 직접 읽고, 자기 홍보 제한이나 먼저 활동하라는 요구가 있는지 확인해 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [reddit.com, redd.it]
+    post_link: *reddit_post
+    unit: r/opensource
+    repost: {min_interval_days: 21, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: true
+    region: global
+    tag: rdo
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  reddit_sideproject:
+    name:
+      en: "Reddit r/SideProject"
+      ko: "Reddit r/SideProject"
+    aliases:
+      en: ["r/SideProject"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We could not read the subreddit's rules. Read r/SideProject's rules yourself before you post. You write it yourself, in your own words."
+      ko: "서브레딧 규칙 원문은 읽지 못했어요. 올리기 전에 r/SideProject의 규칙을 직접 읽어 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [reddit.com, redd.it]
+    post_link: *reddit_post
+    unit: r/SideProject
+    repost: {min_interval_days: 21, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: true
+    region: global
+    tag: rds
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  reddit_selfhosted:
+    name:
+      en: "Reddit r/selfhosted"
+      ko: "Reddit r/selfhosted"
+    aliases:
+      en: ["r/selfhosted"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We could not read the subreddit's rules. Read r/selfhosted's rules yourself before you post. You write it yourself, in your own words."
+      ko: "서브레딧 규칙 원문은 읽지 못했어요. 올리기 전에 r/selfhosted의 규칙을 직접 읽어 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [reddit.com, redd.it]
+    post_link: *reddit_post
+    unit: r/selfhosted
+    repost: {min_interval_days: 28, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: true
+    region: global
+    tag: rdh
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  reddit_claudeai:
+    name:
+      en: "Reddit r/ClaudeAI"
+      ko: "Reddit r/ClaudeAI"
+    aliases:
+      en: ["r/ClaudeAI"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We could not read the subreddit's rules. Read r/ClaudeAI's rules yourself before you post. You write it yourself, in your own words."
+      ko: "서브레딧 규칙 원문은 읽지 못했어요. 올리기 전에 r/ClaudeAI의 규칙을 직접 읽어 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [reddit.com, redd.it]
+    post_link: *reddit_post
+    unit: r/ClaudeAI
+    repost: {min_interval_days: 21, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: true
+    region: global
+    tag: rdc
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  product_hunt:
+    name:
+      en: "Product Hunt"
+      ko: "Product Hunt"
+    mode: outline
+    rules:
+      en: "Never ask for upvotes, don't pay for upvotes or comments, and don't run contests or giveaways tied to upvotes. Don't use fake or extra accounts. Don't spam, which includes mass or copy-pasted messages to strangers. Skip link shorteners and link straight to your product. Name up to 40 characters, tagline up to 60, description up to 500 (product page: help.producthunt.com/en/articles/17834537). Less than two months after your last launch you are asked to submit a relaunch request, and small fixes, minor UI tweaks or a new pricing plan usually aren't enough on their own (relaunch: help.producthunt.com/en/articles/17734411). The 180 days between our own posts here is the company's choice, not Product Hunt's. It's a one-time launch, so post only after every launch check passes."
+      ko: "업보트를 부탁하지 않고, 업보트나 댓글을 돈 주고 사지 않으며, 업보트와 엮은 이벤트나 경품 행사도 하지 않아요. 가짜 계정이나 추가 계정을 쓰지 않아요. 스팸을 보내지 않아요. 낯선 사람에게 대량으로 또는 복사해 붙인 메시지를 보내는 것도 스팸이에요. 링크 단축 서비스는 쓰지 않고 제품 링크를 바로 연결해요. 이름은 40자, 한 줄 소개는 60자, 설명은 500자까지예요(제품 페이지: help.producthunt.com/en/articles/17834537). 지난 출시 후 두 달이 안 지났다면 재출시를 신청해야 하고, 작은 수정이나 가벼운 화면 손질, 새 요금제만으로는 보통 부족해요(재출시: help.producthunt.com/en/articles/17734411). 출시 사이에 180일을 두는 건 Product Hunt가 아니라 이 회사의 선택이에요. 한 번뿐인 큰 출시라 출시 전 점검을 모두 마친 뒤에만 올려요."
+    basis: verified
+    source_url: https://help.producthunt.com/en/articles/17734384-5-how-to-promote-your-launch-and-what-to-avoid
+    checked_on: 2026-11-16
+    domains: [producthunt.com]
+    unit: null
+    repost: {min_interval_days: 180, needs_new_material: true, source_url: null, basis: none}
+    requires: [demo, outside_install_3, readme_checked, first_value_20]
+    same_day_exclusive: true
+    region: global
+    tag: ph
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {reach: [communities]}
+  devto:
+    name:
+      en: "dev.to"
+      ko: "dev.to"
+    mode: outline
+    rules:
+      en: "dev.to's Terms say content may not be designed primarily for the purposes of promotion or creating backlinks, and that affiliate links must be clearly disclosed. Its guidelines for AI-assisted articles say such an article should not promote any business, program or course, your own included, and should say that AI helped write it. So the company writes no sentence for dev.to: you write the article yourself, in your own words. The AI guidelines page we read is dated April 2024."
+      ko: "dev.to 이용약관은 홍보나 백링크가 주목적인 글을 금지하고, 제휴 링크는 분명히 밝히라고 해요. AI가 도운 글에 대한 안내는 그런 글로 내 것을 포함해 어떤 사업, 프로그램, 강의도 홍보하면 안 되고, AI가 도왔다는 사실을 글에 적으라고 해요. 그래서 회사는 dev.to에는 문장을 쓰지 않고, 오너님이 자기 말로 직접 써요. 읽은 AI 안내 페이지는 2024년 4월 날짜예요."
+    basis: verified
+    source_url: https://dev.to/terms
+    checked_on: 2026-11-16
+    domains: [dev.to]
+    unit: null
+    repost: {min_interval_days: 7, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: dv
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities, search]}
+  hashnode:
+    name:
+      en: "Hashnode"
+      ko: "Hashnode"
+    mode: draft
+    rules:
+      en: "Hashnode's Code of Conduct bans using the platform primarily for self-promotion without contributing to the community, engagement farming, misleading links and bulk automated content. AI-generated content is permitted, but you must review and take responsibility for everything you publish. A draft here is a starting point for you to edit and check."
+      ko: "Hashnode 행동 강령은 커뮤니티에 기여하지 않고 주로 자기 홍보에 쓰는 일, 반응 부풀리기, 오해를 부르는 링크, 대량 자동 게시를 금지해요. AI로 쓴 글은 허용되지만, 올리는 모든 내용을 직접 검토하고 책임져야 해요. 여기의 초안은 오너님이 고치고 확인할 출발점이에요."
+    basis: verified
+    source_url: https://hashnode.com/code-of-conduct
+    checked_on: 2026-11-16
+    domains: [hashnode.com, hashnode.dev]
+    unit: null
+    repost: {min_interval_days: 7, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: hsh
+    link: tagged
+    link_basis: none
+    self_written: false
+    fits: {buyer: [developers], reach: [communities, search]}
+  x:
+    name:
+      en: "X (Twitter)"
+      ko: "X (트위터)"
+    aliases:
+      en: ["Twitter", "tweet", "X.com"]
+      ko: ["트위터", "트윗"]
+    mode: outline
+    rules:
+      en: "We could not read X's rules. Read them yourself before you post. You write it yourself, in your own words."
+      ko: "X의 규칙 원문은 읽지 못했어요. 올리기 전에 직접 읽어 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [x.com, twitter.com]
+    post_link:
+      patterns: ['(?:(?:www|mobile)\.)?(?:x|twitter)\.com/[a-z0-9_]+/status/\d+(?:[/?].*)?']
+      example: "x.com/…/status/…"
+    unit: null
+    repost: {min_interval_days: 3, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: xc
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {reach: [communities]}
+  discord_global:
+    name:
+      en: "Discord communities (English)"
+      ko: "Discord 커뮤니티 (영어)"
+    aliases:
+      en: ["Discord"]
+      ko: ["디스코드"]
+    mode: outline
+    rules:
+      en: "Discord's own guidelines say not to send unsolicited bulk messages, and say nothing on self-promotion. What is allowed depends on each server's rules, which we did not read. Join, help people first, and post only after you have read that server's rules."
+      ko: "Discord 자체 가이드라인은 원치 않는 대량 메시지를 보내지 말라고 하고, 자기 홍보에 대해서는 말하지 않아요. 무엇이 되는지는 서버마다 규칙이 달라요. 서버 규칙 원문은 읽지 못했어요. 먼저 들어가서 도움을 주고, 그 서버의 규칙을 직접 읽은 뒤에만 올려요."
+    basis: none
+    source_url: null
+    unchecked_why: per_unit
+    background_url: https://discord.com/guidelines
+    domains: [discord.com, discord.gg]
+    unit: server
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: dg
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  dev_newsletter:
+    name:
+      en: "Developer newsletters (TLDR, Console.dev)"
+      ko: "개발자 뉴스레터 (TLDR, Console.dev)"
+    aliases:
+      en: ["TLDR", "Console.dev"]
+      ko: []
+    mode: draft
+    rules:
+      en: "Each newsletter takes submissions its own way, and no single rule text exists. Check the newsletter's submission page yourself before you send anything."
+      ko: "뉴스레터마다 투고 방법이 달라서 하나로 정리된 규칙 원문이 없어요. 보내기 전에 그 뉴스레터의 투고 안내를 직접 확인해 주세요."
+    basis: none
+    source_url: null
+    unchecked_why: per_unit
+    domains: []
+    unit: newsletter
+    repost: {min_interval_days: 30, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: dn
+    link: tagged
+    link_basis: none
+    self_written: false
+    fits: {buyer: [developers], reach: [communities, search]}
+  awesome_list:
+    name:
+      en: "Awesome list (PR)"
+      ko: "Awesome List (PR)"
+    aliases:
+      en: ["Awesome list"]
+      ko: []
+    mode: draft
+    rules:
+      en: "Each list has its own contribution rules, which we did not read. The pull request template for adding a list to the main Awesome index is linked as background only: it covers adding a list, not an entry to a particular list. Read the rules of the list you post to yourself."
+      ko: "목록마다 기여 규칙이 따로 있고, 그 원문은 읽지 못했어요. Awesome 메인 목록에 목록을 넣을 때 쓰는 PR 템플릿은 참고로만 연결해 뒀어요. 그건 목록을 올리는 규칙이고, 특정 목록에 항목을 넣는 규칙이 아니에요. 올릴 목록의 규칙을 직접 읽어 주세요."
+    basis: none
+    source_url: null
+    unchecked_why: per_unit
+    background_url: https://github.com/sindresorhus/awesome/blob/main/pull_request_template.md
+    domains: [github.com]
+    unit: list
+    repost: {min_interval_days: 30, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: al
+    link: plain
+    link_basis: none
+    self_written: false
+    fits: {buyer: [developers], reach: [communities, search]}
+  github_release:
+    name:
+      en: "GitHub release"
+      ko: "GitHub 릴리스"
+    mode: draft
+    rules:
+      en: "GitHub's rules ban inflating stars or follows automatically and activity from fake accounts. We found no sentence banning a person from asking for stars, but this company never puts a request for stars on a card, in any channel. Release notes say only what changed."
+      ko: "GitHub 이용 규칙은 star나 팔로우를 자동으로 늘리는 일과 가짜 계정으로 하는 활동을 금지해요. 사람이 star를 부탁하면 안 된다는 문장은 찾지 못했지만, 이 회사는 어느 채널에서도 카드에 star 부탁을 쓰지 않아요. 릴리스 노트에는 바뀐 내용만 써요."
+    basis: verified
+    source_url: https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies
+    checked_on: 2026-11-16
+    domains: [github.com]
+    unit: null
+    repost: {min_interval_days: 7, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: gr
+    link: plain
+    link_basis: none
+    self_written: false
+    fits: {buyer: [developers], reach: [communities, search]}
+  linkedin:
+    name:
+      en: "LinkedIn"
+      ko: "LinkedIn"
+    mode: outline
+    rules:
+      en: "LinkedIn's Professional Community Policies don't allow inappropriate commercial or promotional messages. Don't use the invitation feature to send promotional messages to people you don't know. Don't do things to artificially increase engagement with your content, and don't agree in advance to like or reshare each other's posts. Don't share content that is false, misleading, or intended to deceive. You write it yourself, in your own words."
+      ko: "LinkedIn 전문 커뮤니티 정책은 부적절한 상업·홍보 메시지를 허용하지 않아요. 초대 기능으로 모르는 사람에게 홍보 메시지를 보내지 않아요. 콘텐츠의 반응을 인위적으로 늘리지 않고, 서로의 글에 좋아요를 누르거나 다시 공유하기로 미리 약속하지도 않아요. 거짓이거나 오해를 부르거나 속이려는 내용은 올리지 않아요. 오너님이 자기 말로 직접 써요."
+    basis: verified
+    source_url: https://www.linkedin.com/legal/professional-community-policies
+    checked_on: 2026-11-16
+    domains: [linkedin.com]
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: li
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [professionals, companies], reach: [communities]}
+  lobsters:
+    name:
+      en: "Lobsters"
+      ko: "Lobsters"
+    mode: outline
+    rules:
+      en: "As a rule of thumb, self-promotion on Lobsters should be less than a quarter of one's stories and comments in the last year. Users in their first 70 days are not allowed to submit self-promo, and new users can't submit links to domains the site hasn't seen submitted before. Tracking parameters are removed from links, and marketing-analytics domains are banned. Tags are picked from a fixed list. You write it yourself, in your own words."
+      ko: "Lobsters에서 자기 홍보는 경험칙으로 지난 1년 동안 올린 글과 댓글의 4분의 1보다 적어야 해요. 가입 후 70일 안에는 자기 홍보 글을 올릴 수 없고, 새 사용자는 사이트에 아직 올라온 적 없는 도메인의 링크도 올릴 수 없어요. 링크의 추적 파라미터는 지워지고, 마케팅 분석 도메인은 금지예요. 태그는 정해진 목록에서 골라요. 오너님이 자기 말로 직접 써요."
+    basis: verified
+    source_url: https://lobste.rs/about
+    checked_on: 2026-11-16
+    domains: [lobste.rs]
+    unit: null
+    repost: {min_interval_days: 30, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: lb
+    link: plain
+    link_basis: verified
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  geeknews:
+    name:
+      en: "GeekNews (Show GN)"
+      ko: "GeekNews (Show GN)"
+    aliases:
+      en: ["GeekNews", "Show GN"]
+      ko: ["긱뉴스"]
+    mode: outline
+    rules:
+      en: "A service, open-source project or tool that you or your organization made goes in Show, not News. Post only work people can try. Posting several projects in a short time reads as using the site to distribute, and gets limited. The same project can't be posted again for a while, even after a big feature change or a major version. Don't ask anyone to upvote or downvote. Mass-produced posts nobody reviewed may be hidden or deleted, so you write it yourself, in your own words. The rules don't say how long the repost wait is, so we set it at 90 days. It's a one-time introduction, so post only after every launch check passes. (Rules read at the source on 2026-11-03.)"
+      ko: "본인이나 소속 조직이 만든 서비스·오픈소스·도구는 뉴스가 아니라 Show로 올려요. 직접 써 볼 수 있는 것만 올리고, 짧은 기간에 여러 프로젝트를 올리면 홍보 창구로 쓴다고 보고 제한해요. 같은 프로젝트는 한동안 다시 올릴 수 없고, 큰 기능 변경이나 메이저 버전업이 있어도 마찬가지예요. 다른 사람에게 upvote나 downvote를 부탁하지 않아요. 제대로 검토하지 않고 찍어 낸 글은 노출이 줄거나 지워질 수 있어서 오너님이 자기 말로 직접 써요. 다시 올리기까지 기다릴 기간은 원문에 없어서 90일로 잡았어요. 한 번뿐인 소개라 출시 전 점검을 모두 마친 뒤에만 올려요. (2026-11-03 원문 확인)"
+    basis: verified
+    source_url: https://news.hada.io/guidelines
+    checked_on: 2026-11-03
+    domains: [news.hada.io]
+    unit: null
+    repost: {min_interval_days: 90, needs_new_material: true, source_url: "https://news.hada.io/guidelines", basis: verified}
+    requires: [demo, outside_install_3, readme_checked, first_value_20]
+    same_day_exclusive: true
+    region: ko
+    tag: gn
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  disquiet:
+    name:
+      en: "Disquiet"
+      ko: "디스콰이엇"
+    aliases:
+      en: ["disquiet"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We did not find Disquiet's rules. Check them yourself before you post. You write it yourself, in your own words."
+      ko: "디스콰이엇의 규칙은 확인하지 못했어요. 올리기 전에 직접 확인해 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [disquiet.io]
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: dq
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {reach: [communities]}
+  okky:
+    name:
+      en: "OKKY"
+      ko: "OKKY"
+    mode: outline
+    rules:
+      en: "We did not find OKKY's rules. Before you post, check its rules and which board allows promotion. You write it yourself, in your own words."
+      ko: "OKKY의 규칙은 확인하지 못했어요. 올리기 전에 규칙과 홍보 글을 받는 게시판을 직접 확인해 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [okky.kr]
+    unit: board
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: ok
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  careerly:
+    name:
+      en: "Careerly"
+      ko: "커리어리"
+    aliases:
+      en: ["careerly"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We did not find Careerly's rules. Check them yourself before you post. You write it yourself, in your own words."
+      ko: "커리어리의 규칙은 확인하지 못했어요. 올리기 전에 직접 확인해 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [careerly.co.kr]
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: cl
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  facebook_dev_groups:
+    name:
+      en: "Korean developer groups on Facebook"
+      ko: "페이스북 개발자 그룹"
+    mode: outline
+    rules:
+      en: "Every group has its own rules, and we did not read them. Post only after you have read the group's pinned notice and checked that it allows promotion. You write it yourself, in your own words."
+      ko: "그룹마다 규칙이 다르고, 규칙 원문은 확인하지 못했어요. 그룹의 공지를 읽고 홍보가 허용되는지 확인한 뒤에만 올려요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [facebook.com]
+    unit: group
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: fbd
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  discord_ko:
+    name:
+      en: "Discord communities (Korean)"
+      ko: "Discord 커뮤니티 (한국어)"
+    aliases:
+      en: ["Discord"]
+      ko: ["디스코드"]
+    mode: outline
+    rules:
+      en: "Every server has its own rules. We did not read any server's rules. Join, help people first, and post only after you have read that server's rules and found where promotion is allowed."
+      ko: "서버마다 규칙이 달라요. 규칙 원문은 확인하지 못했어요. 먼저 들어가서 도움을 주고, 그 서버의 규칙을 직접 읽고 홍보가 허용되는 곳을 확인한 뒤에만 올려요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [discord.com, discord.gg]
+    unit: server
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: dk
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [developers], reach: [communities]}
+  daangn_community:
+    name:
+      en: "Daangn neighborhood board (동네생활)"
+      ko: "당근 동네생활"
+    aliases:
+      en: ["Daangn", "Karrot"]
+      ko: ["동네생활", "당근마켓 동네생활", "당근마켓", "당근"]
+    mode: outline
+    rules:
+      en: "We did not read Daangn's rules for the neighborhood board. Before you post, read its community policy yourself and check that promotional posts are allowed on that topic. Neighbors write there, so you write it yourself, in your own words."
+      ko: "당근 동네생활의 운영 규칙 원문은 확인하지 못했어요. 올리기 전에 동네생활 운영정책을 직접 읽고, 홍보 글을 올려도 되는 주제인지 확인해 주세요. 이웃이 쓰는 게시판이라 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [daangn.com]
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: dac
+    link: none
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers], reach: [local]}
+  daangn_jobs:
+    name:
+      en: "Daangn jobs (당근알바)"
+      ko: "당근알바"
+    aliases:
+      en: ["Daangn jobs", "Karrot jobs"]
+      ko: ["당근 알바", "당근마켓 알바"]
+    mode: draft
+    rules:
+      en: "We did not read Daangn's rules for job posts. Read them yourself before you post. Write only the pay and conditions you can actually keep, and check each number before you post."
+      ko: "당근알바의 공고 규칙 원문은 확인하지 못했어요. 올리기 전에 공고 작성 규칙을 직접 읽어 주세요. 급여와 근무 조건은 실제로 지킬 수 있는 것만 적고, 올리기 전에 숫자를 하나씩 확인해 주세요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [daangn.com]
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: daj
+    link: none
+    link_basis: none
+    self_written: false
+    fits: {reach: [local]}
+    weekly: false
+  naver_cafe:
+    name:
+      en: "Naver Cafe"
+      ko: "네이버 카페"
+    aliases:
+      en: ["Naver Cafe"]
+      ko: ["네이버카페"]
+    mode: outline
+    rules:
+      en: "Every cafe has its own rules, and we did not read them. Post only after you have read the cafe's notice and found the board that takes promotional posts. You write it yourself, in your own words."
+      ko: "카페마다 규칙이 다르고, 규칙 원문은 확인하지 못했어요. 카페의 공지와 홍보 글을 받는 게시판을 직접 확인한 뒤에만 올려요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [cafe.naver.com]
+    unit: cafe
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: nc
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers, small_business, professionals, companies], reach: [communities, local]}
+  kakao_openchat:
+    name:
+      en: "KakaoTalk open chat"
+      ko: "카카오 오픈채팅"
+    aliases:
+      en: ["KakaoTalk open chat", "Kakao open chat"]
+      ko: ["오픈채팅", "오픈 채팅"]
+    mode: outline
+    rules:
+      en: "Every room has its own rules, and we did not read them. Post only after you have read the room's notice and checked that it allows promotion. In a chat room a pasted introduction reads as an ad, so you write it yourself, in your own words."
+      ko: "방마다 규칙이 다르고, 규칙 원문은 확인하지 못했어요. 방의 공지를 읽고 홍보가 허용되는지 확인한 뒤에만 올려요. 대화방에 붙여 넣은 소개 글은 광고로 보이기 쉬워서 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [open.kakao.com]
+    unit: room
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: kk
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers, small_business, professionals, companies], reach: [communities, local]}
+  instagram_local:
+    name:
+      en: "Korean neighborhood accounts on Instagram"
+      ko: "인스타그램 동네 계정"
+    aliases:
+      en: ["Instagram"]
+      ko: ["인스타그램", "인스타"]
+    mode: outline
+    rules:
+      en: "We did not read Instagram's rules. When you ask a neighborhood account to feature you, read that account's guidance first. It is someone else's account, so you ask yourself, in your own words."
+      ko: "인스타그램의 규칙 원문은 확인하지 못했어요. 동네 소식 계정에 소개를 부탁할 때는 그 계정의 안내를 먼저 읽어 주세요. 다른 사람의 계정이라 오너님이 자기 말로 직접 부탁해요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [instagram.com]
+    unit: account
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: ko
+    tag: ig
+    link: none
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers], reach: [local, short_video]}
+  nextdoor:
+    name:
+      en: "Nextdoor"
+      ko: "Nextdoor"
+    aliases:
+      en: []
+      ko: ["넥스트도어"]
+    mode: outline
+    rules:
+      en: "We did not read Nextdoor's rules. Before you post, read its community guidelines yourself and check where your neighborhood allows business posts. Neighbors write there, so you write it yourself, in your own words."
+      ko: "Nextdoor의 규칙 원문은 확인하지 못했어요. 올리기 전에 커뮤니티 가이드라인을 직접 읽고, 그 동네에서 가게 홍보 글을 어디에 올릴 수 있는지 확인해 주세요. 이웃이 쓰는 곳이라 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: no_source
+    domains: [nextdoor.com]
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: en
+    tag: nd
+    link: none
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers], reach: [local]}
+  facebook_groups:
+    name:
+      en: "Facebook groups"
+      ko: "페이스북 그룹(영어권)"
+    aliases:
+      en: ["Facebook group", "local Facebook group"]
+      ko: ["페이스북 그룹"]
+    mode: outline
+    rules:
+      en: "Every group has its own rules, and we did not read them. Post only after you have read the group's pinned post and checked that it allows promotion. You write it yourself, in your own words."
+      ko: "그룹마다 규칙이 다르고, 규칙 원문은 확인하지 못했어요. 그룹의 고정 글을 읽고 홍보가 허용되는지 확인한 뒤에만 올려요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: per_unit
+    domains: [facebook.com]
+    unit: group
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: en
+    tag: fb
+    link: tagged
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers, small_business, professionals, companies], reach: [communities, local]}
+  reddit_local:
+    name:
+      en: "Your city's subreddit"
+      ko: "동네 서브레딧(영어권)"
+    aliases:
+      en: ["local subreddit", "city subreddit"]
+      ko: []
+    mode: outline
+    rules:
+      en: "We could not read the subreddit's rules. Read that subreddit's rules yourself before you post. You write it yourself, in your own words."
+      ko: "서브레딧 규칙 원문은 읽지 못했어요. 올리기 전에 그 서브레딧의 규칙을 직접 읽어 주세요. 오너님이 자기 말로 직접 써요."
+    basis: none
+    source_url: null
+    unchecked_why: not_read
+    domains: [reddit.com, redd.it]
+    post_link: *reddit_post
+    unit: subreddit
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: en
+    tag: rdl
+    link: plain
+    link_basis: none
+    self_written: true
+    fits: {buyer: [consumers], reach: [local]}
+  other:
+    name:
+      en: "Other channel"
+      ko: "그 밖의 채널"
+    mode: draft
+    rules:
+      en: "We have not checked this channel's rules. Read them yourself before you post."
+      ko: "규칙을 확인하지 않은 채널이에요. 올리기 전에 그 채널의 규칙을 직접 읽어 주세요."
+    basis: none
+    source_url: null
+    unchecked_why: per_unit
+    domains: []
+    unit: null
+    repost: {min_interval_days: 14, needs_new_material: true, source_url: null, basis: none}
+    requires: []
+    same_day_exclusive: false
+    region: global
+    tag: ot
+    link: tagged
+    link_basis: none
+    self_written: false
+    generic: true
+    fits: {}

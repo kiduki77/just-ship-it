@@ -1,0 +1,41 @@
+// Files the owner attaches (components/attach.tsx): the drop zone, each file's row, and where a plan line cites one.
+// Shared by New business, the kickoff chat and the business page's Plan tab.
+import type { Area } from "../types";
+
+export const attach = {
+  "attach.field": { en: "Attach files: a write-up, a deck or research", ko: "기획서나 발표 자료가 파일로 있으면 넣어 주세요" },
+  "attach.drop": { en: "Drop files here or", ko: "파일을 여기에 끌어다 놓거나" },
+  "attach.choose": { en: "Choose files", ko: "파일 고르기" },
+  "attach.add": { en: "Attach a file", ko: "파일 첨부" },
+  "attach.limits": {
+    en: "PDF, Word, PowerPoint, Markdown or text. Up to {n} files, {mb} MB each. The company reads the first {pages} pages and {chars} characters of each.",
+    ko: "PDF·워드·파워포인트·마크다운·텍스트, 최대 {n}개, 파일당 {mb}MB까지 넣을 수 있어요. 파일마다 앞 {pages}쪽, {chars}자까지 읽어요." },
+  "attach.full": { en: "That's {n} files, the most a business holds. Remove one to add another.",
+    ko: "파일은 {n}개까지 넣을 수 있어요. 하나를 빼면 더 넣을 수 있어요." },
+  "attach.too_big": { en: "A file over {mb} MB can't be attached. Split it or attach a smaller copy.",
+    ko: "{mb}MB가 넘는 파일은 넣을 수 없어요. 나누거나 더 작은 파일로 넣어 주세요." },
+  "attach.reading": { en: "Reading…", ko: "읽는 중…" },
+  "attach.cut_pages": { en: "Read the first {n} pages only", ko: "앞 {n}쪽만 읽었어요" },
+  "attach.cut_chars": { en: "Read the first {n} characters only", ko: "앞 {n}자만 읽었어요" },
+  "attach.remove": { en: "Remove {name}", ko: "{name} 빼기" },
+  "attach.dismiss": { en: "Dismiss", ko: "지우기" },
+  "attach.removed": { en: "Removed. The company no longer reads it.", ko: "뺐어요. 회사가 더는 읽지 않아요." },
+  "attach.list": { en: "Attached files", ko: "넣은 파일" },
+  "attach.files_only": { en: "Send to have the Project Manager read the files.", ko: "보내기를 누르면 프로젝트 매니저가 파일을 읽어요." },
+  "attach.pages": { en: { one: "{n} page", other: "{n} pages" }, ko: "{n}쪽" },
+  "attach.slides": { en: { one: "{n} slide", other: "{n} slides" }, ko: "슬라이드 {n}장" },
+  "attach.chars": { en: { one: "{n} character", other: "{n} characters" }, ko: "{n}자" },
+  "attach.kb": { en: "{n} KB", ko: "{n}KB" },
+  "attach.mb": { en: "{n} MB", ko: "{n}MB" },
+  "attach.kind.pdf": { en: "PDF", ko: "PDF" },
+  "attach.kind.docx": { en: "Word", ko: "워드" },
+  "attach.kind.pptx": { en: "PowerPoint", ko: "파워포인트" },
+  "attach.kind.md": { en: "Markdown", ko: "마크다운" },
+  "attach.kind.txt": { en: "Text", ko: "텍스트" },
+  "attach.cite.page": { en: "{name}, p. {page}", ko: "{name} {page}쪽" },
+  "attach.cite.slide": { en: "{name}, slide {page}", ko: "{name} 슬라이드 {page}" },
+  "attach.talk": { en: "Files", ko: "넣은 파일" },
+  "attach.business": { en: "Business files", ko: "사업 문서" },
+  "attach.business_hint": { en: "Agents read these as your own words and cite them by page.",
+    ko: "에이전트가 오너님이 쓴 글로 보고 읽어요. 근거에는 쪽 번호를 달아요." },
+} as const satisfies Area<"attach">;

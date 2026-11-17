@@ -1,0 +1,44 @@
+name: ship
+
+# The password comes from .env, which `ship init` fills with a random one (SHIP_PG_PASSWORD).
+# AITEAM_* is the key an .env from before the rename still has (`ship init` rewrites it).
+# The fallback only serves the first `docker compose up` before init, and init rotates it away.
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ship
+      POSTGRES_PASSWORD: ${SHIP_PG_PASSWORD:-${AITEAM_PG_PASSWORD:-ship}}
+      POSTGRES_DB: ship
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ship"]
+      interval: 5s
+      retries: 10
+
+  # The one way out of the sandbox network (engineer, reviewer and test containers): docker/egress/allowlist.
+  egress:
+    build: docker/egress
+    image: ship/egress:1
+    container_name: ship-egress
+    restart: unless-stopped
+    networks:
+      - sandbox
+      - outbound
+
+networks:
+  sandbox:
+    name: ship-sandbox
+    internal: true
+  outbound:
+    name: ship-outbound
+
+# The data lives in the volume the stack had under its old project name (aiteam). Pinned by name, so `docker compose up`
+# under the project `ship` mounts the same data and never starts empty. A fresh install creates it under this name.
+volumes:
+  pgdata:
+    name: aiteam_pgdata

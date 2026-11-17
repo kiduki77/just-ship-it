@@ -1,0 +1,69 @@
+/* The Path tab (components/PathView.tsx). Colours are the console's tokens, so the dark theme follows. A status is an icon and a
+   word, a line is told apart by its style and its label, and nothing here animates. */
+
+.pv { display: grid; gap: var(--s-3); min-width: 0; white-space: normal; }
+.pv-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-4); min-width: 0; }
+.pv-note { margin: 0; overflow-wrap: anywhere; word-break: keep-all; }
+.pv-help { margin: 0; }
+.pv-outline { display: grid; gap: var(--s-3); padding: var(--s-4); border: 1px solid var(--line); border-radius: var(--r-container); background: var(--surface); min-width: 0; }
+
+.pv-canvas { position: relative; height: clamp(440px, 68vh, 780px); min-width: 0; border: 1px solid var(--line); border-radius: var(--r-container);
+  background: var(--surface-2); overflow: hidden; visibility: hidden; }
+.pv-canvas.pv-shown { visibility: visible; }
+.pv-canvas .react-flow { --xy-edge-stroke: var(--text-3); --xy-edge-stroke-width: 1.5; background: transparent; font: inherit; }
+
+/* boxes */
+.pv-node { position: relative; white-space: normal; width: 100%; height: 100%; overflow: hidden; box-sizing: border-box; padding: var(--s-2) var(--s-3); background: var(--surface); color: var(--text);
+  border: 1px solid var(--border-strong); border-radius: var(--r-container); font-size: var(--fs-row); line-height: 1.4; cursor: pointer; }
+.react-flow__node:hover .pv-node { border-color: var(--text-3); }
+.react-flow__node:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--r-container); }
+.pv-top { display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--s-2); min-width: 0; }
+.pv-top > .ico { flex: none; color: var(--text-2); }
+.pv-ref { font-variant-numeric: tabular-nums; font-weight: 600; font-size: var(--fs-meta); color: var(--text-2); }
+.pv-title { margin: 2px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; word-break: keep-all; }
+.pv-k-decision .pv-title, .pv-k-goal .pv-title, .pv-k-cycle .pv-title, .pv-k-stage .pv-title, .pv-k-experiment .pv-title, .pv-k-project .pv-title { -webkit-line-clamp: 2; }
+.pv-frees { display: flex; align-items: center; gap: 4px; margin: 3px 0 0; color: var(--text-2); font-size: var(--fs-meta); overflow-wrap: anywhere; }
+.pv-frees .ico { flex: none; }
+
+.pv-chain { background: var(--surface); border-color: var(--text-3); }
+.pv-waiting { border-color: var(--warn); }
+.pv-focus { background: var(--accent-soft); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); font-weight: 500; }
+.pv-unknown { border-style: dashed; color: var(--text-2); font-style: italic; background: transparent; }
+.pv-k-group { background: var(--surface-2); border-style: dashed; border-color: var(--text-3); font-weight: 600; }
+.pv-k-goal, .pv-k-cycle, .pv-k-stage, .pv-k-experiment, .pv-k-project { background: var(--surface-2); }
+.pv-k-goal .pv-title, .pv-k-cycle .pv-title, .pv-k-stage .pv-title, .pv-k-experiment .pv-title, .pv-k-project .pv-title { margin-top: 0; font-weight: 600; }
+.pv-h { opacity: 0; width: 1px; height: 1px; min-width: 0; min-height: 0; border: 0; pointer-events: none; }
+
+/* lines: told apart by style as well as by label */
+.react-flow__edge-path { fill: none; stroke: var(--text-3); stroke-width: 1.5; }
+.react-flow__edge.pv-e-contains .react-flow__edge-path { stroke: var(--border-strong); stroke-width: 1; }
+.react-flow__edge.pv-e-holds .react-flow__edge-path { stroke-dasharray: 7 4; }
+.react-flow__edge.pv-e-raised_by .react-flow__edge-path { stroke-dasharray: 1.5 4.5; stroke-linecap: round; stroke-width: 2; }
+.react-flow__edge.pv-e-followed .react-flow__edge-path { stroke-width: 2.5; }
+.react-flow__edge.pv-e-unknown .react-flow__edge-path { stroke-dasharray: 1.5 4.5; stroke-linecap: round; stroke: var(--border-strong); }
+.react-flow__edge:focus-visible { outline: none; }
+.react-flow__edge:focus-visible .react-flow__edge-path { stroke: var(--accent); stroke-width: 3; }
+.pv-elabel { position: absolute; display: inline-flex; align-items: center; gap: 3px; max-width: 160px; padding: 0 6px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r-pill); color: var(--text-2); font-size: var(--fs-meta); line-height: 18px; pointer-events: none; }
+.pv-elabel .ico { flex: none; }
+
+/* the legend draws the same four lines */
+.pv-legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); color: var(--text-2); font-size: var(--fs-meta); }
+.pv-legend li { display: inline-flex; align-items: center; gap: var(--s-1); }
+.pv-legend line { stroke: var(--text-3); stroke-width: 1.5; fill: none; }
+.pv-legend line.pv-e-holds { stroke-dasharray: 7 4; }
+.pv-legend line.pv-e-raised_by { stroke-dasharray: 1.5 4.5; stroke-linecap: round; stroke-width: 2; }
+.pv-legend line.pv-e-followed { stroke-width: 2.5; }
+
+/* React Flow's own controls, in the console's colours */
+.pv-canvas .react-flow__controls { box-shadow: none; border: 1px solid var(--line); border-radius: var(--r-control); overflow: hidden; }
+.pv-canvas .react-flow__controls-button { width: 28px; height: 28px; padding: 0; background: var(--surface); color: var(--text); border: 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+.pv-canvas .react-flow__controls-button:last-child { border-bottom: 0; }
+.pv-canvas .react-flow__controls-button:hover:not(:disabled) { background: var(--hover); }
+.pv-canvas .react-flow__controls-button:disabled { opacity: .4; }
+.pv-canvas .react-flow__controls-button svg { fill: currentColor; max-width: 14px; max-height: 14px; }
+.pv-canvas .react-flow__attribution { background: transparent; font-size: 10px; }
+.pv-canvas .react-flow__attribution a { color: var(--text-3); }
+
+@media (max-width: 900px) { .pv-canvas { height: clamp(420px, 62vh, 700px); } }
+@media (prefers-reduced-motion: reduce) { .pv-canvas * { transition: none !important; animation: none !important; } }

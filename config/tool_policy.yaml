@@ -1,0 +1,41 @@
+# Tool Gateway policy: action kind -> mode. Evaluated server-side, never by the model.
+# Unknown action kinds default to strong_approve.
+actions:
+  research.web_search: auto
+  research.web_fetch: auto
+  internal.report_draft: auto
+  internal.task_create: auto
+  internal.meeting_call: auto
+  skill.create_candidate: auto
+  skill.activate_knowledge: approve
+  skill.activate_workflow: approve
+  skill.activate_executable: strong_approve
+  project.direction_change: approve
+  bet.routine: approve
+  project.new_business: approve
+  data.purchase: approve
+  budget.spend: strong_approve
+  budget.raise: approve              # raises one project's budget by the amount; sends nothing out, has no connector
+  external.survey_distribute: approve
+  external.email_send: approve
+  external.social_post: approve
+  external.ads_run: strong_approve
+  external.contract_sign: strong_approve
+  external.pii_share: deny
+  external.calendar_create: approve
+  crm.contact_upsert: approve
+  crm.interaction_log: auto
+  project.reassess: approve
+  external.legal_consult: approve       # human-executed: approval records the decision
+  external.official_inquiry: approve    # human-executed
+  external.interview_outreach: approve  # human-executed (or via email connector)
+  external.landing_publish: approve     # human-executed
+  external.other: strong_approve
+  internal.other: approve
+  owner.check: approve                  # human-executed: the owner writes what they found
+  dev.plan_approve: approve            # the product plan; the spec is written only from an approved one
+  dev.spec_approve: approve
+  dev.implementation_start: auto     # starts the spec draft only; the build waits for dev.spec_approve
+  dev.pull_request_create: approve
+  dev.merge: strong_approve
+  dev.deploy_production: strong_approve

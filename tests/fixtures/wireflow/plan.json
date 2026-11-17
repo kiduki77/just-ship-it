@@ -1,0 +1,220 @@
+{
+ "mode": "plan",
+ "screens": {
+  "first-open": {
+   "name": "파일 올리기",
+   "state": "empty",
+   "shows": "'오늘 출고 CSV를 올려 주세요' 큰 영역과 '고객 이름·전화·주소는 이 브라우저 밖으로 나가지 않아요'. 버튼: '파일 고르기'.",
+   "blocks": [
+    {
+     "kind": "nav",
+     "text": "출고 예외 리포트",
+     "items": []
+    },
+    {
+     "kind": "title",
+     "text": "오늘 출고 CSV를 올려 주세요",
+     "items": []
+    },
+    {
+     "kind": "upload",
+     "text": "CSV 파일을 여기로 끌어오세요",
+     "items": []
+    },
+    {
+     "kind": "actions",
+     "text": "",
+     "items": [
+      "파일 고르기"
+     ]
+    },
+    {
+     "kind": "text",
+     "text": "고객 이름·전화·주소는 이 브라우저 밖으로 나가지 않아요",
+     "items": []
+    }
+   ],
+   "asks": [],
+   "change": null,
+   "landed": []
+  },
+  "upload-error": {
+   "name": "파일 올리기",
+   "state": "error",
+   "shows": "'파일을 읽지 못했어요. 엑셀에서 CSV로 저장한 파일인지 확인하고 다시 올려 주세요.'",
+   "blocks": [
+    {
+     "kind": "notice",
+     "text": "파일을 읽지 못했어요. 엑셀에서 CSV로 저장한 파일인지 확인하고 다시 올려 주세요.",
+     "items": []
+    },
+    {
+     "kind": "actions",
+     "text": "",
+     "items": [
+      "다시 올리기"
+     ]
+    }
+   ],
+   "asks": [],
+   "change": null,
+   "landed": []
+  },
+  "mapping-warning": {
+   "name": "열 고르기",
+   "state": "warning",
+   "shows": "'주소 열을 고르지 못했어요. 아래에서 직접 골라 주세요.' 필수 열이 비면 '리포트 보기'가 막혀 있어요.",
+   "blocks": [
+    {
+     "kind": "notice",
+     "text": "주소 열을 고르지 못했어요. 아래에서 직접 골라 주세요.",
+     "items": []
+    },
+    {
+     "kind": "field",
+     "text": "주문번호",
+     "items": [
+      "주문번호"
+     ]
+    },
+    {
+     "kind": "field",
+     "text": "주소",
+     "items": [
+      "골라 주세요"
+     ]
+    },
+    {
+     "kind": "field",
+     "text": "반품여부",
+     "items": [
+      "반품"
+     ]
+    },
+    {
+     "kind": "actions",
+     "text": "",
+     "items": [
+      "리포트 보기"
+     ]
+    }
+   ],
+   "asks": [
+    {
+     "question": "Q1",
+     "answer": "주소 열은 꼭 있어야 해요"
+    }
+   ],
+   "change": null,
+   "landed": []
+  },
+  "report": {
+   "name": "한 장 리포트",
+   "state": "success",
+   "shows": "'오늘 출고 312건 중 확인할 예외 5건'. 주소 빈칸 2건, 중복 주문 2건, 반품 1건과 목록. 버튼: '문제 아님', '내보내기', '새 파일'.",
+   "blocks": [
+    {
+     "kind": "title",
+     "text": "오늘 출고 312건 중 확인할 예외 5건",
+     "items": []
+    },
+    {
+     "kind": "chips",
+     "text": "",
+     "items": [
+      "주소 빈칸 2건",
+      "중복 주문 2건",
+      "반품 1건"
+     ]
+    },
+    {
+     "kind": "table",
+     "text": "주소 빈칸",
+     "items": [
+      "행 번호",
+      "주문번호",
+      "받는분",
+      "처리"
+     ]
+    },
+    {
+     "kind": "actions",
+     "text": "",
+     "items": [
+      "내보내기",
+      "새 파일",
+      "문제 아님"
+     ]
+    }
+   ],
+   "asks": [],
+   "change": null,
+   "landed": []
+  },
+  "report-empty": {
+   "name": "한 장 리포트",
+   "state": "empty",
+   "shows": "'오늘 출고 312건에서 확인할 예외가 없어요.'",
+   "blocks": [
+    {
+     "kind": "title",
+     "text": "오늘 출고 312건에서 확인할 예외가 없어요",
+     "items": []
+    },
+    {
+     "kind": "actions",
+     "text": "",
+     "items": [
+      "새 파일"
+     ]
+    }
+   ],
+   "asks": [],
+   "change": null,
+   "landed": []
+  },
+  "mapping-loading": {
+   "name": "열 고르기",
+   "state": "loading",
+   "shows": "'파일을 읽고 있어요…'",
+   "blocks": [],
+   "asks": [],
+   "change": null,
+   "landed": []
+  }
+ },
+ "rows": [
+  {
+   "story": "US1",
+   "steps": [
+    {
+     "screen": "first-open",
+     "do": "CSV를 올려요",
+     "branches": [
+      "upload-error"
+     ]
+    },
+    {
+     "screen": "mapping-warning",
+     "do": "열을 고르고 '리포트 보기'를 눌러요",
+     "branches": [
+      "mapping-loading"
+     ]
+    },
+    {
+     "screen": "report",
+     "do": "",
+     "branches": []
+    }
+   ],
+   "then": "한 화면에 주소 빈칸 2건, 중복 주문 1묶음, 반품 1건이 행 번호·주문번호·가린 이름과 함께 나와요",
+   "empty": {
+    "screen": "report-empty",
+    "then": "'오늘 출고 N건에서 확인할 예외가 없어요'라고 나와요"
+   }
+  }
+ ],
+ "loose": [],
+ "removed": [],
+ "dropped": 0
+}

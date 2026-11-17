@@ -1,0 +1,704 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-03T15:33:24+00:00",
+  "title": "Design System: Just Ship It",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Cool Ground",
+        "canonical": "#f4f5f7",
+        "cssVar": "--bg",
+        "dark": "#0e1013",
+        "oklch": "oklch(97.0% 0.003 264.5)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242425",
+          "#3f4041",
+          "#5d5e5f",
+          "#7c7d7f",
+          "#9e9ea0",
+          "#c3c4c5",
+          "#eeeeef"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel White",
+        "canonical": "#ffffff",
+        "cssVar": "--panel",
+        "dark": "#16191e",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "panel-2": {
+        "role": "neutral",
+        "displayName": "Recess Grey",
+        "canonical": "#f1f2f5",
+        "cssVar": "--panel-2",
+        "dark": "#1d2128",
+        "oklch": "oklch(96.1% 0.004 271.4)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242425",
+          "#3f4041",
+          "#5d5d60",
+          "#7c7d80",
+          "#9d9ea0",
+          "#c3c4c6",
+          "#eeeeef"
+        ]
+      },
+      "sidebar": {
+        "role": "neutral",
+        "displayName": "Sidebar Tint",
+        "canonical": "#fafafb",
+        "cssVar": "--sidebar",
+        "dark": "#121418",
+        "oklch": "oklch(98.5% 0.001 286.4)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5e",
+          "#7d7d7e",
+          "#9e9e9f",
+          "#c4c4c4",
+          "#eeeeef"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e4e6eb",
+        "cssVar": "--line",
+        "dark": "#272c35",
+        "oklch": "oklch(92.5% 0.007 268.5)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#232426",
+          "#3e4042",
+          "#5c5d61",
+          "#7b7d81",
+          "#9d9ea2",
+          "#c3c4c7",
+          "#eeeef0"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#cfd3da",
+        "cssVar": "--line-strong",
+        "dark": "#39404c",
+        "oklch": "oklch(86.6% 0.011 261.8)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#222427",
+          "#3d4044",
+          "#5b5e63",
+          "#7a7d83",
+          "#9c9ea4",
+          "#c2c4c8",
+          "#edeef1"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink Text",
+        "canonical": "#15171c",
+        "cssVar": "--text",
+        "dark": "#e7e9ee",
+        "oklch": "oklch(20.5% 0.010 268.2)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232427",
+          "#3e4044",
+          "#5b5d63",
+          "#7b7d83",
+          "#9c9ea4",
+          "#c2c4c8",
+          "#edeef1"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Slate",
+        "canonical": "#5a6170",
+        "cssVar": "--muted",
+        "dark": "#9ba3b4",
+        "oklch": "oklch(49.2% 0.026 265.6)",
+        "tonalRamp": [
+          "#090b0f",
+          "#21242b",
+          "#3b404a",
+          "#575e6b",
+          "#767d8c",
+          "#999eab",
+          "#bfc4ce",
+          "#ebeef5"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Console Ink",
+        "canonical": "#17181c",
+        "cssVar": "--primary",
+        "dark": "#eceef2",
+        "oklch": "oklch(21.0% 0.008 274.5)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#232426",
+          "#3f4043",
+          "#5c5d62",
+          "#7c7d82",
+          "#9d9ea2",
+          "#c3c4c7",
+          "#eeeef0"
+        ]
+      },
+      "on-primary": {
+        "role": "primary",
+        "displayName": "On Ink",
+        "canonical": "#ffffff",
+        "cssVar": "--on-primary",
+        "dark": "#121418",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Selection Indigo",
+        "canonical": "#4f46e5",
+        "cssVar": "--accent",
+        "dark": "#8b87ff",
+        "oklch": "oklch(51.1% 0.230 277.0)",
+        "tonalRamp": [
+          "#07012f",
+          "#1a135f",
+          "#302a94",
+          "#4843cd",
+          "#6365f9",
+          "#8590ff",
+          "#aebbff",
+          "#dfeaff"
+        ]
+      },
+      "accent-soft": {
+        "role": "secondary",
+        "displayName": "Indigo Wash",
+        "canonical": "#eef0ff",
+        "cssVar": "--accent-soft",
+        "dark": "#23234a",
+        "oklch": "oklch(95.8% 0.020 279.9)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#232429",
+          "#3e3f48",
+          "#5b5d68",
+          "#7b7c89",
+          "#9c9ea8",
+          "#c2c3cc",
+          "#edeef4"
+        ]
+      },
+      "on-accent": {
+        "role": "secondary",
+        "displayName": "On Indigo",
+        "canonical": "#ffffff",
+        "cssVar": "--on-accent",
+        "dark": "#0e1013",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "ok": {
+        "role": "tertiary",
+        "displayName": "Done Green",
+        "canonical": "#067647",
+        "cssVar": "--ok",
+        "dark": "#4ade80",
+        "oklch": "oklch(49.9% 0.117 157.1)",
+        "tonalRamp": [
+          "#001004",
+          "#002d17",
+          "#074d2d",
+          "#186f45",
+          "#3b9163",
+          "#6daf88",
+          "#a0d2b3",
+          "#d7f8e3"
+        ]
+      },
+      "ok-bg": {
+        "role": "tertiary",
+        "displayName": "Done Green Wash",
+        "canonical": "#e7f6ee",
+        "cssVar": "--ok-bg",
+        "dark": "#12301f",
+        "oklch": "oklch(96.0% 0.019 162.9)",
+        "tonalRamp": [
+          "#090c0a",
+          "#202623",
+          "#39423e",
+          "#55615b",
+          "#74817a",
+          "#97a19c",
+          "#bec6c2",
+          "#eaf0ed"
+        ]
+      },
+      "run": {
+        "role": "tertiary",
+        "displayName": "Running Blue",
+        "canonical": "#175cd3",
+        "cssVar": "--run",
+        "dark": "#7aa7ff",
+        "oklch": "oklch(50.9% 0.195 260.9)",
+        "tonalRamp": [
+          "#00072a",
+          "#011f57",
+          "#0b3988",
+          "#1b56be",
+          "#3877e8",
+          "#679dfb",
+          "#9ac5ff",
+          "#d2f0ff"
+        ]
+      },
+      "run-bg": {
+        "role": "tertiary",
+        "displayName": "Running Blue Wash",
+        "canonical": "#e8f0fe",
+        "cssVar": "--run-bg",
+        "dark": "#16264a",
+        "oklch": "oklch(95.3% 0.021 261.8)",
+        "tonalRamp": [
+          "#090b0f",
+          "#21242a",
+          "#3b4048",
+          "#585e68",
+          "#777e89",
+          "#999fa9",
+          "#c0c4cc",
+          "#ebeff4"
+        ]
+      },
+      "warn": {
+        "role": "tertiary",
+        "displayName": "Waiting Amber",
+        "canonical": "#b54708",
+        "cssVar": "--warn",
+        "dark": "#fbbf24",
+        "oklch": "oklch(53.9% 0.156 43.0)",
+        "tonalRamp": [
+          "#1e0100",
+          "#441000",
+          "#6e2500",
+          "#9b3b05",
+          "#c25a2b",
+          "#dc8460",
+          "#f7b195",
+          "#ffe2cf"
+        ]
+      },
+      "warn-bg": {
+        "role": "tertiary",
+        "displayName": "Waiting Amber Wash",
+        "canonical": "#fef4e6",
+        "cssVar": "--warn-bg",
+        "dark": "#372a0e",
+        "oklch": "oklch(97.1% 0.021 76.5)",
+        "tonalRamp": [
+          "#0d0b08",
+          "#27231e",
+          "#443f37",
+          "#645c52",
+          "#847c70",
+          "#a49d93",
+          "#c9c3bb",
+          "#f2eee9"
+        ]
+      },
+      "bad": {
+        "role": "tertiary",
+        "displayName": "Failed Red",
+        "canonical": "#b42318",
+        "cssVar": "--bad",
+        "dark": "#f87171",
+        "oklch": "oklch(50.0% 0.182 29.5)",
+        "tonalRamp": [
+          "#210000",
+          "#490402",
+          "#76160e",
+          "#a62a1e",
+          "#cf4a3b",
+          "#e87a6a",
+          "#ffaa9c",
+          "#ffded4"
+        ]
+      },
+      "bad-bg": {
+        "role": "tertiary",
+        "displayName": "Failed Red Wash",
+        "canonical": "#fdecea",
+        "cssVar": "--bad-bg",
+        "dark": "#3a1717",
+        "oklch": "oklch(95.6% 0.019 25.6)",
+        "tonalRamp": [
+          "#0e0a0a",
+          "#292221",
+          "#473d3c",
+          "#675a59",
+          "#887978",
+          "#a79b9a",
+          "#cbc2c0",
+          "#f3edec"
+        ]
+      },
+      "info": {
+        "role": "tertiary",
+        "displayName": "Review Violet",
+        "canonical": "#5b21b6",
+        "cssVar": "--info",
+        "dark": "#c4b5fd",
+        "oklch": "oklch(43.2% 0.211 292.8)",
+        "tonalRamp": [
+          "#0f0129",
+          "#291056",
+          "#462687",
+          "#663dbb",
+          "#855de6",
+          "#a388f9",
+          "#c7b5ff",
+          "#f0e5ff"
+        ]
+      },
+      "info-bg": {
+        "role": "tertiary",
+        "displayName": "Review Violet Wash",
+        "canonical": "#f2ecfe",
+        "cssVar": "--info-bg",
+        "dark": "#2a2147",
+        "oklch": "oklch(95.3% 0.025 301.1)",
+        "tonalRamp": [
+          "#0c0a0f",
+          "#25232a",
+          "#413e48",
+          "#605b68",
+          "#7f7a89",
+          "#a09ca9",
+          "#c5c2cc",
+          "#efedf4"
+        ]
+      },
+      "on-tone": {
+        "role": "tertiary",
+        "displayName": "On Tone",
+        "canonical": "#ffffff",
+        "cssVar": "--on-tone",
+        "dark": "#0e1013",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      }
+    },
+    "themes": {
+      "default": "light",
+      "dark": {
+        "selector": ":root[data-theme=\"dark\"]",
+        "source": "web/src/styles.css",
+        "note": "Every color token has a dark value (colorMeta.<token>.dark). Owner opt-in via Settings > 화면 (light | dark | system), stored per browser under ship.theme. The frontmatter key 'ground' is CSS --bg and 'ink' is CSS --text (cssVar field)."
+      }
+    },
+    "typographyMeta": {
+      "metric": {
+        "displayName": "Metric",
+        "purpose": "The value on a metric tile; unit in a 15px/600 muted small."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page title in PageHead."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section, chart (14px) and settings section headings."
+      },
+      "card-title": {
+        "displayName": "Card Title",
+        "purpose": "Board card and list row titles; two-line clamp on cards."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text; prose capped near 64-80ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, nav items (13.5px), breadcrumbs, tabs, metric labels."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Chips, counts, group labels (600); card footers and metadata (400)."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Reference IDs (11.5px on cards), codes, compact spend-against-cap pairs."
+      }
+    },
+    "shadows": [
+      {
+        "name": "selection-ring",
+        "value": "0 0 0 1px var(--accent)",
+        "purpose": "Selected or open board card, with an accent border."
+      },
+      {
+        "name": "active-hairline",
+        "value": "0 0 0 1px var(--line)",
+        "purpose": "Active nav item and settings index item."
+      },
+      {
+        "name": "segment-on",
+        "value": "0 1px 2px rgb(16 18 24 / .08), 0 0 0 1px var(--line)",
+        "purpose": "Active segmented or tab button."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 4px 14px rgb(16 18 24 / .06)",
+        "purpose": "Board and agent cards on hover only."
+      },
+      {
+        "name": "live-halo",
+        "value": "0 0 0 3px var(--run-bg)",
+        "purpose": "Running agent and live card dots; pulses via livepulse 1.8s ease-out."
+      },
+      {
+        "name": "pop",
+        "value": "0 8px 24px rgb(16 18 24 / .12), 0 2px 6px rgb(16 18 24 / .06)",
+        "purpose": "--shadow-pop: mobile drawer and floating layers. Dark: 0 12px 32px rgb(0 0 0 / .5)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": ".15s ease-out",
+        "purpose": "Border, background and shadow changes on buttons, cards, nav."
+      },
+      {
+        "name": "meter-fill",
+        "value": ".4s cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Meter width changes."
+      },
+      {
+        "name": "livepulse",
+        "value": "1.8s ease-out infinite",
+        "purpose": "Expanding run-blue halo on live dots."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "All transitions off; live pulses stop."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "cols-collapse",
+        "value": "1200px",
+        "purpose": "Three-column rows to two; main/side split stacks."
+      },
+      {
+        "name": "list-compact",
+        "value": "1100px",
+        "purpose": "Secondary list columns hide."
+      },
+      {
+        "name": "drawer",
+        "value": "900px",
+        "purpose": "Sidebar becomes a drawer; rows stack; main padding 16px; board lanes 260px-85vw."
+      },
+      {
+        "name": "agents-fold-height",
+        "value": "880px",
+        "purpose": "Viewport height below which the sidebar agent group folds by default."
+      }
+    ],
+    "layout": {
+      "sidebarWidth": "240px",
+      "topbarHeight": "52px",
+      "mainMaxWidth": "none up to a 2560px monitor; past it the page and top bar share one centring gutter (--page-max 2256px)",
+      "mainPadding": "24px 32px 56px",
+      "metricMinWidth": "230px",
+      "boardColumnMin": "232px",
+      "boardEmptyColumn": "minmax(150px, .55fr)",
+      "boardCardLimit": "12 (4 under 900px)"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one main action on a page header or banner: Console Ink, never indigo.",
+      "html": "<button class=\"ds-btn-primary\">결정하러 가기 <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--primary, #17181c); color: var(--on-primary, #fff); border: 1px solid var(--primary, #17181c); border-radius: 8px; padding: 7px 14px; font: 600 13px/1.45 \"Pretendard Variable\", Pretendard, system-ui, sans-serif; cursor: pointer; transition: filter .15s ease-out; } .ds-btn-primary:hover { filter: brightness(1.15); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; } .ds-btn-primary:disabled { opacity: .55; cursor: not-allowed; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary actions: panel fill, hairline border.",
+      "html": "<button class=\"ds-btn-ghost\">사업 보기</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 6px; background: var(--panel, #fff); color: var(--text, #15171c); border: 1px solid var(--line, #e4e6eb); border-radius: 8px; padding: 6px 12px; font: 500 13px/1.45 \"Pretendard Variable\", Pretendard, system-ui, sans-serif; cursor: pointer; transition: border-color .15s ease-out; } .ds-btn-ghost:hover { border-color: var(--line-strong, #cfd3da); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Toolbar search: leading icon inside a hairline box; the border turns indigo on focus.",
+      "html": "<label class=\"ds-search\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><circle cx=\"7\" cy=\"7\" r=\"4.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/><path d=\"M10.5 10.5 14 14\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg><input placeholder=\"제목, REQ 번호, 에이전트, 프로젝트\"></label>",
+      "css": ".ds-search { display: inline-flex; align-items: center; gap: 6px; background: var(--panel, #fff); border: 1px solid var(--line, #e4e6eb); border-radius: 8px; padding: 0 10px; color: var(--muted, #5a6170); } .ds-search:hover { border-color: var(--line-strong, #cfd3da); } .ds-search:focus-within { border-color: var(--accent, #4f46e5); } .ds-search input { border: 0; background: transparent; padding: 6px 0; outline: none; min-width: 220px; color: var(--text, #15171c); font: 400 14px/1.55 \"Pretendard Variable\", Pretendard, system-ui, sans-serif; } .ds-search input::placeholder { color: var(--muted, #5a6170); }"
+    },
+    {
+      "name": "Sidebar Navigation",
+      "kind": "nav",
+      "refersTo": "nav-item-active",
+      "description": "Sidebar items: the active one becomes a white tile with a hairline ring; counts sit right.",
+      "html": "<nav class=\"ds-nav\"><p class=\"ds-nav-gl\">일</p><a class=\"ds-nav-i on\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M2.5 9.5 4.2 3.6a1 1 0 0 1 1-.7h5.6a1 1 0 0 1 1 .7l1.7 5.9M2.5 9.5V13a.8.8 0 0 0 .8.8h9.4a.8.8 0 0 0 .8-.8V9.5M2.5 9.5h3l.8 1.6h3.4l.8-1.6h3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/></svg><span>결정</span><b class=\"ds-count\">4</b></a><a class=\"ds-nav-i\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M6 4h7.5M6 8h7.5M6 12h7.5M2.5 4l.8.8L4.6 3.4M2.5 8l.8.8 1.3-1.4M2.5 12l.8.8 1.3-1.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><span>내 할 일</span><b class=\"ds-count soft\">1</b></a></nav>",
+      "css": ".ds-nav { display: flex; flex-direction: column; gap: 1px; width: 216px; padding: 12px; background: var(--sidebar, #fafafb); font-family: \"Pretendard Variable\", Pretendard, system-ui, sans-serif; } .ds-nav-gl { margin: 0 0 4px; padding: 0 10px; font-size: 12px; font-weight: 600; color: var(--muted, #5a6170); } .ds-nav-i { display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 7px; font-size: 13.5px; color: var(--text, #15171c); text-decoration: none; } .ds-nav-i svg { color: var(--muted, #5a6170); flex: none; } .ds-nav-i span { flex: 1; } .ds-nav-i:hover { background: var(--panel-2, #f1f2f5); } .ds-nav-i.on { background: var(--panel, #fff); font-weight: 600; box-shadow: 0 0 0 1px var(--line, #e4e6eb); } .ds-nav-i.on svg { color: var(--text, #15171c); } .ds-nav-i:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; } .ds-count { border-radius: 999px; font-size: 11px; font-weight: 600; padding: 0 7px; background: var(--bad, #b42318); color: var(--on-tone, #fff); font-variant-numeric: tabular-nums; } .ds-count.soft { background: var(--panel-2, #f1f2f5); color: var(--text, #15171c); box-shadow: inset 0 0 0 1px var(--line-strong, #cfd3da); }"
+    },
+    {
+      "name": "State Chip",
+      "kind": "chip",
+      "refersTo": "chip-run",
+      "description": "A state label with a dot, on the tone's wash. Board column headers and row status.",
+      "html": "<span class=\"ds-chip run\"><i></i>진행 중</span> <span class=\"ds-chip warn\"><i></i>결정 대기</span> <span class=\"ds-chip ok\"><i></i>완료</span> <span class=\"ds-chip bad\"><i></i>지금 결정</span> <span class=\"ds-chip info\"><i></i>검토</span> <span class=\"ds-chip\"><i></i>보류</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 6px; font: 600 12px/22px \"Pretendard Variable\", Pretendard, system-ui, sans-serif; padding: 0 10px; border-radius: 99px; white-space: nowrap; background: var(--panel-2, #f1f2f5); color: var(--text, #15171c); border: 1px solid var(--line, #e4e6eb); } .ds-chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted, #5a6170); } .ds-chip.run, .ds-chip.warn, .ds-chip.ok, .ds-chip.bad, .ds-chip.info { border-color: transparent; } .ds-chip.run { background: var(--run-bg, #e8f0fe); color: var(--run, #175cd3); } .ds-chip.warn { background: var(--warn-bg, #fef4e6); color: var(--warn, #b54708); } .ds-chip.ok { background: var(--ok-bg, #e7f6ee); color: var(--ok, #067647); } .ds-chip.bad { background: var(--bad-bg, #fdecea); color: var(--bad, #b42318); } .ds-chip.info { background: var(--info-bg, #f2ecfe); color: var(--info, #5b21b6); } .ds-chip.run i, .ds-chip.warn i, .ds-chip.ok i, .ds-chip.bad i, .ds-chip.info i { background: currentColor; }"
+    },
+    {
+      "name": "Metric Tile",
+      "kind": "card",
+      "refersTo": "metric-tile",
+      "description": "A number the owner reads first: icon square, value, label, optional cap meter, one context line.",
+      "html": "<section class=\"ds-metric\"><div class=\"ds-metric-top\"><span class=\"ds-metric-ico\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M8 2.5v11M10.8 4.8C10.3 3.9 9.3 3.4 8 3.4c-1.7 0-2.8.9-2.8 2.1 0 2.9 5.8 1.5 5.8 4.6 0 1.3-1.2 2.3-3 2.3-1.4 0-2.5-.6-3-1.6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg></span><a href=\"#\">자세히</a></div><p class=\"ds-metric-v\">$57.16</p><p class=\"ds-metric-l\">이번 달 사용액</p><div class=\"ds-meter\" role=\"meter\" aria-valuenow=\"71\"><span style=\"width:71%\"></span></div><p class=\"ds-metric-s\">한도 <b>$80.00</b> · 오늘 <b>$4.10</b></p></section>",
+      "css": ".ds-metric { width: 260px; background: var(--panel, #fff); border: 1px solid var(--line, #e4e6eb); border-radius: 12px; padding: 16px 18px 14px; font-family: \"Pretendard Variable\", Pretendard, system-ui, sans-serif; color: var(--text, #15171c); } .ds-metric p { margin: 0; } .ds-metric-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; } .ds-metric-top a { font-size: 13px; font-weight: 500; color: var(--text, #15171c); text-decoration: none; } .ds-metric-top a:hover { text-decoration: underline; } .ds-metric-top a:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; } .ds-metric-ico { width: 32px; height: 32px; border-radius: 8px; background: var(--primary, #17181c); color: var(--on-primary, #fff); display: inline-flex; align-items: center; justify-content: center; } .ds-metric-v { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; } .ds-metric-l { color: var(--muted, #5a6170); font-size: 13px; margin-top: 2px !important; } .ds-meter { height: 6px; border-radius: 99px; background: var(--panel-2, #f1f2f5); box-shadow: inset 0 0 0 1px var(--line, #e4e6eb); overflow: hidden; margin-top: 10px; } .ds-meter span { display: block; height: 100%; border-radius: inherit; background: var(--warn, #b54708); transition: width .4s cubic-bezier(.16, 1, .3, 1); } .ds-metric-s { color: var(--muted, #5a6170); font-size: 12px; margin-top: 8px !important; } .ds-metric-s b { color: var(--text, #15171c); font-weight: 600; }"
+    },
+    {
+      "name": "Status Board",
+      "kind": "custom",
+      "refersTo": "board-column",
+      "description": "The signature view: a collection laid out by state, each column headed by a chip and a count.",
+      "html": "<div class=\"ds-board\"><section class=\"ds-bcol\"><header><span class=\"ds-chip bad\"><i></i>지금 결정</span><span class=\"n\">1</span><span class=\"hint\">24시간 안 마감</span></header><a class=\"ds-bcard\" href=\"#\"><div class=\"top\"><span class=\"ref\">REQ-66</span><span class=\"ds-tag\">승인</span><span class=\"ds-tag bad\">막힘</span></div><p class=\"t\">의사결정 승인: 90일 오픈소스 퍼널 실험 진행</p><p class=\"s\">AI CEO · P-5 Just Ship It 사업화</p><div class=\"foot\"><span>11월 7일까지</span><span class=\"sp\">3일 전</span></div></a></section><section class=\"ds-bcol\"><header><span class=\"ds-chip run\"><i></i>진행 중</span><span class=\"n\">1</span></header><a class=\"ds-bcard on\" href=\"#\"><div class=\"top\"><span class=\"ref\">T-68</span><span class=\"ds-tag\">전략</span><span class=\"live\"></span></div><p class=\"t\">종합 사업화 권고 보고서 v3</p><p class=\"s\">CPO · 제품기획</p></a></section></div>",
+      "css": ".ds-board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(232px, 1fr); gap: 12px; align-items: start; font-family: \"Pretendard Variable\", Pretendard, system-ui, sans-serif; color: var(--text, #15171c); } .ds-bcol { background: var(--panel-2, #f1f2f5); border: 1px solid var(--line, #e4e6eb); border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 8px; } .ds-bcol header { display: flex; align-items: center; gap: 8px; padding: 2px; } .ds-bcol .n { font-size: 12px; font-weight: 600; color: var(--muted, #5a6170); font-variant-numeric: tabular-nums; } .ds-bcol .hint { margin-left: auto; font-size: 12px; color: var(--muted, #5a6170); } .ds-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; line-height: 22px; padding: 0 10px; border-radius: 99px; } .ds-chip i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; } .ds-chip.bad { background: var(--bad-bg, #fdecea); color: var(--bad, #b42318); } .ds-chip.run { background: var(--run-bg, #e8f0fe); color: var(--run, #175cd3); } .ds-bcard { display: block; background: var(--panel, #fff); border: 1px solid var(--line, #e4e6eb); border-radius: 10px; padding: 12px 14px; color: inherit; text-decoration: none; transition: border-color .15s ease-out, box-shadow .15s ease-out; } .ds-bcard:hover { border-color: var(--line-strong, #cfd3da); box-shadow: 0 4px 14px rgb(16 18 24 / .06); } .ds-bcard.on { border-color: var(--accent, #4f46e5); box-shadow: 0 0 0 1px var(--accent, #4f46e5); } .ds-bcard:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; } .ds-bcard p { margin: 0; } .ds-bcard .top { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; } .ds-bcard .ref { font: 11.5px ui-monospace, \"Cascadia Code\", Consolas, monospace; color: var(--muted, #5a6170); } .ds-tag { display: inline-flex; font-size: 11.5px; line-height: 20px; padding: 0 7px; border-radius: 6px; border: 1px solid var(--line, #e4e6eb); color: var(--muted, #5a6170); } .ds-tag.bad { color: var(--bad, #b42318); border-color: color-mix(in srgb, var(--bad, #b42318) 35%, transparent); } .ds-bcard .live { width: 8px; height: 8px; border-radius: 50%; margin-left: auto; background: var(--run, #175cd3); box-shadow: 0 0 0 3px var(--run-bg, #e8f0fe); } .ds-bcard .t { font-weight: 600; font-size: 14px; line-height: 1.4; } .ds-bcard .s { color: var(--muted, #5a6170); font-size: 12.5px; margin-top: 3px; } .ds-bcard .foot { display: flex; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line, #e4e6eb); font-size: 12px; color: var(--muted, #5a6170); } .ds-bcard .foot .sp { margin-left: auto; }"
+    },
+    {
+      "name": "Board / List Switch",
+      "kind": "custom",
+      "refersTo": "segmented-on",
+      "description": "Segmented tray; the active option becomes a white chip with a hairline ring. Same form for Tabs.",
+      "html": "<div class=\"ds-seg\" role=\"group\" aria-label=\"보기 방식\"><button class=\"on\" aria-pressed=\"true\">보드</button><button aria-pressed=\"false\">목록</button></div>",
+      "css": ".ds-seg { display: inline-flex; padding: 3px; gap: 2px; background: var(--panel-2, #f1f2f5); border: 1px solid var(--line, #e4e6eb); border-radius: 9px; } .ds-seg button { background: transparent; border: 0; border-radius: 6px; padding: 5px 12px; font: 500 13px \"Pretendard Variable\", Pretendard, system-ui, sans-serif; color: var(--muted, #5a6170); cursor: pointer; } .ds-seg button:hover { color: var(--text, #15171c); } .ds-seg button:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; } .ds-seg button.on { background: var(--panel, #fff); color: var(--text, #15171c); font-weight: 600; box-shadow: 0 1px 2px rgb(16 18 24 / .08), 0 0 0 1px var(--line, #e4e6eb); }"
+    },
+    {
+      "name": "Alert Banner",
+      "kind": "custom",
+      "refersTo": "banner-bad",
+      "description": "One row: icon, text, optional ghost action, on the tone's wash with no border.",
+      "html": "<div class=\"ds-banner bad\" role=\"alert\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M8 2.5 14 13H2zM8 6.5v3M8 11.2v.1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg><div class=\"t\"><b>막힌 결정 1건</b> · 회사 일이 이 결정을 기다리며 멈춰 있어요</div><button>결정하기</button></div>",
+      "css": ".ds-banner { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 10px; font: 400 13.5px/1.5 \"Pretendard Variable\", Pretendard, system-ui, sans-serif; } .ds-banner.bad { background: var(--bad-bg, #fdecea); color: var(--bad, #b42318); } .ds-banner .t { flex: 1; min-width: 0; } .ds-banner b { font-weight: 650; } .ds-banner button { background: var(--panel, #fff); color: var(--text, #15171c); border: 1px solid var(--line, #e4e6eb); border-radius: 8px; padding: 6px 12px; font: 500 13px \"Pretendard Variable\", Pretendard, system-ui, sans-serif; cursor: pointer; } .ds-banner button:hover { border-color: var(--line-strong, #cfd3da); } .ds-banner button:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Control Room",
+    "overview": "The owner console is a company control room you can read in ten seconds. Every owner screen opens on a page title with one line of summary, then a row of metric tiles that answer \"is it alive, what did it cost, what needs me\", then the work itself, laid out by state. The room is light by default (dark is the owner's opt-in under Settings > 화면, applied as `:root[data-theme=\"dark\"]` with a full mirrored token set), quiet at rest, and loud only where a state demands it.\n\nThe material is paper-flat: a light neutral ground, white panels, and 1px hairlines. Depth comes from tone (ground, panel, panel-2) and borders, not from shadow. The primary action is ink, not brand colour; the single indigo accent marks what is selected, focused, linked, or in progress. Five state colours (blue running, amber waiting, green done, red failed or blocked, violet review) do real jobs on chips, board column headers, meters, and chart series, and nowhere else.\n\nThe signature move is the status board: any collection with states (decisions, owner to-dos, tasks) reads as columns with a state chip and a count, switchable to a list, with the choice remembered per screen. Density is operational, not airy: 14px body, 12 to 16px gaps, and a main column that uses the full width of the screen.",
+    "keyCharacteristics": [
+      "Numbers first: PageHead, then a MetricGrid of tiles on every owner screen (12 pages ship it).",
+      "Flat at rest: hairline borders and tonal layers; shadows only as state feedback or for floating layers.",
+      "Ink primary buttons; one indigo accent for selection, focus, links, and progress.",
+      "State colours are semantic only, each paired with a soft background of the same hue.",
+      "Status board as the signature view, with board/list switching.",
+      "Pretendard Variable throughout, tabular numerals everywhere numbers appear, mono only for reference IDs and code."
+    ],
+    "rules": [
+      {
+        "name": "The State Means Colour Rule",
+        "body": "Run, warn, ok, bad, and info appear only when they encode a state. Each solid hue pairs with its own `-bg` wash; never use a state hue for decoration or emphasis.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink, Not Indigo Rule",
+        "body": "Primary actions are Console Ink. Indigo is reserved for selection, focus, links, and progress, so a coloured element always means \"this one\" or \"this far\".",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every number that can change (counts, money, times, percentages) uses tabular numerals so columns and tiles do not jitter under live updates.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "Pretendard for everything; mono only for identifiers and code, never for prose or headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Nothing casts a shadow at rest. A shadow means hover, selection, liveness, or a layer above the page.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Nested Box Rule",
+        "body": "A bordered box never sits inside another bordered box. Entries inside a box are separated by hairline rules, not boxed again.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** open every owner screen with PageHead, then a MetricGrid, then sections.",
+      "**Do** lay any collection that has states out as a Board with chip-and-count column headers, and offer the list view through the segmented switch.",
+      "**Do** use Console Ink for the primary action and reserve indigo for selection, focus, links, and progress.",
+      "**Do** pair every state hue with its own `-bg` wash and use it only for that state.",
+      "**Do** use tabular numerals for every changing number and mono only for reference IDs and code.",
+      "**Do** define both light and dark values for any new token; light is the default.",
+      "**Do** honour `prefers-reduced-motion`: live pulses stop and transitions drop."
+    ],
+    "donts": [
+      "**Don't** fill buttons with indigo; that is the legacy `button.primary` look the kit overrides.",
+      "**Don't** nest a bordered box inside another; separate entries with hairlines.",
+      "**Don't** add shadows to surfaces at rest.",
+      "**Don't** use state colours for decoration, category, or brand emphasis.",
+      "**Don't** introduce a second display face or set prose or headings in mono.",
+      "**Don't** fix widths to Korean string lengths; the UI will also ship in English."
+    ]
+  }
+}

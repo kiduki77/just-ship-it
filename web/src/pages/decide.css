@@ -1,0 +1,83 @@
+/*
+ * 결정 (/inbox) and 내 할 일 (/my-tasks). Everything else comes from kit.css, which loads after this file, so the
+ * overrides below carry one more class than the kit rule they adjust.
+ */
+
+/* the card whose side panel is open */
+.dq-cur > .bcard, .dq-page .dq-cur > .bcard:hover { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.dq-page .bcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.dq-fact { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+/* Why the rules settled a request the owner never saw: a sentence, so it wraps (en and ko differ in length). */
+.dq-closed { flex: 1 1 100%; min-width: 0; overflow-wrap: anywhere; }
+.dq-fact .ico { color: var(--text-2); }
+.dq-late, .dq-late .ico { color: var(--bad); font-weight: 550; }
+.dq-after { margin-top: var(--s-4); }
+
+/* failures are not decisions: a quiet line under the head, not a banner over the board */
+.dq-alert-note { display: block; margin-top: 2px; }
+.dq-alert-note .link { font-size: inherit; }
+
+/* With the side panel open the board keeps its first card in view: cards drop their context line. The head keeps its
+   lines, so the way to the alerts stays on screen. */
+body.has-panel .dq-page .bcard-sub { display: none; }
+
+.dq-page .toolbar .search-in input { min-width: 240px; }
+.dq-page .search-in input::-webkit-search-cancel-button { cursor: pointer; }
+
+/* list view: the row list inside one box */
+.dq-page .box.dq-listbox { padding: 4px 16px 8px; }
+.dq-listbox .tlist2 { margin: 0 -8px; }
+.dq-listbox .grp-h { padding-left: 8px; }
+/* the key hints sit on the window's bottom edge, beside the sidebar, so neither a short board nor a new card moves them */
+.dq-keys { position: fixed; bottom: 0; left: var(--sidebar-w); right: 0; z-index: 2; margin: 0; padding: 8px 28px; background: var(--surface); border-top: 1px solid var(--border); }
+@media (max-width: 900px) { .dq-keys { left: 0; padding-inline: 16px; } }
+.dq-keys kbd, .dq-page .toolbar kbd { margin: 0 2px; }
+
+/* 결정됨: who decided */
+.dq-filter { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.dq-filter button { display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; line-height: 28px; border-radius: 99px;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: var(--fs-row); font-weight: 500; }
+.dq-filter button .num { font-size: var(--fs-meta); color: var(--text-2); font-variant-numeric: tabular-nums; }
+.dq-filter button:hover:not(:disabled) { border-color: var(--border-strong); }
+.dq-filter button.on { background: var(--primary); border-color: var(--primary); color: var(--on-primary); font-weight: 550; }
+.dq-filter button.on .num { color: inherit; opacity: .75; }
+.dq-filter-note { margin-left: 6px; min-width: 0; }
+
+.ilist.dq-hist > li { gap: 14px; }
+.ilist.dq-hist > li.on { background: var(--surface-2); }
+.ilist.dq-hist > li:hover { background: var(--surface-2); }
+.dq-hist .dq-who { width: 64px; flex: none; }
+.dq-hist .dq-res { width: 84px; flex: none; }
+.dq-hist .dq-when { width: 96px; flex: none; text-align: right; }
+.ilist.dq-hist > li.dq-hist-h { padding-top: 8px; padding-bottom: 8px; background: var(--surface-2); font-size: var(--fs-meta); font-weight: 550; color: var(--text-2); }
+
+/* 알림 */
+.dq-alerts-sum { margin: 0; padding: 12px 14px 6px; }
+.ilist.dq-alerts > li { align-items: flex-start; }
+.dq-alerts .dq-sev { flex: none; width: 56px; padding-top: 1px; }
+.ilist.dq-alerts .dq-wrap { white-space: normal; overflow-wrap: anywhere; }
+.dq-raw > summary { font-size: var(--fs-meta); color: var(--text-2); cursor: pointer; }
+.dq-raw p { margin-top: 4px; font-size: var(--fs-meta); color: var(--text-2); overflow-wrap: anywhere; max-height: 160px; overflow: auto; }
+.dq-act { flex: none; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 45%; }
+
+/* 내 할 일: where to-dos come from */
+.dq-sources { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.dq-sources li { display: flex; gap: 10px; align-items: flex-start; padding: 0; }
+.dq-sources li .ico { flex: none; margin-top: 2px; color: var(--accent); }
+.dq-sources b { display: block; color: var(--text); font-weight: 550; margin-bottom: 2px; }
+
+@media (max-width: 1200px) {
+  .dq-sources { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 1100px) {
+  .dq-hist .dq-when { display: none; }
+  .dq-filter-note { flex-basis: 100%; margin-left: 0; }
+}
+@media (max-width: 900px) {
+  .ilist.dq-alerts > li { flex-wrap: wrap; }
+  .dq-act { max-width: none; justify-content: flex-start; }
+  .dq-page .toolbar .search-in input { min-width: 0; width: 100%; }
+}
+
+.dq-frees { color: var(--text-2); white-space: normal; }

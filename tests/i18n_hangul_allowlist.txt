@@ -1,0 +1,18 @@
+# Files that still hold owner-facing Korean outside the catalogs, by lane (docs/I18N.md).
+# tests/test_i18n.py fails on Korean in any file not listed here, and on a listed file that has none left:
+# a lane deletes a file's line when it finishes the file. The count is the most Korean lines the file may hold, and it
+# fails when a file holds more: lower it as a file shrinks, never raise it. `uv run python tests/i18n_kit.py` counts them.
+
+
+# lane build: 0 lines
+
+# lane business: 717 lines
+backend/justshipit/services/bet_loop.py                  # 1
+backend/justshipit/services/fence.py                     # 1
+
+# lane kickoff: 2 lines (the critics' stored level words, an enum)
+web/src/kickoff/IdeaPanel.tsx                        # 1
+backend/justshipit/contracts/idea_review.py              # 1
+
+# lane company: 755 lines
+backend/justshipit/cli.py                                # 1

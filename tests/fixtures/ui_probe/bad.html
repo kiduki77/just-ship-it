@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Every bug</title>
+<style>
+  button { border: 1px solid #888; background: #fff; padding: 4px 8px; }
+  button:focus-visible { outline: none; box-shadow: 0 0 0 3px #36f; }
+  button[aria-pressed="true"] { background: #222; color: #fff; }
+  ul { height: 160px; overflow-y: auto; margin: 0; padding: 0; list-style: none; }
+  li { height: 40px; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+  // The whole screen is rebuilt on every action: the list, the focus and the status node go with it.
+  const state = { filter: "all", dismissed: new Set(), saved: 0 };
+  function render() {
+    const rows = [1, 2, 3, 4, 5].filter((n) => !state.dismissed.has(n));
+    document.getElementById("app").innerHTML = `
+      <div>
+        <button data-filter="all" aria-pressed="${state.filter === "all"}">All</button>
+        <button data-filter="open" aria-pressed="${state.filter === "open"}">Open</button>
+        <button data-save>Save</button>
+      </div>
+      <ul>${rows.map((n) => `<li>Row ${n} <button data-dismiss="${n}">Not a problem</button></li>`).join("")}
+        ${Array.from({ length: 10 }, (_, i) => `<li>Filler ${i}</li>`).join("")}</ul>
+      <p role="status">${state.saved ? "Saved " + state.saved : ""}</p>
+      <div class="notes" style="overflow-y: auto; max-height: 200px">No notes yet</div>`;
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.dataset.filter) state.filter = b.dataset.filter;
+    if (b.dataset.dismiss) state.dismissed.add(Number(b.dataset.dismiss));
+    if ("save" in b.dataset) state.saved++;
+    render();
+  });
+  render();
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+/*
+ * Project detail, routines, engineering, skills and new-business screens on the kit (kit.css).
+ * Every rule is scoped under .mx: page CSS loads before styles.css and kit.css, so the scope is what lets these win.
+ */
+
+/* Primary actions are near-black here, as on the dashboard; the old indigo `primary` would read as a link. */
+.mx button.primary, .mx .btn.primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+
+.mx .mx-flat { margin: 0 0 10px; max-width: 80ch; }
+.mx .mx-flat:last-child { margin-bottom: 0; }
+.mx .mx-col { display: flex; flex-direction: column; min-width: 0; }
+.mx .mx-line { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
+.mx .mx-line .t1 { flex: 1 1 200px; min-width: 0; }
+.mx .mx-line .end { margin-left: auto; }
+.mx .mx-pad { padding: 14px 16px; }
+.mx .mx-wrap { margin: 0; overflow-wrap: anywhere; }
+.mx .mx-old { opacity: .72; }
+
+/* ---------- project header ---------- */
+.mx-pj > .phead { align-items: flex-start; }
+.mx .mx-pj-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 14px; margin-top: 2px; font-size: var(--fs-row); }
+.mx .pj-stage { font-weight: 500; }
+/* the project's tabs are links (sub-routes); they sit right under the header, before every tab's body */
+.mx-pj > .tabs { margin-bottom: 16px; }
+.mx .tabs .tab-n { margin-left: 6px; }
+.mx .pj-waiting .row-lead .chip { min-width: 0; }
+.mx .pj-runs { margin: 0 0 12px; }
+.mx .pj-runs .rows { border: 1px solid var(--border); border-radius: var(--r-control); margin-top: 6px; }
+
+/* ---------- rows and boxes ---------- */
+.mx .mx-stackrows > li { align-items: flex-start; }
+.mx .mx-stackrows .evsum { margin-top: 8px; }
+.mx .ilist > li.on { background: var(--accent-soft); }
+.mx .mx-boxes { display: flex; flex-direction: column; gap: 12px; }
+.mx .mx-box-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.mx .mx-box-h h3 { flex: 1 1 280px; min-width: 0; margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.mx .mx-box-h h3 .mono { font-size: 12.5px; font-weight: 500; margin-right: 4px; }
+.mx .mx-box-a { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.mx .mx-fold > summary { color: var(--text); font-weight: 600; font-size: 13px; margin: 12px 0 0; }
+.mx .mx-fold[open] > summary { margin-bottom: 6px; }
+.mx .ilist .mx-fold > summary { margin: 0; font-weight: 500; }
+.mx .mx-fold .sec-n { margin-left: 4px; }
+.mx .mx-fold > ul { max-width: 80ch; }
+.mx .mx-answers { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.mx .mx-outcome { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.mx .mx-outcome .grow { flex: 1 1 240px; min-width: 0; }
+.mx .mx-danger .sec-h h2 { color: var(--bad); }
+
+/* ---------- evidence ledger ---------- */
+.mx .mx-facets { margin: 12px 0 4px; }
+.mx .fchip { border: 1px solid var(--border); background: var(--surface); border-radius: 99px; padding: 2px 9px 2px 4px; font-size: 12px; }
+.mx .fchip:hover:not(:disabled) { border-color: var(--border-strong); }
+.mx .fchip.on { border-color: var(--accent); background: var(--accent-soft); }
+.mx .mx-count { margin: 8px 0 6px; }
+.mx .search-in input { min-width: 220px; }
+
+/* ---------- list beside a reader (docs, skills) ---------- */
+.mx .mx-split { display: grid; grid-template-columns: minmax(240px, 320px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.mx .mx-side { position: sticky; top: calc(var(--h-topbar) + 16px); max-height: calc(100vh - var(--h-topbar) - 32px); overflow-y: auto; scrollbar-width: thin; }
+.mx .mx-side .ilist > li { padding: 0; }
+.mx .mx-group + .mx-group { border-top: 1px solid var(--border); }
+.mx .mx-group-h { margin: 0; padding: 10px 16px 4px; font-size: 12px; font-weight: 600; color: var(--text-2); display: flex; align-items: center; gap: 6px; }
+.mx .mx-group .ilist > li:first-child { border-top: 0; }
+.mx .mx-pick { display: flex; flex-direction: column; align-items: stretch; gap: 2px; width: 100%; min-width: 0; text-align: left; background: none; border: 0; border-radius: 0; padding: 10px 16px; color: var(--text); }
+.mx .mx-pick:hover:not(:disabled) { background: var(--surface-2); }
+.mx-pick:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.mx .ilist > li.on .mx-pick { background: var(--accent-soft); }
+.mx .ilist > li.on .mx-pick .t1 { color: var(--accent); }
+.mx .mx-pick .mx-line { flex-wrap: nowrap; }
+.mx .mx-pick .t2 { white-space: normal; }
+
+.mx .bcard .tag.mono { font-size: 11px; }
+
+/* ---------- routines ---------- */
+.mx .mx-rows > li { flex-wrap: wrap; gap: 10px 16px; }
+.mx .mx-rows .grow { flex: 1 1 220px; }
+.mx .mx-off .t1 { color: var(--text-2); }
+.mx .mx-cells { display: flex; gap: 20px; margin: 0; flex: none; }
+.mx .mx-cells > div { min-width: 84px; }
+.mx .mx-cells dt { font-size: 11.5px; color: var(--text-2); }
+.mx .mx-cells dd { margin: 1px 0 0; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mx .mx-spark { flex: none; width: 120px; }
+.mx .mx-record { display: flex; gap: 6px; flex: none; }
+.mx .mx-record input { width: 88px; padding: 5px 8px; }
+.mx .mx-kpi-new { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 12px 16px; background: var(--surface-2); }
+.mx .mx-kpi-new .strong { margin-right: 4px; }
+.mx .mx-grow { flex: 1 1 220px; min-width: 0; }
+.mx .mx-w-s { width: 92px; }
+.mx .mx-w-agent { width: 140px; overflow: hidden; text-overflow: ellipsis; }
+
+.mx .mx-switch-w { display: inline-flex; align-items: center; gap: 8px; flex: none; }
+.mx .mx-confirm-row { flex-basis: 100%; }
+.mx .mx-confirm-row .confirm-box { margin: 0; }
+.mx .mx-switch { position: relative; display: inline-flex; width: 34px; height: 20px; flex: none; cursor: pointer; }
+.mx .mx-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.mx .mx-switch span { position: relative; width: 100%; height: 100%; border-radius: 99px; background: var(--border-strong); transition: background-color .15s ease-out; pointer-events: none; }
+.mx .mx-switch span::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface);
+  box-shadow: 0 1px 2px rgb(16 18 24 / .25); transition: transform .2s cubic-bezier(.16, 1, .3, 1); }
+.mx .mx-switch input:checked + span { background: var(--ok); }
+.mx .mx-switch input:checked + span::after { transform: translateX(14px); }
+.mx .mx-switch input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mx .mx-switch input:disabled + span { opacity: .55; }
+
+/* a routine row: name and scope, then the three times in fixed columns so rows line up, then Run now and its answer */
+.mx .mx-routines .mx-cells-3 { display: grid; grid-template-columns: repeat(3, minmax(96px, auto)); gap: 16px; }
+.mx .mx-cells-3 > div { min-width: 0; }
+.mx .mx-wrap2 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mx .mx-run { display: inline-flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; max-width: 340px; }
+.mx .mx-run .act-what { display: block; max-width: 340px; font-size: var(--fs-meta); color: var(--text-2); word-break: keep-all; margin-bottom: 4px; }
+.mx .mx-run .act-armed { display: flex; flex-direction: column; align-items: flex-end; }
+.mx .mx-run-msg { text-align: right; word-break: keep-all; overflow-wrap: anywhere; }
+.mx .mx-record .act-msg { align-self: center; }
+
+/* the owner's "I sent it myself" form takes its own line under the outbox item */
+.mx .mx-sent { flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-end; padding: 12px 14px;
+  background: var(--surface-2); border-radius: var(--r-container); }
+.mx .mx-sent label { display: flex; flex-direction: column; gap: 4px; font-size: var(--fs-meta); color: var(--text-2); }
+.mx .mx-sent-says, .mx .mx-sent-msg { flex: 1 1 100%; margin: 0; }
+.mx .mx-sent-foot { display: inline-flex; gap: 8px; }
+
+/* the kit's empty state keeps its centered body inside a page's own paragraph margins */
+.mx .empty-state .empty-b { margin-left: auto; margin-right: auto; }
+
+.mx .mx-scope { display: inline-flex; align-items: center; gap: 8px; }
+.mx .mx-scope select { max-width: 320px; }
+
+/* ---------- new business ---------- */
+.mx .mx-formwrap { display: grid; grid-template-columns: minmax(0, 760px) minmax(260px, 340px); gap: 20px; align-items: start; }
+.mx .mx-form { gap: 16px; }
+.mx .mx-form-foot { padding-top: 4px; gap: 8px; }
+.mx .mx-mode { align-self: flex-start; }
+.mx .mx-formwrap { word-break: keep-all; overflow-wrap: break-word; }
+
+@media (max-width: 1200px) {
+  .mx .mx-formwrap { grid-template-columns: minmax(0, 1fr); max-width: 760px; }
+}
+@media (max-width: 1000px) {
+  .mx .mx-split { grid-template-columns: minmax(0, 1fr); }
+  .mx .mx-side { position: static; max-height: 320px; }
+  .mx .mx-cells { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx .mx-switch span, .mx .mx-switch span::after { transition: none; }
+}
+
+/* AI text shown as markdown, and the final report folded by section */
+.mx .mx-said { margin-top: 10px; }
+.mx .mx-said > b { display: block; margin-bottom: 2px; }
+.mx .mx-said .md p, .mx .mx-md-list .md p { margin: 0; }
+.mx .mx-md-list { margin: 4px 0 0; padding-left: 18px; }
+.mx .mx-md-list li + li { margin-top: 4px; }
+.mx .mx-report-h { font-size: 17px; margin: 18px 0 6px; }
+.mx .mx-report-sec { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 10px; }
+.mx .mx-report-sec > summary { font-size: 15px; margin: 0; }
+/* an armed Run now or its answer takes a line of its own under the routine, so the row's columns never shift */
+.mx .mx-rows > li:has(.mx-run .act-armed, .mx-run-msg) .mx-run { flex-basis: 100%; max-width: none; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+.mx .mx-rows > li:has(.mx-run .act-armed) .mx-run .act-armed { flex-direction: row; align-items: center; gap: 12px; }
+.mx .mx-rows > li:has(.mx-run .act-armed) .mx-run .act-what { max-width: 60ch; margin: 0; text-align: right; }
+.mx .mx-rows > li:has(.mx-run-msg) .mx-run-msg { flex-basis: 100%; }
+.mx-ev-back { margin: 0 0 8px; }
+/* one header row names the three time columns, so the rows carry no labels of their own */
+.mx .mx-routines > li { min-height: 44px; }
+.mx .mx-routines .mx-head { min-height: 0; padding-top: 8px; padding-bottom: 6px; background: var(--surface-2); border-top: 0; }
+.mx .mx-routines .mx-head .mx-cells dt { font-size: var(--fs-meta); font-weight: 600; color: var(--text-2); }
+.mx .mx-routines .mx-head .mx-run { min-width: 84px; }
+.mx .mx-routines .mx-run { min-width: 84px; }
+.mx .mx-routines .mx-wrap2 { -webkit-line-clamp: 1; line-clamp: 1; }
+.mx .mx-routines .mx-cells dt, .mx .mx-routines .mx-cells dd { text-align: center; }
+.mx .mx-routines .mx-cells dd { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .mx .mx-routines .mx-head { display: none; }
+  .mx .mx-routines .mx-cells dt.sr-only { position: static; width: auto; height: auto; margin: 0; clip: auto; overflow: visible; font-size: var(--fs-meta); color: var(--text-2); }
+}
+
+/* evidence list: a claim opens in place, under its row */
+.ev-claim { display: flex; align-items: baseline; gap: 6px; width: 100%; min-height: 0; padding: 0; background: none; border: 0; border-radius: 2px;
+  text-align: left; font: inherit; font-weight: 450; color: var(--text); cursor: pointer; }
+.ev-claim:hover:not(:disabled) { background: none; color: var(--accent); }
+.ev-claim .ico { flex: none; color: var(--text-3); transition: transform var(--t-fast) ease-out; }
+.ev-claim[aria-expanded="true"] .ico { transform: rotate(90deg); }
+.tbl tr.ev-open td { border-bottom: 0; }
+.tbl tr.ev-detail-row td { background: var(--surface-2); padding: 10px 12px 12px 26px; }
+.ev-detail { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; margin: 0; font-size: var(--fs-row); max-width: 96ch; }
+.ev-detail dt { color: var(--text-2); font-weight: 500; }
+.ev-detail dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.ev-detail .quote { margin: 0; }
+.ev-cites { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; }

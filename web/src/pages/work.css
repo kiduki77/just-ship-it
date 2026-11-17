@@ -1,0 +1,119 @@
+/*
+ * 업무 and 프로젝트 (pages/Tasks.tsx, pages/Projects.tsx). Built on the kit (kit.css); this file only adds what the
+ * two screens need beyond it: the work/detail split, the task detail, dense rows, the project rows, and toolbar fit.
+ */
+
+/* ---------- toolbar ---------- */
+.wk-page .toolbar select { max-width: 220px; text-overflow: ellipsis; }
+.wk-page .toolbar .search-in input { min-width: 200px; }
+.wk-by { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-row); color: var(--text-2); }
+.wk-count { white-space: nowrap; }
+
+/* inside a project the header is the project's: the work's own sentence sits above the toolbar, quietly */
+.wk-scope { margin: 0 0 10px; }
+
+/* ---------- work beside its detail ---------- */
+.wk-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.wk-split.has { grid-template-columns: minmax(0, 1fr) minmax(400px, 42%); }
+.wk-main { min-width: 0; container-type: inline-size; }
+.wk-side { min-width: 0; position: sticky; top: calc(var(--h-topbar) + 12px); max-height: calc(100vh - var(--h-topbar) - 24px); overflow-y: auto;
+  scrollbar-width: thin; scroll-margin-top: calc(var(--h-topbar) + 12px); }
+
+/* ---------- what needs the owner, above the work ---------- */
+.wk-needs { margin-bottom: 16px; }
+.wk-needs .row-lead .chip { min-width: 0; }
+.wk-open { color: var(--accent); font-weight: 500; }
+.wk-proj { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- dense rows ---------- */
+.wk-tid { flex: none; margin-right: 8px; font-family: var(--mono); font-size: var(--fs-meta); font-weight: 400; color: var(--text-3); }
+.wk-list .row-lead { width: 128px; }
+/* a long state word ("Waiting for the worker") wraps inside its chip; an inline-flex chip can't show an ellipsis */
+.wk-list .row-lead .chip { max-width: 100%; white-space: normal; }
+.wk-ago { min-width: 64px; text-align: right; }
+.wk-err { color: var(--bad); }
+@container (max-width: 640px) {
+  .wk-list .row-end .tag, .wk-needs .wk-proj { display: none; }
+  .wk-list .row-lead { width: auto; }
+}
+
+/* board: failure reasons and times on cards */
+.wk-when { display: inline-flex; align-items: center; gap: 4px; }
+
+/* ---------- the task detail beside the work ---------- */
+.wk-detail { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-container); min-width: 0; }
+.wk-dh { position: sticky; top: 0; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 12px 16px 10px;
+  background: var(--surface); border-bottom: 1px solid var(--border); border-radius: var(--r-container) var(--r-container) 0 0; }
+.wk-dh-main { min-width: 0; }
+.wk-dh-meta { margin: 0 0 2px; font-size: var(--fs-meta); color: var(--text-2); overflow-wrap: anywhere; }
+.wk-dh-meta .mono { color: var(--text-3); }
+.wk-dh h2 { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.wk-dh h2:focus { outline: none; }
+.wk-dh h2:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.wk-close { flex: none; }
+.wk-dbody { padding: 12px 16px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.wk-dbody > * { margin-top: 0; margin-bottom: 0; }
+.wk-dbody h3 { margin: 6px 0 0; font-size: var(--fs-section); font-weight: 600; }
+.wk-dbody .props { margin: 0; }
+.wk-dstate { align-items: center; }
+
+/* a retry's result stays in the panel: an informative note, not a success color, since nothing has run yet */
+.wk-note { padding: 8px 12px; border-radius: var(--r-control); background: var(--run-bg); color: var(--text); font-size: var(--fs-row); line-height: 1.5;
+  word-break: keep-all; overflow-wrap: anywhere; }
+
+/* why it failed, who moves it on, the next step; the stored text folds under Details */
+.wk-fail { padding: 10px 12px; border-radius: var(--r-control); background: var(--bad-bg); display: flex; flex-direction: column; gap: 6px; }
+.wk-fail.is-handled { background: var(--surface-2); }
+.wk-fail h3 { margin: 0; font-size: var(--fs-meta); font-weight: 600; color: var(--bad); text-transform: none; }
+.wk-fail.is-handled h3 { color: var(--text-2); }
+.wk-fail p { margin: 0; }
+.wk-fail-says { font-size: var(--fs-row); color: var(--text); word-break: keep-all; overflow-wrap: anywhere; }
+.wk-fail-next { font-size: var(--fs-row); color: var(--text-2); }
+.wk-raw > summary { font-size: var(--fs-meta); color: var(--text-2); cursor: pointer; }
+.wk-raw p { margin-top: 6px; font-size: var(--fs-meta); max-height: 220px; overflow: auto; color: var(--text-2); }
+
+/* a cancelled task's note is a record, not an error */
+.wk-quiet-note { padding: 8px 12px; border-radius: var(--r-control); background: var(--surface-2); color: var(--text-2); font-size: var(--fs-row); }
+.wk-danger { color: var(--bad); }
+.wk-reason { display: grid; gap: 4px; }
+.wk-reason input { width: 100%; }
+
+.wk-prog { height: 5px; margin-top: 6px; border-radius: var(--r-pill); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--border); overflow: hidden; }
+.wk-prog > span { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width .4s var(--ease-out); }
+
+/* ---------- new project, new task ---------- */
+.wk-new { margin-bottom: 16px; }
+.wk-new-h { margin: 0 0 12px; font-size: var(--fs-section); font-weight: 600; }
+
+@media (max-width: 1200px) {
+  .wk-split.has { grid-template-columns: minmax(0, 1fr); }
+  .wk-side { position: static; max-height: none; overflow: visible; order: -1; }
+}
+@media (max-width: 900px) {
+  .wk-page .toolbar .search-in { flex: 1 1 100%; }
+  .wk-page .toolbar .search-in input { min-width: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wk-prog > span { transition: none; }
+}
+
+/* ---------- projects list: one dense row per project ---------- */
+.pj-list .row-i { align-items: flex-start; padding-block: 8px; }
+.pj-list .row-lead { width: 160px; padding-top: 1px; }
+/* a long state word ("Waiting for the worker") wraps inside its chip instead of running into the name */
+.pj-list .row-lead .chip { max-width: 100%; white-space: normal; }
+.pj-list .row-t { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.pj-name { color: var(--text); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.pj-name:hover { color: var(--accent); }
+.pj-list .row-m { white-space: normal; overflow: visible; }
+.pj-list .sline, .pj-list .sline.bad, .pj-list .sline.warn, .pj-list .sline.ok { padding: 0; margin: 2px 0 0; background: none; border: 0; border-radius: 0; gap: 8px; font-size: var(--fs-meta); }
+.pj-list .sline > .dot { display: none; }
+.pj-list .sline-t { min-width: 0; flex: 0 1 auto; }
+.pj-list .sline.bad .sline-t { color: var(--bad); }
+.pj-list .sline.warn .sline-t { color: var(--warn); }
+.pj-list .row-end { gap: 20px; align-items: flex-start; padding-top: 2px; }
+.pj-num { display: inline-flex; flex-direction: column; width: 112px; }
+.pj-num .meter, .pj-num .wk-prog { margin-top: 6px; }
+.pj-when { width: 72px; text-align: right; white-space: nowrap; }
+.pj-row.is-archived .pj-name { color: var(--text-2); }
+@media (max-width: 1320px) { .pj-num:first-child { display: none; } }

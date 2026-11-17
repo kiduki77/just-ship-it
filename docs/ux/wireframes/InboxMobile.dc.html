@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>결정함 모바일</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+.b{display:inline-block;font-size:11px;line-height:18px;padding:0 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.bad{background:#fdecea;color:#b42318}.warn{background:#fef4e6;color:#b54708}.info{background:#f2ecfe;color:#5b21b6}.mut{background:#f1f3f6;color:#5b6475}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #f6f7f9; font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif; color: #1b1f27; font-size: 14px; line-height: 1.55">
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: #ffffff; border-bottom: 1px solid #e2e5ea">
+    <a href="Inbox.dc.html" style="min-height: 44px; display: flex; align-items: center">← 결정함 (4)</a>
+    <span class="mono" style="color: #5b6475">1 / 4</span>
+  </header>
+  <div style="flex-grow: 1; overflow: hidden; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="b bad">진행 차단</span><span class="b info">승인</span><span class="b warn">위험 보통</span></div>
+    <h1 style="margin: 0; font-size: 18px; line-height: 1.35"><span class="mono" style="color: #5b6475">REQ-66</span> CEO 최종 결정 승인: 조건부, 90일 오픈소스 퍼널 실험만 진행</h1>
+    <div style="font-size: 12px; color: #5b6475">AI CEO · P-5 · 만료 5일 후</div>
+    <p style="margin: 0">결론은 <b>조건부</b>입니다. 90일 오픈소스 퍼널 실험은 현금 0으로 진행할 가치가 있지만, 수익 사업으로서의 GO는 아닙니다.</p>
+    <div>
+      <div style="font-size: 12px; color: #5b6475; margin-bottom: 4px">근거 확신도 · 인용 19개</div>
+      <div role="img" aria-label="검증된 사실 4, 출처 있는 주장 4, 가정 1, 가설 10" style="display: flex; height: 8px; border-radius: 999px; overflow: hidden">
+        <span style="width: 21%; background: #067647"></span><span style="width: 21%; background: #175cd3"></span><span style="width: 5%; background: #b54708"></span><span style="width: 53%; background: repeating-linear-gradient(90deg, #f2c48f 0 4px, #fef4e6 4px 7px)"></span>
+      </div>
+      <div style="font-size: 12px; margin-top: 4px">● 4 · ○ 4 · ◌ 가정 1 · ◌ 가설 10</div>
+    </div>
+    <div style="font-size: 13px; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 10px 12px">
+      <b style="color: #067647">승인하면</b> 멈춰 있던 P-5가 다시 진행됩니다. <a href="#outcomes">다른 선택지 결과 ▾</a>
+    </div>
+    <a href="#full" style="font-size: 13px">전문 펼치기 · 3,926자 ▾</a>
+  </div>
+  <div aria-label="결정" style="background: #ffffff; border-top: 1px solid #c9ced6; padding: 12px 16px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -6px 20px rgba(27, 31, 39, 0.08)">
+    <div role="radiogroup" aria-label="선택지" style="display: flex; gap: 6px">
+      <label style="flex-grow: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #4f46e5; background: #eef0ff; border-radius: 8px"><input type="radio" name="m" checked> 승인</label>
+      <label style="flex-grow: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #e2e5ea; border-radius: 8px"><input type="radio" name="m"> 반려</label>
+      <label style="flex-grow: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid #e2e5ea; border-radius: 8px"><input type="radio" name="m"> 보류</label>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <button type="button" style="font: inherit; min-height: 44px; flex: 0 0 auto; background: #f1f3f6; border: 1px solid #e2e5ea; border-radius: 8px; padding: 0 14px">메모</button>
+      <button type="button" style="font: inherit; font-weight: 600; min-height: 44px; flex-grow: 1; background: #4f46e5; color: #ffffff; border: 0; border-radius: 8px">승인</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

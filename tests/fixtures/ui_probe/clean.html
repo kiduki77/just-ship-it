@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>No bugs</title>
+<style>
+  button { border: 1px solid #888; background: #fff; padding: 4px 8px; }
+  button:focus-visible { outline: 3px solid #36f; outline-offset: 2px; }
+  button[aria-pressed="true"] { background: #222; color: #fff; border-width: 3px; font-weight: 700; }
+  ul { height: 160px; overflow-y: auto; margin: 0; padding: 0; list-style: none; }
+  li { height: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <button data-filter="all" aria-pressed="true">All</button>
+    <button data-filter="open" aria-pressed="false">Open</button>
+    <button data-save>Save</button>
+  </div>
+  <ul id="rows"></ul>
+  <p role="status" id="status"></p>
+</main>
+<script>
+  // Changes are made in place: the list keeps its scroll, focus moves to a neighbour, the status node stays.
+  const list = document.getElementById("rows");
+  list.innerHTML = [1, 2, 3, 4, 5].map((n) =>
+    `<li>Row ${n} <button data-dismiss aria-label="Not a problem: row ${n}">Not a problem</button></li>`).join("") +
+    Array.from({ length: 10 }, (_, i) => `<li>Filler ${i}</li>`).join("");
+  let saved = 0;
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.dataset.filter)
+      for (const f of document.querySelectorAll("[data-filter]")) f.setAttribute("aria-pressed", String(f === b));
+    if ("save" in b.dataset) document.getElementById("status").textContent = "Saved " + ++saved;
+    if ("dismiss" in b.dataset) {
+      const li = b.closest("li");
+      const next = (li.nextElementSibling || li.previousElementSibling)?.querySelector("button")
+        || document.querySelector("[data-save]");
+      li.remove();
+      next.focus();
+    }
+  });
+</script>
+</body>
+</html>

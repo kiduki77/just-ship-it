@@ -1,0 +1,30 @@
+[
+ {
+  "starred_at": "2026-11-01T09:00:00Z",
+  "user": {
+   "login": "user3",
+   "type": "User"
+  }
+ },
+ {
+  "starred_at": "2026-11-02T10:00:00Z",
+  "user": {
+   "login": "user4",
+   "type": "User"
+  }
+ },
+ {
+  "starred_at": "2026-11-02T18:30:00Z",
+  "user": {
+   "login": "user5",
+   "type": "User"
+  }
+ },
+ {
+  "starred_at": "2026-11-03T01:00:00Z",
+  "user": {
+   "login": "user6",
+   "type": "User"
+  }
+ }
+]

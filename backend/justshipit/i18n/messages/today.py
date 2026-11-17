@@ -1,0 +1,81 @@
+"""The home's list of what only the owner can do today (`services/today.py`)."""
+from justshipit.i18n import Entry
+
+MESSAGES: dict[str, Entry] = {
+    "today.label.decision": {"en": "Decision", "ko": "결정"},
+    "today.label.kickoff": {"en": "Kickoff chat", "ko": "시작 대화"},
+    "today.label.brief": {"en": "Plan", "ko": "계획"},
+    "today.label.cycle": {"en": "Cycle", "ko": "사이클"},
+    "today.label.idea": {"en": "Idea", "ko": "아이디어"},
+    "today.label.bet": {"en": "Wrap up experiment", "ko": "실험 정리"},
+    "today.label.alert": {"en": "Connection", "ko": "연결"},
+    "today.label.kit": {"en": "First 10 kit", "ko": "첫 10명 키트"},
+
+    "today.kickoff.title": {"en": "Continue the kickoff chat", "ko": "시작 대화 이어 하기"},
+    "today.kickoff.waiting": {"en": "The Project Manager is waiting for your answer", "ko": "프로젝트 매니저가 오너님의 답을 기다려요"},
+    "today.kickoff.paused": {"en": "The chat is paused. Pick it up where you left off", "ko": "잠시 멈춘 대화예요. 이어서 하면 돼요"},
+
+    "today.brief.first.title": {"en": "Review the plan and start", "ko": "계획 확인하고 시작하기"},
+    "today.brief.first.reason": {"en": "The company starts work once you approve it", "ko": "승인해야 회사가 일을 시작해요"},
+    "today.brief.changed.title": {"en": "Review the changed plan", "ko": "바뀐 계획 확인하기"},
+    "today.brief.changed.reason": {"en": "Once you approve, the company works from the new version",
+                                   "ko": "승인하면 바뀐 내용대로 일해요"},
+
+    "today.cycle.proposal.title": {"en": "Read the cycle and start a stage", "ko": "사이클을 읽고 단계 시작하기"},
+    "today.cycle.proposal.reason": {"en": "The company starts work once you start a stage",
+                                    "ko": "단계를 시작해야 회사가 일을 시작해요"},
+    "today.cycle.gate.title": {"en": "{stage} is done. Choose what comes next", "ko": "'{stage}' 단계가 끝났어요. 다음을 정해 주세요"},
+    "today.cycle.gate.reason": {"en": "The company stopped here and waits for you", "ko": "회사가 여기서 멈추고 기다려요"},
+
+    "today.decision.blocking": {"en": "Work is waiting on this decision", "ko": "이 결정을 기다리느라 일이 멈췄어요"},
+    "today.decision.moot": {"en": "Holds nothing now; it can still be answered",
+                            "ko": "지금은 막는 일이 없어요. 그래도 답할 수 있어요"},
+    "today.decision.typed": {"en": "This decision needs you to type a confirmation", "ko": "한 번 더 확인해야 하는 결정이에요"},
+    "today.decision.default": {"en": "Needs your decision", "ko": "정해 주세요"},
+
+    "today.task.post": {"en": "You post this yourself", "ko": "직접 올려야 해요"},
+    "today.task.publish": {"en": "You publish this yourself", "ko": "직접 공개해야 해요"},
+    "today.task.run": {"en": "You run this on your computer", "ko": "내 컴퓨터에서 직접 실행해요"},
+    "today.task.spend": {"en": "Only you can pay", "ko": "결제는 오너님만 할 수 있어요"},
+    "today.task.account": {"en": "Only you can sign up", "ko": "가입은 오너님만 할 수 있어요"},
+    "today.task.contact": {"en": "You reach out yourself", "ko": "직접 연락해야 해요"},
+    "today.task.onboard": {"en": "Someone to set it up with and listen to", "ko": "같이 설치하며 들어 볼 사람이에요"},
+    "today.task.follow_up": {"en": "Time to follow up", "ko": "다시 연락할 차례예요"},
+    "today.task.referral": {"en": "Time to ask for an introduction", "ko": "소개를 부탁할 차례예요"},
+    "today.task.participate": {"en": "You reply yourself", "ko": "직접 답글을 달아야 해요"},
+    "today.task.check": {"en": "Only you can check this", "ko": "직접 확인해야 해요"},
+    "today.task.other": {"en": "Only you can do this", "ko": "오너님만 할 수 있어요"},
+
+    "today.idea.discard": {"en": "The Project Manager suggests setting this aside", "ko": "프로젝트 매니저가 버리자고 했어요"},
+    "today.idea.discard_because": {"en": "The Project Manager suggests setting this aside: {reason}",
+                                   "ko": "프로젝트 매니저가 버리자고 했어요: {reason}"},
+    "today.bet.legacy": {"en": "Started the old way, so please wrap it up yourself",
+                         "ko": "예전 방식으로 시작한 실험이라 직접 마무리해 주세요"},
+    "today.label.profile": {"en": "Customers", "ko": "고객 설명"},
+    "today.kit.title": {"en": "Reach out to up to 3 people today", "ko": "오늘 최대 3명에게 연락하기"},
+    "today.kit.reason": {"en": "The First 10 kit says who, and has words for you to copy",
+                         "ko": "첫 10명 키트에서 누구에게 연락할지 보고, 복사할 문구를 받을 수 있어요"},
+
+    "today.profile.title": {"en": "Check who your customers are", "ko": "고객 설명이 맞는지 확인해 주세요"},
+    "today.profile.reason": {"en": "The company wrote this description, and promotion and the people finder read it",
+                             "ko": "회사가 쓴 고객 설명이에요. 홍보와 사람 찾기가 이 내용을 읽어요"},
+
+    "today.slack.title": {"en": "Reconnect Slack", "ko": "Slack 다시 연결하기"},
+    "today.slack.reason": {"en": "Slack refused the token, so notices are not going out",
+                           "ko": "Slack이 토큰을 받지 않아서 알림이 나가지 않아요"},
+
+    "today.yesterday.people_found": {"en": {"one": "Found {n} person", "other": "Found {n} people"},
+                                     "ko": "사람 {n}명을 찾았어요"},
+    "today.yesterday.bet_retro": {"en": {"one": "Finished {n} experiment review", "other": "Finished {n} experiment reviews"},
+                                  "ko": "실험 {n}개를 돌아봤어요"},
+    "today.yesterday.post_cards": {"en": {"one": "Added {n} post for you to put up", "other": "Added {n} posts for you to put up"},
+                                   "ko": "직접 올릴 글 {n}개를 내 할 일에 넣었어요"},
+    "today.yesterday.ideas": {"en": {"one": "Sorted {n} idea", "other": "Sorted {n} ideas"},
+                              "ko": "아이디어 {n}개를 정리했어요"},
+    "today.yesterday.tasks": {"en": {"one": "Finished {n} task", "other": "Finished {n} tasks"},
+                              "ko": "업무 {n}개를 끝냈어요"},
+
+    "today.banner.usage_wait": {"en": "Hit the {reason}, so work waits until {until}",
+                                "ko": "{reason}에 닿아 {until}까지 기다려요"},
+    "today.not_found": {"en": "B-{id} not found", "ko": "B-{id|를} 찾지 못했어요"},
+}

@@ -1,0 +1,168 @@
+/*
+ * The Engineering screen: what waits on the owner, the builds beside one build's detail, the specs.
+ * Every rule is scoped under .eng: page CSS loads before styles.css and kit.css, so the scope is what lets these win.
+ */
+
+/* the long explanation, one click away */
+.eng .eng-about { margin: 6px 0 16px; }
+.eng .eng-about > summary, .eng .eng-fold > summary, .eng .eng-specs > summary { cursor: pointer; display: flex; align-items: center; gap: 6px; list-style: none; }
+.eng .eng-about > summary { display: inline-flex; color: var(--text-2); }
+.eng summary::-webkit-details-marker { display: none; }
+.eng summary .ico { flex: none; color: var(--text-3); transition: transform var(--t-fast) ease-out; }
+.eng details[open] > summary .ico { transform: rotate(90deg); }
+.eng .eng-about p { margin: 6px 0 0; max-width: 72ch; color: var(--text-2); }
+
+/* your turn */
+.eng .eng-turn-sec .box { overflow: hidden; }
+.eng .eng-turn { list-style: none; margin: 0; padding: 0; }
+.eng .eng-turn-i { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; }
+.eng .eng-turn-i + .eng-turn-i { border-top: 1px solid var(--border); }
+.eng .eng-turn-i.t-warn { background: var(--warn-bg); }
+.eng .eng-turn-i.t-bad { background: var(--bad-bg); }
+.eng .eng-turn-i > .dot { margin-top: 6px; }
+.eng .eng-turn-h { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; min-width: 0; }
+.eng .eng-turn-n { font-weight: 600; overflow-wrap: anywhere; }
+.eng .eng-turn-s { overflow-wrap: anywhere; }
+.eng .eng-turn-n + .eng-turn-s::before { content: "·"; margin-right: 8px; color: var(--text-3); }
+.eng .eng-turn-d { margin: 4px 0 0; overflow-wrap: anywhere; }
+.eng .eng-turn-m { margin: 2px 0 0; }
+.eng .eng-act { flex: none; max-width: 48%; justify-content: flex-end; }
+
+/* the builds beside one build */
+.eng .eng-split { display: grid; grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); gap: 20px; align-items: start; margin-bottom: 24px; }
+.eng .eng-split > .eng-list, .eng .eng-split > .eng-pick { position: sticky; top: calc(var(--h-topbar) + 16px); max-height: calc(100vh - var(--h-topbar) - 32px);
+  overflow-y: auto; scrollbar-width: thin; }
+.eng .eng-job { scroll-margin-top: calc(var(--h-topbar) + 12px); min-width: 0; }
+.eng .eng-list .row-i { align-items: flex-start; padding: 8px 12px; }
+.eng .eng-list .row-end { max-width: 46%; }
+.eng .eng-list .row-t { white-space: normal; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2;
+  overflow-wrap: anywhere; word-break: keep-all; }
+.eng .eng-list .row-m { white-space: normal; overflow: visible; }
+.eng .eng-fold { border-top: 1px solid var(--border); }
+.eng .eng-list .box > .eng-fold:first-child { border-top: 0; }
+.eng .eng-fold > summary { padding: 8px 12px; font-size: var(--fs-row); font-weight: 500; color: var(--text-2); }
+.eng .eng-pick-b { width: 100%; display: flex; align-items: center; gap: 8px; text-align: left; min-height: var(--h-row); padding: 6px 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-container); color: var(--text); }
+.eng .eng-pick-b:hover { border-color: var(--border-strong); }
+.eng .eng-pick-t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+.eng .eng-pick-c { flex: none; display: inline-flex; align-items: center; gap: 2px; }
+.eng .eng-pick-b .eng-pick-c .ico { transform: rotate(90deg); }
+.eng .eng-pick-b[aria-expanded="true"] .eng-pick-c .ico { transform: rotate(-90deg); }
+.eng .eng-pick > .eng-list { margin-top: 8px; }
+@media (max-width: 900px) {
+  .eng .eng-split { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .eng .eng-split > .eng-list, .eng .eng-split > .eng-pick { position: static; max-height: none; overflow: visible; }
+  .eng .eng-turn-i { flex-wrap: wrap; }
+  .eng .eng-act { max-width: 100%; justify-content: flex-start; }
+}
+
+/* one build */
+.eng .eng-dt { overflow-wrap: anywhere; word-break: keep-all; }
+.eng .eng-detail > .tabs2 { margin-bottom: 14px; }
+.eng .eng-h { font-size: 13px; font-weight: 600; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+.eng .eng-panel > .eng-h:first-child { margin-top: 0; }
+
+/* the five steps across the page */
+.eng .eng-steps { list-style: none; margin: 4px 0 18px; padding: 0; display: flex; }
+.eng .eng-step { position: relative; flex: 1 1 0; min-width: 0; padding: 20px 8px 0 0; display: flex; flex-direction: column; gap: 2px; }
+.eng .eng-dot { position: absolute; top: 0; left: 0; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--border-strong); }
+.eng .eng-track { position: absolute; top: 5px; left: 16px; right: 4px; height: 2px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.eng .eng-name { font-size: var(--fs-row); line-height: 1.35; color: var(--text-2); overflow-wrap: anywhere; word-break: keep-all; }
+.eng .eng-note { font-size: var(--fs-meta); line-height: 1.35; color: var(--warn); overflow-wrap: anywhere; word-break: keep-all; }
+.eng .eng-step.s-done .eng-dot { background: var(--ok); border-color: var(--ok); }
+.eng .eng-step.s-done .eng-track { background: color-mix(in srgb, var(--ok) 55%, var(--border)); }
+.eng .eng-step.s-cur .eng-dot { background: var(--run); border-color: var(--run); }
+.eng .eng-step.s-cur.is-ask .eng-dot { background: var(--warn); border-color: var(--warn); }
+.eng .eng-step.s-cur .eng-name, .eng .eng-step.s-stop .eng-name { color: var(--text); font-weight: 600; }
+.eng .eng-step.s-stop .eng-dot { background: var(--bad); border-color: var(--bad); }
+.eng .eng-step.s-stop .eng-name { color: var(--bad); }
+/* a running step shows it is alive, as the cycle strip does: a slow ring on its dot, a thin line along its track.
+   Nothing moves while the work is held, waits for the owner or is over, so stillness means no progress. */
+.eng .eng-step.is-live .eng-dot { animation: eng-ring 2.2s ease-out infinite; }
+.eng .eng-step.is-live .eng-track::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 38%; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--run), transparent); animation: eng-sweep 2.6s ease-in-out infinite; }
+@keyframes eng-ring { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--run) 50%, transparent); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
+@keyframes eng-sweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(263%); } }
+@media (prefers-reduced-motion: reduce) {
+  .eng summary .ico { transition: none; }
+  .eng .eng-step.is-live .eng-dot { animation: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--run) 30%, transparent); }
+  .eng .eng-step.is-live .eng-track::after { animation: none; width: 100%; opacity: .5; transform: none; }
+}
+
+/* what the build is making, item by item */
+.eng .eng-items { margin: 0 0 16px; }
+.eng .eng-items > .eng-h { margin: 0 0 2px; }
+.eng .eng-items-s { margin: 0 0 8px; font-size: 13.5px; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.eng .eng-bar { display: flex; gap: 2px; height: 6px; margin: 0 0 10px; }
+.eng .eng-bar > span { position: relative; flex: 1 1 0; min-width: 2px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.eng .eng-bar > .s-done { background: var(--ok); }
+.eng .eng-bar > .s-cur { background: color-mix(in srgb, var(--run) 45%, var(--border)); }
+.eng .eng-bar.is-live > .s-cur::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 60%;
+  background: linear-gradient(90deg, transparent, var(--run), transparent); animation: eng-sweep 2.6s ease-in-out infinite; }
+.eng .eng-items-l { list-style: none; margin: 0; padding: 0; font-size: 13.5px; }
+.eng .eng-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 0; line-height: 1.4; }
+.eng .eng-mark { flex: none; width: 14px; height: 14px; margin-top: 2px; box-sizing: border-box; border-radius: 50%;
+  border: 1.5px solid var(--border-strong); display: grid; place-items: center; color: var(--surface); }
+.eng .eng-item.s-done .eng-mark { background: var(--ok); border-color: var(--ok); }
+.eng .eng-item.s-cur .eng-mark { border-color: var(--run); box-shadow: inset 0 0 0 2.5px var(--surface); background: var(--run); }
+.eng .eng-item-n { flex: none; min-width: 2ch; text-align: right; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.eng .eng-item-t { min-width: 0; color: var(--text-2); overflow: hidden; overflow-wrap: anywhere; word-break: keep-all;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+.eng .eng-item.s-cur .eng-item-t { color: var(--text); font-weight: 600; }
+.eng .eng-item-b { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.eng .eng-item-d { min-width: 0; font-size: 12.5px; line-height: 1.45; color: var(--text-3); overflow: hidden;
+  overflow-wrap: anywhere; word-break: keep-all; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+.eng .eng-items-fold > summary { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; list-style: none; padding: 2px 0 4px; color: var(--text-2); }
+.eng .eng-items-fold[open] > summary { margin-bottom: 2px; }
+.eng .eng-count { font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .eng .eng-bar.is-live > .s-cur { background: var(--run); }
+  .eng .eng-bar.is-live > .s-cur::after { content: none; }
+}
+
+/* where this build stands */
+.eng .eng-now { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.eng .eng-now-i { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--border);
+  border-radius: var(--r-container); background: var(--surface); }
+.eng .eng-now-i > .dot { margin-top: 7px; }
+.eng .eng-now-i.t-bad { background: var(--bad-bg); border-color: color-mix(in srgb, var(--bad) 30%, var(--border)); }
+.eng .eng-now-i.t-warn { background: var(--warn-bg); border-color: color-mix(in srgb, var(--warn) 30%, var(--border)); }
+.eng .eng-now-h { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.eng .eng-now-n { font-weight: 600; overflow-wrap: anywhere; }
+.eng .eng-now-s { overflow-wrap: anywhere; }
+.eng .eng-now-n + .eng-now-s::before { content: "·"; margin-right: 8px; color: var(--text-3); }
+.eng .eng-now-d { margin: 4px 0 0; font-size: 13.5px; overflow-wrap: anywhere; }
+.eng .eng-now-m { margin: 6px 0 0; }
+.eng .eng-now-i .eng-act { max-width: 45%; }
+
+/* the acceptance check */
+.eng .eng-criteria { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+.eng .eng-criteria li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
+.eng .eng-criteria li:first-child { border-top: 0; padding-top: 0; }
+.eng .eng-criteria .chip { flex: none; }
+.eng .eng-crit { min-width: 0; overflow-wrap: anywhere; }
+
+/* the log */
+.eng .eng-say { margin: 0 0 10px; max-width: 80ch; }
+.eng .eng-say:last-child { margin-bottom: 0; }
+.eng .eng-raw { margin-top: 6px; }
+.eng .eng-raw .pre { max-height: 320px; overflow: auto; }
+
+/* the engineer tab */
+.eng .eng-panel pre.pre { margin: 0 0 14px; max-height: 320px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* the specs, folded at the foot */
+.eng .eng-specs { margin-top: 8px; border-top: 1px solid var(--border); padding-top: 12px; }
+.eng .eng-specs > summary { padding: 6px 0; }
+.eng .eng-specs-t { font-size: var(--fs-section); font-weight: 600; }
+.eng .eng-specs[open] > summary { margin-bottom: 8px; }
+.eng .eng-specs-b { display: flex; flex-direction: column; gap: 10px; }
+.eng .eng-specs-b .eng-now { margin: 0; }
+.eng .eng-meta { margin: 2px 0 10px; display: flex; flex-wrap: wrap; gap: 2px 0; overflow-wrap: anywhere; }
+.eng .eng-error { margin: 14px 0 0; padding: 10px 12px; border-radius: var(--r-container); background: var(--bad-bg); }
+.eng .eng-error .eng-h { margin: 0 0 6px; color: var(--bad); }
+.eng .eng-error .pre { margin: 0; max-height: 260px; overflow: auto; }
+.eng-who { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+
+.eng .eng-crew { margin: 0 0 10px; }

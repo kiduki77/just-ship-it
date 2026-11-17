@@ -1,0 +1,50 @@
+# Staffing: how each job is staffed, and the task families placement groups by (docs/design/staffing-structure.md).
+# Read by services outside any run, so the owner can edit it and restart. Agents cannot modify this file.
+
+staffing:
+  # Version 1 of the rule. While true every task gets a checker, as on the old fixed path. False lets a small leaf
+  # task (solo_max_criteria or fewer criteria, nothing waiting on it, no forcing rule) run alone, with no review.
+  always_check: false
+  # A task with more acceptance criteria than this is checked. 1 means only a one-criterion leaf may run alone.
+  solo_max_criteria: 1
+  # The share of alone tasks that get a shadow check afterwards, and what those checks may spend per project, in the
+  # list-price USD the CLIs report. One check is one review call (a guess: about $0.5). An audit budget of 0 turns the
+  # checks off.
+  audit_rate: 0.2
+  audit_budget_usd: 2.0
+  # Version 2 (placement that learns, design section 7). audit_rate, audit_budget_usd and these five are GUESSES, set
+  # conservatively so history changes nothing until it is plentiful. Revisit them after a real project run shows the spread.
+  # History never changes a task a forcing check holds for (it feeds a build, finance, analysis, risk, a rework, a
+  # meeting decision, a task you added, always_check). It may only waive the criteria and dependents checks, return a
+  # family to checked, and lower the author's model.
+  min_samples: 20             # judged tasks a family (or a role on a model) needs before history may change a placement
+  solo_max_unmet_rate: 0.1    # a family may run alone only while shadow checks find unmet work in less than this share
+  model_tolerance: 0.05       # the cheaper model wins only if its first-check pass rate is within this of the best one
+  explore_rate: 0.1           # once the configured model has min_samples, the share of unforced tasks that sample the next cheaper one
+  model_ladder: [haiku, sonnet, opus]   # cheapest first: how much of the subscription a call on each uses
+
+# The task families: how tasks differ in difficulty and risk, so a statistic on one family says something about
+# the next task of that family. The owner confirmed these ten on 2026-11-14 and may still edit them. Too coarse and easy work hides hard work; too
+# fine and no family reaches min_samples. `other` is required: it is where a missing or unknown family lands.
+# Each entry is one line of what the family covers. The crews screen shows names through the catalogs, not from here.
+families:
+  market_research: "Facts on the market, competitors, customers and prices, with sources (research)"
+  regulation_check: "Laws, permits, privacy and licensing that bear on the idea (research, risk)"
+  data_analysis: "Raw public statistics or filings downloaded and tallied in code (analyst)"
+  strategy_synthesis: "Opportunity, positioning and entry order, built on the results of earlier tasks (strategy)"
+  customer_channels: "Customer segments, how they decide to buy, the channels that reach them, the message (marketing)"
+  outreach_drafts: "Drafts of surveys, interview guides and posts that become requests to the owner (marketing)"
+  financial_model: "Revenue model, pricing and profit-and-loss scenarios computed by the finance engine (finance)"
+  product_scope: "Problem-solution fit, the first version's scope, and the inputs a build spec reads (product)"
+  risk_review: "Counterarguments and ways the plan can fail, argued against the other work (risk)"
+  other: "Anything the plan did not name, or named with a family not in this list"
+
+# The family a task gets when nobody named one (a task the owner adds, an idea that becomes a task), by its role.
+owner_default_family:
+  research: market_research
+  strategy: strategy_synthesis
+  marketing: customer_channels
+  finance: financial_model
+  product: product_scope
+  risk: risk_review
+  analyst: data_analysis

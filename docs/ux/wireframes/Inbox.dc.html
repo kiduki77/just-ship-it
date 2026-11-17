@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>결정함 REQ-66</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#f6f7f9}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+.b{display:inline-block;font-size:11px;line-height:18px;padding:0 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.bad{background:#fdecea;color:#b42318}.warn{background:#fef4e6;color:#b54708}.ok{background:#e7f6ee;color:#067647}.info{background:#f2ecfe;color:#5b21b6}.mut{background:#f1f3f6;color:#5b6475}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;font-variant-numeric:tabular-nums}
+.nav a{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:8px;color:#1b1f27;font-size:14px}
+.cnt{background:#b42318;color:#fff;border-radius:999px;font-size:11px;font-weight:600;padding:0 7px}
+.chip{display:inline-flex;gap:5px;align-items:center;font-size:12px;border:1px solid #c9ced6;border-radius:6px;padding:1px 7px;background:#fff;white-space:nowrap}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 1060px; font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif; color: #1b1f27; font-size: 14px; line-height: 1.55">
+  <nav class="nav" aria-label="주 메뉴" style="flex: 1 1 200px; max-width: 220px; background: #ffffff; border-right: 1px solid #e2e5ea; padding: 20px 12px; display: flex; flex-direction: column; gap: 2px; box-sizing: border-box">
+    <div style="font-weight: 700; padding: 0 10px 16px">Just Ship It</div>
+    <a href="Main.dc.html">홈</a>
+    <a href="Inbox.dc.html" style="background: #eef0ff; color: #4f46e5; font-weight: 600">결정함 <span class="cnt">4</span></a>
+    <div style="font-size: 12px; color: #5b6475; font-weight: 600; padding: 16px 10px 4px">프로젝트</div>
+    <a href="Project.dc.html"><span><span style="color: #b54708">●</span> <span class="mono" style="color: #5b6475">P-5</span> Just Ship It…</span></a>
+    <div style="font-size: 12px; color: #5b6475; font-weight: 600; padding: 16px 10px 4px">회사 ▸</div>
+    <div style="flex-grow: 1"></div>
+    <div style="font-size: 12px; color: #5b6475; border-top: 1px solid #e2e5ea; padding: 10px 10px 0"><span style="color: #067647">●</span> 실시간 갱신 중</div>
+  </nav>
+
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px; padding: 20px 24px; box-sizing: border-box">
+    <section aria-label="요청 목록" style="flex: 0 1 280px; min-width: 240px; display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; gap: 6px; flex-wrap: wrap">
+        <span class="b mut" style="font-weight: 500">전체 프로젝트 ▾</span><span class="b mut" style="font-weight: 500">모든 종류 ▾</span>
+      </div>
+      <div style="font-size: 12px; font-weight: 600; color: #5b6475; padding-top: 8px">대기 4 <span style="font-weight: 400">· j/k 이동</span></div>
+      <a href="Inbox.dc.html" aria-current="true" style="display: block; background: #ffffff; border: 2px solid #4f46e5; border-radius: 10px; padding: 10px 12px; color: #1b1f27">
+        <div style="display: flex; justify-content: space-between"><span class="mono">REQ-66</span><span class="b bad">진행 차단</span></div>
+        <div style="font-weight: 600; font-size: 13px">CEO 최종 결정 승인: 조건부, 90일 퍼널 실험만 진행</div>
+        <div style="font-size: 12px; color: #5b6475">AI CEO · P-5 · 7시간 전</div>
+      </a>
+      <a href="Inbox.dc.html" style="display: block; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 10px 12px; color: #1b1f27">
+        <div style="display: flex; justify-content: space-between"><span class="mono">REQ-67</span><span class="b warn">강한 승인</span></div>
+        <div style="font-weight: 600; font-size: 13px">머지 승인: AICOMP-0001 공개 준비</div>
+        <div style="font-size: 12px; color: #5b6475">제품 · P-5 · 3시간 전</div>
+      </a>
+      <a href="Inbox.dc.html" style="display: block; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 10px 12px; color: #1b1f27">
+        <div style="display: flex; justify-content: space-between"><span class="mono">REQ-64</span><span class="b warn">강한 승인</span></div>
+        <div style="font-weight: 600; font-size: 13px">저장소 공개 승인 (공개 준비 완료 후)</div>
+        <div style="font-size: 12px; color: #5b6475">전략 · P-5 · 7시간 전</div>
+      </a>
+      <a href="Inbox.dc.html" style="display: block; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 10px 12px; color: #1b1f27">
+        <div style="display: flex; justify-content: space-between"><span class="mono">REQ-65</span><span class="b info">제안</span></div>
+        <div style="font-weight: 600; font-size: 13px">W12 판정 시점에 사업화 재평가</div>
+        <div style="font-size: 12px; color: #5b6475">AI CEO · P-5 · 7시간 전</div>
+      </a>
+      <div style="font-size: 12px; font-weight: 600; color: #5b6475; padding-top: 10px">처리됨 · 오너 결정 22 ▸</div>
+      <div style="font-size: 12px; color: #5b6475">시스템 처리 41 (병합·철회·자동 승인) ▸</div>
+    </section>
+
+    <article aria-labelledby="req-h" style="flex: 999 1 420px; min-width: 0; background: #ffffff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 20px 24px; display: flex; flex-direction: column; gap: 18px">
+      <header style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="b bad">진행 차단</span><span class="b info">승인</span><span class="b warn">위험 보통</span><span class="b mut">승인 필요</span></div>
+        <h1 id="req-h" style="margin: 0; font-size: 20px; line-height: 1.35"><span class="mono" style="font-size: 16px; color: #5b6475">REQ-66</span> CEO 최종 결정 승인: 조건부, 90일 오픈소스 퍼널 실험만 진행</h1>
+        <div style="font-size: 12px; color: #5b6475">요청자 AI CEO · <a href="Project.dc.html">P-5</a> · 동작 <span class="mono">project.direction_change</span> · 만료 5일 후</div>
+      </header>
+
+      <section>
+        <h2 style="margin: 0 0 6px; font-size: 13px; color: #5b6475">무엇을 결정하나</h2>
+        <p style="margin: 0; max-width: 72ch">결론은 <b>조건부</b>입니다. 이미 승인된 90일 오픈소스 퍼널 실험(<a href="Inbox.dc.html">REQ-54</a>·60·62)은 현금 0으로 진행할 가치가 있지만, 수익 사업으로서의 GO는 아닙니다. 모든 세그먼트의 구매 의사는 아직 가설입니다.</p>
+      </section>
+
+      <section>
+        <h2 style="margin: 0 0 6px; font-size: 13px; color: #5b6475">선택지별 결과</h2>
+        <dl style="margin: 0; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 6px 12px; font-size: 13px">
+          <dt style="font-weight: 600; color: #067647">승인</dt><dd style="margin: 0">[CEO 최종 결정 확정: 서버 결과 문구] · 멈춰 있던 P-5가 다시 진행됩니다.</dd>
+          <dt style="font-weight: 600; color: #b42318">반려</dt><dd style="margin: 0">에이전트는 이 동작을 하지 않습니다.</dd>
+          <dt style="font-weight: 600; color: #b54708">보류</dt><dd style="margin: 0">지금은 진행하지 않습니다. 필요하면 에이전트가 다시 요청합니다.</dd>
+        </dl>
+        <p style="margin: 6px 0 0; font-size: 12px; color: #5b6475">메모는 이후 모든 에이전트에게 전달되고, 아직 시작하지 않은 업무를 다시 맞춥니다.</p>
+      </section>
+
+      <section>
+        <h2 style="margin: 0 0 8px; font-size: 13px; color: #5b6475">근거 확신도 · 인용 19개</h2>
+        <div role="img" aria-label="검증된 사실 4, 출처 있는 주장 4, 가정 1, 가설 10" style="display: flex; height: 10px; border-radius: 999px; overflow: hidden; background: #f1f3f6">
+          <span style="width: 21%; background: #067647"></span><span style="width: 21%; background: #175cd3"></span><span style="width: 5%; background: #b54708"></span><span style="width: 53%; background: repeating-linear-gradient(90deg, #f2c48f 0 4px, #fef4e6 4px 7px)"></span>
+        </div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; margin-top: 6px">
+          <span>● 검증된 사실 <b>4</b></span><span>○ 출처 있는 주장 <b>4</b></span><span>◌ 가정 <b>1</b></span><span>◌ 가설 <b>10</b></span>
+          <span style="color: #5b6475">검증: 지지 4 · 약함 6 · 미확인 7 · 내부 계산 2 · 반박 0</span>
+        </div>
+        <p style="margin: 8px 0 0; font-size: 13px; background: #fef4e6; border-radius: 8px; padding: 8px 10px">인용 근거 19개 중 10개가 가설입니다. 다른 계열 검토가 지지한 근거는 4개입니다.</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px">
+          <span class="chip">◌ EV-1604 <span style="color: #b54708">미확인</span></span>
+          <span class="chip">◌ EV-1631 <span style="color: #b54708">미확인</span></span>
+          <span class="chip">◌ EV-1630 <span style="color: #b54708">약함</span></span>
+          <span class="chip">◌ EV-1632 <span style="color: #b54708">미확인</span></span>
+          <span class="chip" style="border-color: #4f46e5; box-shadow: 0 0 0 2px #eef0ff">◌ EV-1633 가정 <span style="color: #b54708">미확인</span></span>
+          <span class="chip" style="color: #5b6475">외 14 ▾</span>
+        </div>
+        <div role="dialog" aria-label="EV-1633 미리보기" style="margin-top: 8px; border: 1px solid #c9ced6; border-radius: 10px; padding: 12px 14px; max-width: 560px; box-shadow: 0 6px 20px rgba(27, 31, 39, 0.10); font-size: 13px">
+          <div style="display: flex; justify-content: space-between; gap: 8px"><b class="mono">EV-1633</b><span style="display: flex; gap: 6px"><span class="b mut">◌ 가정</span><span class="b warn">미확인</span></span></div>
+          <p style="margin: 6px 0">퍼널 가정(방문 3,950, 시도 3%, 설치 50%, 활성 40%)과 공개 전 필수 공수 4.75~9.75인주는 외부 근거 없는 설정값.</p>
+          <div style="font-size: 12px; color: #5b6475">작성 전략 · 출처: 근거 원장 퍼널·공수 가정 · <a href="#ev">근거 원장에서 보기 →</a></div>
+        </div>
+      </section>
+
+      <section style="border-top: 1px solid #e2e5ea; padding-top: 12px">
+        <a href="#full" style="font-size: 13px">요청 내용과 근거 전문 펼치기 · 3,926자 ▾</a>
+      </section>
+    </article>
+
+    <aside aria-label="결정" style="flex: 1 1 280px; max-width: 340px; min-width: 0; background: #ffffff; border: 1px solid #c9ced6; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 6px 20px rgba(27, 31, 39, 0.06)">
+      <h2 style="margin: 0; font-size: 15px">결정</h2>
+      <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px">
+        <legend style="font-size: 12px; font-weight: 600; margin-bottom: 4px">선택지</legend>
+        <label style="display: flex; gap: 8px; align-items: center; border: 1px solid #4f46e5; background: #eef0ff; border-radius: 8px; padding: 8px 10px"><input type="radio" name="opt" checked> <span style="flex-grow: 1">승인</span><span class="b info">권장</span></label>
+        <label style="display: flex; gap: 8px; align-items: center; border: 1px solid #e2e5ea; border-radius: 8px; padding: 8px 10px"><input type="radio" name="opt"> <span style="flex-grow: 1">반려</span></label>
+        <label style="display: flex; gap: 8px; align-items: center; border: 1px solid #e2e5ea; border-radius: 8px; padding: 8px 10px"><input type="radio" name="opt"> <span style="flex-grow: 1">보류</span></label>
+      </fieldset>
+      <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600">메모 <span style="font-weight: 400; color: #5b6475">모든 에이전트에게 전달되고 계획에 반영됩니다</span>
+        <textarea rows="3" style="font: inherit; font-size: 13px; border: 1px solid #c9ced6; border-radius: 8px; padding: 7px 10px"></textarea>
+      </label>
+      <button type="button" style="font: inherit; font-weight: 600; background: #4f46e5; color: #ffffff; border: 0; border-radius: 8px; padding: 9px 12px">승인</button>
+      <div style="display: flex; gap: 8px">
+        <button type="button" style="font: inherit; flex-grow: 1; background: #f1f3f6; border: 1px solid #e2e5ea; border-radius: 8px; padding: 7px 12px">보류</button>
+        <button type="button" style="font: inherit; flex-grow: 1; background: #f1f3f6; color: #b42318; border: 1px solid #e2e5ea; border-radius: 8px; padding: 7px 12px">반려</button>
+      </div>
+      <div style="font-size: 12px; color: #5b6475">Ctrl+Enter 승인 · 본문 길이와 상관없이 이 패널은 화면 안에 고정됩니다</div>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

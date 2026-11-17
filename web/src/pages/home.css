@@ -1,0 +1,42 @@
+/* Today (pages/Home.tsx): lists sit on the sheet with hairlines, not in boxes; only the cycle's cards are cards. */
+
+.home-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-2); margin: 0 0 var(--s-3);
+  font-size: var(--fs-row); color: var(--text-2); }
+.home-line .sdot { align-self: center; }
+.home-since-k { color: var(--text-3); font-weight: 550; }
+
+.home-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: var(--s-8); align-items: start; margin-bottom: var(--s-6); }
+.home-main { display: flex; flex-direction: column; gap: var(--s-6); min-width: 0; }
+.home-grid > .sec, .home-main > .sec { margin: 0; }
+
+/* the owner's list, straight on the sheet */
+.home-list { border-top: 1px solid var(--border); }
+.home-list .tlist2 { margin: 0; }
+.home-list .quiet-line { margin: var(--s-3) 0 0; }
+.home-list .today-more { padding: var(--s-2) 0; }
+
+/* what broke: one row each, the dot carries the tone */
+.home-split { margin: 0 0 var(--s-2); }
+.home-broke { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.home-broke li { display: flex; align-items: baseline; gap: var(--s-2); min-height: var(--h-row); padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--border); font-size: var(--fs-row); }
+.home-broke li .sdot { align-self: center; }
+.home-broke li.t-bad .sdot { background: var(--bad); }
+.home-broke li.t-warn .sdot { background: var(--warn); }
+.home-broke-t { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.home-broke-t > a { color: var(--text); }
+.home-broke-fix { display: block; margin-top: 2px; color: var(--text-2); }
+
+/* the activity feed beside the lists */
+.home-feed .feed { margin: 0; border-top: 1px solid var(--border); padding-top: var(--s-2); }
+
+.home-company { margin-bottom: var(--s-6); }
+.home-company .cy-board { margin-bottom: 0; }
+
+@media (max-width: 1100px) {
+  .home-grid { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+}
+
+/* recent tasks and projects (no cycle yet): rows on the sheet like the owner's list, ending on a hairline */
+.home-list > .ilist > li { padding-inline: 0; }
+.home-list > .ilist { border-bottom: 1px solid var(--border); }

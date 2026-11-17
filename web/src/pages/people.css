@@ -1,0 +1,194 @@
+/*
+ * The people screens (agents, an agent's page, the teams for each job, skills), on the kit's tokens. Scoped under
+ * .pp-page, .pp-crews or .pp-skills because page CSS loads before kit.css.
+ */
+
+/* ---------- shared ---------- */
+.pp-page .pp-quiet, .pp-crews .pp-quiet, .pp-skills .pp-quiet { color: var(--text-2); }
+.pp-page .pp-bad, .pp-skills .pp-bad { color: var(--bad); }
+.pp-page .pp-strong { color: var(--text); font-weight: 550; }
+.pp-page .pp-block { display: block; margin-top: var(--s-1); font-size: var(--fs-meta); }
+.pp-page .pp-model { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: var(--fs-meta); color: var(--text-2); white-space: nowrap; }
+.pp-page .pp-role { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: var(--r-tag); font-size: var(--fs-meta); line-height: 18px;
+  font-weight: 500; color: var(--info); background: var(--info-bg); }
+.pp-page .pp-note { margin: 0 0 var(--s-3); font-size: var(--fs-row); color: var(--text-2); }
+
+/* ---------- agents list: one dense table, the row opens the agent ---------- */
+.pp-page .box.pp-tbl-box { overflow-x: auto; scrollbar-width: thin;
+  /* a shadow at the right edge says more columns sit past it when the table scrolls */
+  background: linear-gradient(to right, var(--surface) 30%, transparent) left / 24px 100% no-repeat local,
+    linear-gradient(to left, var(--surface) 30%, transparent) right / 24px 100% no-repeat local,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / .12), transparent) right / 10px 100% no-repeat scroll, var(--surface); }
+/* a narrow table (a side panel open, a 1280 window) drops the totals and the model, which the agent's own page shows,
+   so the state, what it does now and this month's spend stay in view */
+.pp-page .box.pp-tbl-box { container-type: inline-size; }
+@container (max-width: 1120px) { .pp-page .pp-tbl .pp-opt { display: none; } }
+@container (max-width: 760px) {
+  .pp-page .pp-tbl .pp-opt2 { display: none; }
+  .pp-page .pp-tbl .pp-wide, .pp-page .pp-tbl .pp-wide .pp-now { min-width: 0; white-space: normal; }
+}
+.pp-page .pp-tbl th, .pp-page .pp-tbl td { padding: 8px 12px; vertical-align: middle; }
+.pp-page .pp-tbl thead th { padding-top: 7px; padding-bottom: 7px; background: transparent; }
+.pp-page .pp-tbl th:first-child, .pp-page .pp-tbl td:first-child { padding-left: var(--s-4); }
+.pp-page .pp-tbl th:last-child, .pp-page .pp-tbl td:last-child { padding-right: var(--s-4); }
+.pp-page .pp-tbl .r { text-align: right; white-space: nowrap; }
+.pp-page .pp-tbl tbody th { font-weight: 400; text-align: left; min-width: 160px; }
+.pp-page .pp-tr { cursor: pointer; transition: background var(--t-fast) var(--ease-out); }
+.pp-page .pp-tr:hover td, .pp-page .pp-tr:hover th { background: var(--hover); }
+.pp-page .pp-tbl-plain tbody tr:hover td { background: transparent; }
+.pp-page .pp-name { display: block; color: var(--text); font-weight: 550; }
+.pp-page .pp-name:hover { color: var(--text); text-decoration: underline; }
+.pp-page .pp-meta { display: block; font-size: var(--fs-meta); color: var(--text-2); }
+.pp-page .pp-state { display: inline-flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; }
+.pp-page .pp-state .act { display: inline-flex; }
+.pp-page .pp-state .btn-ghost { min-height: 24px; padding: 0 8px; font-size: var(--fs-meta); }
+.pp-page .pp-wide { min-width: 220px; max-width: 420px; }
+.pp-page .pp-now { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pp-page .pp-now a { color: var(--text); }
+.pp-page .pp-now a:hover { color: var(--accent); }
+.pp-page .pp-bad a { color: var(--bad); }
+.pp-page .pp-callfail { color: var(--text-2); }
+.pp-page .pp-folded { margin: var(--s-3) 0 0; padding: 0 var(--s-1); font-size: var(--fs-row); color: var(--text-2); }
+
+/* ---------- agent page: main column and a properties rail ---------- */
+.pp-page .pp-headchip { display: inline-flex; vertical-align: middle; margin-right: var(--s-2); }
+.pp-page .pp-headchip .chip { line-height: 18px; }
+.pp-page .pp-stop { display: inline-flex; }
+.pp-page .pp-detail { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: var(--s-6); align-items: start; }
+.pp-page .pp-main { min-width: 0; }
+.pp-page .pp-none { margin: 0; font-size: var(--fs-row); }
+.pp-page .pp-group + .pp-group { border-top: 1px solid var(--border); }
+.pp-page .pp-group-h { display: flex; align-items: center; gap: var(--s-2); margin: 0; padding: var(--s-2) var(--s-4) 2px;
+  font-size: var(--fs-meta); font-weight: 550; color: var(--text-2); }
+.pp-page .pp-group.g-failed .pp-group-h { color: var(--bad); }
+.pp-page .pp-group-more { margin: 0; padding: var(--s-2) var(--s-4); font-size: var(--fs-row); border-top: 1px solid var(--border); }
+.pp-page .row-end { display: inline-flex; align-items: center; gap: var(--s-3); }
+.pp-page .row-end time { min-width: 7ch; text-align: right; color: var(--text-2); font-size: var(--fs-meta); }
+.pp-page .pp-run-facts { font-variant-numeric: tabular-nums; font-size: var(--fs-meta); color: var(--text-2); }
+.pp-page .pp-run-facts > span { min-width: 6ch; text-align: right; }
+.pp-page .pp-runs .row-lead { flex: none; width: 96px; }
+.pp-page .pp-runs .row-lead .chip { justify-content: center; }
+/* a call's title link and the record link under it sit a few pixels apart in 12-14px type: padding makes each a 24px
+   target (WCAG 2.5.8), as in the feed rows */
+.pp-page .pp-runs .row-t { padding-block: 2px; }
+.pp-page .pp-runs .row-m a { padding-block: 5px; }
+.pp-page .pp-run-facts > span:first-child { min-width: 5ch; }
+.pp-page .pp-run-facts > span:nth-child(2) { min-width: 7ch; }
+.pp-page .pp-run-facts time { min-width: 11ch; }
+
+.pp-page .pp-history { margin-top: var(--s-6); border-top: 1px solid var(--border); padding-top: var(--s-3); }
+.pp-page .pp-history > summary { display: flex; align-items: baseline; gap: var(--s-3); cursor: pointer; list-style: none; padding: var(--s-1) 0; }
+.pp-page .pp-history > summary::-webkit-details-marker { display: none; }
+.pp-page .pp-history > summary::before { content: "›"; display: inline-block; width: 12px; color: var(--text-3); transition: transform var(--t-fast) var(--ease-out); }
+.pp-page .pp-history[open] > summary::before { transform: rotate(90deg); }
+.pp-page .pp-history-t { font-size: var(--fs-section); font-weight: 600; color: var(--text); }
+.pp-page .pp-history[open] > summary { margin-bottom: var(--s-3); }
+.pp-page .pp-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); margin-bottom: var(--s-6); }
+.pp-page .pp-charts h3 { margin: 0; font-size: var(--fs-row); font-weight: 600; }
+
+.pp-page .pp-props { position: sticky; top: var(--s-4); padding: var(--s-1) 0 0 var(--s-5); border-left: 1px solid var(--border); min-width: 0; }
+.pp-page .pp-props-h { margin: 0 0 var(--s-3); font-size: var(--fs-section); font-weight: 600; }
+.pp-page .pp-dl { display: grid; grid-template-columns: 1fr; gap: 2px; margin: 0; font-size: var(--fs-row); }
+.pp-page .pp-dl dt { margin-top: var(--s-3); font-size: var(--fs-meta); color: var(--text-2); font-weight: 500; }
+.pp-page .pp-dl dt:first-child { margin-top: 0; }
+.pp-page .pp-dl dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.pp-page .pp-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.pp-page .pp-chips .tag { font-size: var(--fs-meta); }
+.pp-page .pp-list { display: flex; flex-direction: column; gap: 2px; }
+.pp-page .pp-prompt { margin-top: var(--s-4); border-top: 1px solid var(--border); padding-top: var(--s-3); font-size: var(--fs-row); }
+.pp-page .pp-prompt summary { cursor: pointer; font-weight: 550; }
+.pp-page .pp-prompt[open] summary { margin-bottom: var(--s-2); }
+.pp-page .pp-prompt .md { font-size: var(--fs-row); max-height: 60vh; overflow: auto; }
+
+@media (max-width: 1180px) {
+  .pp-page .pp-detail { grid-template-columns: minmax(0, 1fr); }
+  .pp-page .pp-props { position: static; border-left: 0; border-top: 1px solid var(--border); padding: var(--s-4) 0 0; }
+}
+
+/* ---------- teams for each job ---------- */
+.pp-crews .pp-note { margin: 0 0 var(--s-3); font-size: var(--fs-row); color: var(--text-2); }
+.pp-crews .pp-filter { display: inline-flex; align-items: center; gap: var(--s-2); margin-right: var(--s-3); }
+.pp-crews .pp-filter select { min-height: var(--h-control); max-width: 280px; font-size: var(--fs-row); }
+.pp-crews .sec-h h2 a { color: inherit; }
+.pp-crews .crew-t .mono { color: var(--text-2); font-weight: 400; }
+/* one label column for every row of a project, so the Team, Why and Outcome lines start at one edge */
+.pp-crews .crew-rows { display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: var(--s-4); }
+.pp-crews .crew { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; padding: var(--s-3); }
+.pp-crews .crew-h, .pp-crews .crew-d { grid-column: 1 / -1; }
+.pp-crews .crew-h { display: flex; align-items: center; gap: var(--s-3); min-width: 0; }
+.pp-crews .crew-t { flex: 1; min-width: 0; margin: 0; font-size: var(--fs-row); font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; }
+.pp-crews .crew-t a { color: var(--text); }
+.pp-crews .crew-biz { font-size: var(--fs-meta); font-weight: 400; color: var(--text-2); }
+.pp-crews .crew-h .chip { flex: none; }
+.pp-crews .crew-d { display: grid; grid-template-columns: subgrid; row-gap: var(--s-1); margin: var(--s-2) 0 0;
+  font-size: var(--fs-row); line-height: 1.5; }
+.pp-crews .crew-d dt { font-size: var(--fs-meta); font-weight: 600; color: var(--text-2); line-height: 19.5px; }
+.pp-crews .crew-d dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.pp-crews .crew-members, .pp-crews .crew-why { list-style: none; margin: 0; padding: 0; }
+.pp-crews .crew-members { display: flex; flex-wrap: wrap; gap: 0 var(--s-4); }
+.pp-crews .crew-members b { font-weight: 550; margin-right: var(--s-2); }
+.pp-crews .crew-shape { display: block; color: var(--text-2); }
+.pp-crews .crew-num { font-variant-numeric: tabular-nums; }
+.pp-crews .crew-aside { display: block; font-size: var(--fs-meta); }
+@media (max-width: 640px) {
+  .pp-crews .crew-rows, .pp-crews .crew, .pp-crews .crew-d { grid-template-columns: minmax(0, 1fr); }
+  .pp-crews .crew-d { row-gap: 0; }
+  .pp-crews .crew-d dd + dt { margin-top: var(--s-2); }
+}
+
+/* ---------- skills ---------- */
+.pp-skills .pp-note { margin: 0 0 var(--s-3); font-size: var(--fs-row); color: var(--text-2); }
+.pp-skills .pp-strong { color: var(--text); font-weight: 550; }
+.pp-skills .pp-wrap { white-space: normal; overflow-wrap: anywhere; }
+.pp-skills .mx-side .rows { margin: 0; }
+.pp-skills .pp-pick { width: 100%; text-align: left; background: transparent; border: 0; border-radius: 0; min-height: var(--h-row); padding: 8px 12px; }
+.pp-skills .pp-pick:hover { background: var(--hover); }
+.pp-skills .pp-pick.on { background: var(--selected); }
+.pp-skills .pp-pick .row-t { white-space: normal; overflow-wrap: anywhere; }
+.pp-skills .pp-skill-h { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s-3); flex-wrap: wrap; }
+.pp-skills .pp-skill-h h2 { margin: 0; font-size: var(--fs-section); font-weight: 600; overflow-wrap: anywhere; }
+.pp-skills .pp-skill-tags { display: inline-flex; align-items: center; gap: var(--s-2); }
+.pp-skills .pp-skill-desc { margin: var(--s-2) 0 0; font-size: var(--fs-body); color: var(--text); }
+.pp-skills .pp-skill-note { margin: var(--s-2) 0 var(--s-3); font-size: var(--fs-row); color: var(--text-2); }
+.pp-skills .pp-skill-note.t-warn { color: var(--warn); }
+.pp-skills .pp-skill-act { margin: 0 0 var(--s-3); }
+.pp-skills .pp-skill-dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px var(--s-4); margin: 0 0 var(--s-2); font-size: var(--fs-row); }
+.pp-skills .pp-skill-dl dt { color: var(--text-2); font-size: var(--fs-meta); align-self: baseline; }
+.pp-skills .pp-skill-dl dd { margin: 0; min-width: 0; }
+.pp-skills .pp-skill-sec { margin-top: var(--s-5); padding-top: var(--s-3); border-top: 1px solid var(--border); }
+.pp-skills .pp-skill-sec h3 { margin: 0 0 var(--s-2); font-size: var(--fs-row); font-weight: 600; }
+.pp-skills .pp-skill-sec p { margin: 0 0 var(--s-1); font-size: var(--fs-row); }
+.pp-skills .pp-n { font-weight: 400; margin-left: var(--s-2); font-size: var(--fs-meta); }
+.pp-skills .pp-eval { width: auto; min-width: 360px; }
+.pp-skills .pp-eval th[scope="row"] { font-weight: 400; color: var(--text-2); padding-right: var(--s-6); }
+.pp-skills .pp-eval .r { text-align: right; min-width: 9ch; }
+.pp-skills .pp-raw { margin-top: var(--s-2); font-size: var(--fs-meta); }
+.pp-skills .pp-raw summary { cursor: pointer; color: var(--text-2); }
+.pp-skills .pp-raw .pre { max-height: 260px; overflow: auto; }
+.pp-skills .pp-skill-md { font-size: var(--fs-row); }
+.pp-skills .pp-gaps > summary { cursor: pointer; margin-bottom: var(--s-2); font-size: var(--fs-row); color: var(--text-2); }
+.pp-page .pp-dl dt.pp-dt-link { display: flex; justify-content: space-between; gap: var(--s-2); }
+.pp-page .pp-dl dt.pp-dt-link a { font-weight: 400; }
+.pp-page .pp-tbl tbody tr:last-child th, .pp-page .pp-tbl tbody tr:last-child td { border-bottom: 0; }
+.pp-skills .pp-eval tbody tr:last-child th { border-bottom: 0; }
+/* the stop confirm opens as a small popover under its button, so the header does not reflow */
+.pp-page .pp-stop { position: relative; }
+.pp-page .pp-stop .act-armed { position: absolute; right: 0; top: 0; z-index: 6; width: 340px; display: flex; flex-direction: column; align-items: flex-end;
+  gap: var(--s-2); padding: var(--s-3); background: var(--elevated); border: 1px solid var(--border); border-radius: var(--r-container); box-shadow: var(--shadow-pop); }
+.pp-page .pp-stop .act-what { font-size: var(--fs-row); color: var(--text); white-space: normal; text-align: left; align-self: stretch; }
+.pp-skills .pp-pick { display: flex; flex-direction: row; align-items: flex-start; gap: var(--s-2); }
+.pp-skills .pp-pick .row-end { flex: none; }
+.pp-page .phead-status code, .pp-crews .banner code, .pp-page .banner code { white-space: nowrap; }
+
+/* ---------- teams for each job: the row a link lands on, and finished jobs folded ---------- */
+.pp-crews .crew:focus { outline: none; }
+.pp-crews .crew:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.pp-crews .crew.is-target { background: var(--selected); box-shadow: inset 0 0 0 1px var(--accent); }
+.pp-crews .crew-fold { grid-column: 1 / -1; padding: var(--s-2) var(--s-3); }
+.pp-crews .crew-fold button { display: flex; align-items: center; gap: var(--s-2); width: 100%; min-height: var(--h-control);
+  padding: 0 var(--s-3); background: transparent; color: var(--text-2); font-size: var(--fs-row); text-align: left;
+  border: 1px dashed var(--line-strong); border-radius: 6px; font-variant-numeric: tabular-nums; }
+.pp-crews .crew-fold button:hover { background: var(--hover); color: var(--text); border-color: var(--line-strong); }
+.pp-crews .crew-fold button svg { flex: none; transition: transform .12s ease-out; }
+.pp-crews .crew-fold button[aria-expanded="true"] svg { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .pp-crews .crew-fold button svg { transition: none; } }

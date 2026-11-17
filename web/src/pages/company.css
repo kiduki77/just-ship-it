@@ -1,0 +1,122 @@
+/*
+ * Agents and the company records (활동, 실행 기록, 비용, 작업 대기열). Built on the kit (kit.css); these rules only
+ * fill what the kit leaves open. Every rule is scoped under .co-page because this file loads before styles.css and
+ * kit.css, so an unscoped rule would lose to them.
+ */
+
+/* ---------- shared ---------- */
+.co-page .co-tabs { margin: -6px 0 18px; }
+.co-page .co-title { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
+.co-page .co-title .chip { font-size: 12px; letter-spacing: 0; }
+.co-page .co-strong { font-weight: 600; color: var(--text); }
+.co-page .co-strong-n { color: var(--text); font-weight: 600; }
+.co-page .co-ok { color: var(--ok); }
+.co-page .co-model { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+.co-page .co-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.co-page .co-break { overflow-wrap: anywhere; }
+.co-page .co-role { display: inline-block; margin-right: 6px; padding: 0 6px; border-radius: 5px; font-size: 11px; line-height: 18px; font-weight: 600; color: var(--info); background: var(--info-bg); }
+.co-page .co-filters select { max-width: 220px; }
+.co-page .co-since { display: inline-flex; align-items: center; gap: 6px; }
+.co-page .co-since input { padding: 5px 8px; font-size: 13px; }
+.co-page .co-more { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--line); }
+.co-page .co-empty { padding: 16px; }
+.co-page .co-pre { margin: 0; }
+.co-page .co-pre-line { white-space: pre-wrap; overflow-wrap: anywhere; }
+.co-page #month-limit { scroll-margin-top: 72px; }
+
+/* tables inside a flush box: the box draws the frame, the table only the rows */
+.co-page .box.co-tbl-box { overflow-x: auto; scrollbar-width: thin; }
+.co-page .co-scroll { overflow-x: auto; scrollbar-width: thin; }
+.co-page .co-tbl th { padding: 9px 12px; background: var(--panel-2); font-weight: 600; }
+.co-page .co-tbl td { padding: 10px 12px; vertical-align: middle; }
+.co-page .co-tbl th:first-child, .co-page .co-tbl td:first-child { padding-left: 16px; }
+.co-page .co-tbl th:last-child, .co-page .co-tbl td:last-child { padding-right: 16px; }
+.co-page .co-tbl tbody tr:hover td { background: color-mix(in srgb, var(--panel-2) 60%, transparent); }
+.co-page .co-tbl a { color: var(--text); }
+.co-page .co-tbl a:hover { color: var(--accent); }
+.co-page .co-tbl .share-cell { width: 26%; min-width: 72px; }
+.co-page .co-err { margin: 4px 0 0; max-width: 34ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A run's or job's target is named by its title now, so a long one is cut, not let squeeze the other columns. */
+.co-page .co-target { display: inline-block; max-width: 30ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
+.co-page .co-errcell { max-width: 320px; }
+.co-page .co-errcell details summary { margin: 0; }
+.co-page .co-errcell .pre { max-height: 220px; white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 6px; }
+.co-page .co-acts { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.co-page .co-acts .act-msg { flex-basis: 100%; text-align: right; }
+
+/* ---------- agents list ---------- */
+.co-page .co-agrid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
+.co-page .co-acard { position: relative; gap: 10px; transition: border-color .15s ease-out, box-shadow .15s ease-out; }
+.co-page .co-acard:hover { border-color: var(--line-strong); box-shadow: 0 4px 14px rgb(16 18 24 / .06); }
+.co-page .co-acard:focus-within { border-color: var(--accent); }
+.co-page .co-acard.s-error { border-color: color-mix(in srgb, var(--bad) 35%, var(--line)); }
+.co-page .co-acard .agent-card-h { align-items: flex-start; }
+.co-page .co-acard-id { flex: 1; min-width: 0; }
+.co-page .co-acard-id .agent-n { display: -webkit-box; color: var(--text); }
+.co-page .co-acard-sub { margin: 1px 0 0; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* the name link covers the whole card; links inside the card sit above it */
+.co-page .co-stretch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.co-page .co-stretch:hover { text-decoration: none; }
+.co-page .co-stretch:focus-visible { outline: none; }
+.co-page .co-work, .co-page .co-acard .agent-work { position: relative; z-index: 1; }
+.co-page .co-work { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; background: var(--run-bg); border-radius: 8px; font-size: 13px; min-width: 0; }
+.co-page .co-work-i { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.co-page .co-work-i a { color: var(--text); }
+.co-page .co-work-i .mono { color: var(--run); margin-right: 2px; }
+.co-page .co-work-more { font-size: 12px; color: var(--muted); }
+.co-page .co-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding-top: 10px; border-top: 1px solid var(--line); }
+.co-page .co-facts dt { font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.co-page .co-facts dd { margin: 1px 0 0; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.co-page .co-facts dd .bad { font-weight: 600; }
+.co-page .co-who { display: flex; align-items: center; gap: 10px; min-width: 180px; }
+.co-page .co-who-t { min-width: 0; }
+.co-page .co-who-t p { margin: 0; }
+.co-page .co-work-cell { max-width: 360px; font-size: 13px; }
+
+/* ---------- agent detail ---------- */
+.co-page .co-now { display: flex; align-items: baseline; gap: 6px 14px; flex-wrap: wrap; min-width: 0; }
+.co-page .co-now-i a { color: inherit; }
+.co-page .co-now-i .mono { margin-right: 2px; }
+.co-page .co-rail { display: flex; flex-direction: column; min-width: 0; }
+.co-page .co-runs > li { gap: 14px; }
+.co-page .co-runs .chip { flex: none; min-width: 52px; justify-content: center; }
+.co-page .co-run-n { min-width: 56px; text-align: right; }
+.co-page .co-run-t { min-width: 64px; text-align: right; }
+.co-page .co-k { margin: 0 0 6px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.co-page .co-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.co-page .co-chips .tag { font-size: 12px; }
+.co-page .co-note { margin: 4px 0 16px; }
+.co-page .co-note-top { margin: 0 0 4px; }
+.co-page .co-prompt summary { margin: 4px 0 0; }
+.co-page .co-prompt[open] summary { margin-bottom: 8px; }
+
+/* ---------- run detail ---------- */
+.co-page .co-props { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 24px; margin: 0; }
+.co-page .co-props dt { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+.co-page .co-props dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+/* ---------- costs ---------- */
+.co-page .co-budget { min-width: 150px; width: 34%; }
+.co-page .co-budget .meter2 { margin-top: 5px; }
+.co-page .co-proj { max-width: 280px; overflow: hidden; text-overflow: ellipsis; }
+.co-page .co-tag-gap { margin-left: 6px; }
+.co-page .co-month-meter { width: 32%; min-width: 80px; }
+.co-page .co-month-meter .meter2 { margin-top: 0; }
+.co-page .co-limit { display: flex; flex-direction: column; gap: 10px; }
+.co-page .co-limit p { margin: 0; }
+.co-page .co-limit-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.co-page .co-limit-row input { width: 140px; font-variant-numeric: tabular-nums; }
+.co-page .co-limit-row input[aria-invalid="true"] { border-color: var(--bad); }
+.co-page .co-limit .btn-primary:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+
+@media (max-width: 1200px) {
+  .co-page .co-props { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .co-page .co-runs .co-run-tok { display: none; }
+}
+@media (max-width: 900px) {
+  .co-page .co-props { grid-template-columns: minmax(0, 1fr); }
+  .co-page .co-filters select { max-width: 100%; }
+}
+.co-acard-a { position: relative; z-index: 1; }

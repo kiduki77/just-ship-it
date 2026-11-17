@@ -1,0 +1,23 @@
+[
+ {
+  "starred_at": "2026-10-01T09:00:00Z",
+  "user": {
+   "login": "user1",
+   "type": "User"
+  }
+ },
+ {
+  "starred_at": "2026-10-15T09:00:00Z",
+  "user": {
+   "login": "user2",
+   "type": "User"
+  }
+ },
+ {
+  "starred_at": "2026-10-22T09:00:00Z",
+  "user": {
+   "login": "user9",
+   "type": "User"
+  }
+ }
+]

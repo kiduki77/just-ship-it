@@ -1,0 +1,10 @@
+/* Start a business (pages/NewBusiness.tsx): what differs from the shared form, scoped under .nb. */
+.nb-worker { margin: 0 0 var(--s-4); padding: var(--s-2) var(--s-3); border-radius: var(--r-control); background: var(--warn-bg); color: var(--text); max-width: 80ch; }
+.nb-restored { margin: 0; }
+.nb-field-err { margin: 2px 0 0; }
+.nb [aria-invalid="true"] { border-color: var(--bad); }
+.nb-hint { margin: 2px 0 0; max-width: 72ch; }
+.nb-needs { margin: 2px 0 4px; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; }
+.nb-cycle { margin: var(--s-3) 0 0; padding-top: var(--s-3); border-top: 1px solid var(--border); font-size: var(--fs-row); color: var(--text-2); line-height: 1.55; }
+.nb-cycle b { color: var(--text); font-weight: 600; }
+.nb .mx-form-foot { align-items: center; flex-wrap: wrap; }

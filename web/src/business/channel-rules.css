@@ -1,0 +1,35 @@
+/*
+ * "Places and rules" on the Numbers tab (business/ChannelRules.tsx). Rows on hairlines in two groups, no cards. The state
+ * is a chip with words ("Rules checked · Nov 16" / "Rules unchecked"); the warn tone is the console's existing one for an
+ * unchecked claim. Rules text is folded per place, so a market's 15-20 places stay one scan; the state and the link to
+ * the source stay outside the fold. No length of either language is assumed.
+ */
+.cr { scroll-margin-top: 72px; margin-top: var(--s-6); }
+.cr h3 { margin: 0 0 var(--s-1); font-size: var(--fs-section); color: var(--text); }
+.cr-lead, .cr-note { margin: 0 0 var(--s-3); max-width: 72ch; color: var(--text-2); font-size: var(--fs-row); line-height: 1.55; }
+.cr-note { padding: var(--s-2) var(--s-3); background: var(--warn-bg); border-radius: var(--r-container); color: var(--text); overflow-wrap: anywhere; }
+.cr-group + .cr-group { margin-top: var(--s-5); }
+.cr-group > h3 .sec-n { margin-left: var(--s-2); }
+.cr-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.cr-place { padding: var(--s-3) 0; border-bottom: 1px solid var(--border); min-width: 0; }
+.cr-place p { margin: 0; }
+.cr-head { margin-bottom: var(--s-1); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-3); }
+.cr-name { font-weight: 600; font-size: var(--fs-section); line-height: 1.4; overflow-wrap: anywhere; }
+.cr-body { min-width: 0; }
+.cr-line { display: flex; flex-wrap: wrap; gap: 0 var(--s-3); max-width: 80ch; color: var(--text-2); font-size: var(--fs-row); line-height: 1.5; overflow-wrap: anywhere; }
+.cr-line a { font-size: var(--fs-meta); }
+.cr-facts { list-style: none; margin: var(--s-1) 0 0; padding: 0; color: var(--text-2); font-size: var(--fs-meta); line-height: 1.5; }
+.cr-facts li { overflow-wrap: anywhere; }
+.cr-fold { margin-top: var(--s-1); font-size: var(--fs-meta); color: var(--text-2); }
+.cr-fold > summary { cursor: pointer; padding: 2px 0; width: fit-content; }
+.cr-fold > p { margin: var(--s-1) 0 0; max-width: 72ch; padding: var(--s-2) var(--s-3); background: var(--surface-2); border-radius: var(--r-container);
+  color: var(--text); font-size: var(--fs-row); line-height: 1.6; overflow-wrap: anywhere; }
+
+@media (min-width: 900px) {
+  .cr-place { display: grid; grid-template-columns: minmax(180px, 17rem) minmax(0, 1fr); column-gap: var(--s-4); }
+  .cr-head { margin-bottom: 0; flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .cr-fold > summary { padding-block: var(--s-2); }
+  .cr-line a { display: inline-block; padding-block: var(--s-1); }
+}

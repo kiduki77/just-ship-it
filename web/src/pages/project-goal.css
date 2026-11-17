@@ -1,0 +1,8 @@
+/* The project goal under the page header: short points, not one run-on line. */
+.mx .pj-goal { margin: -8px 0 18px; max-width: 78ch; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.mx .pj-goal-b { max-width: 100%; }
+.mx .pj-goal p, .mx .pj-goal ul { margin: 0; color: var(--text-2); font-size: 13.5px; line-height: 1.6; text-wrap: pretty; word-break: keep-all; overflow-wrap: anywhere; }
+.mx .pj-goal ul { padding-left: 18px; display: flex; flex-direction: column; gap: 3px; }
+.mx .pj-goal li::marker { color: var(--border-strong); }
+.mx .pj-goal .pj-goal-h { margin: 0 0 3px; font-size: 13.5px; font-weight: 600; color: var(--text); }
+.mx .pj-goal .link { padding: 0; min-height: 0; }

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>업무 P-5</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#f6f7f9}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+.b{display:inline-block;font-size:11px;line-height:18px;padding:0 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.bad{background:#fdecea;color:#b42318}.warn{background:#fef4e6;color:#b54708}.ok{background:#e7f6ee;color:#067647}.info{background:#f2ecfe;color:#5b21b6}.mut{background:#f1f3f6;color:#5b6475}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;font-variant-numeric:tabular-nums}
+.nav a{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:8px;color:#1b1f27;font-size:14px}
+.cnt{background:#b42318;color:#fff;border-radius:999px;font-size:11px;font-weight:600;padding:0 7px}
+.tab{padding:8px 2px;color:#5b6475;border-bottom:2px solid transparent;white-space:nowrap}
+.tk{display:block;background:#fff;border:1px solid #e2e5ea;border-radius:8px;padding:8px 10px;color:#1b1f27;font-size:13px}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 900px; font-family: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif; color: #1b1f27; font-size: 14px; line-height: 1.55">
+  <nav class="nav" aria-label="주 메뉴" style="flex: 1 1 200px; max-width: 220px; background: #ffffff; border-right: 1px solid #e2e5ea; padding: 20px 12px; display: flex; flex-direction: column; gap: 2px; box-sizing: border-box">
+    <div style="font-weight: 700; padding: 0 10px 16px">Just Ship It</div>
+    <a href="Main.dc.html">홈</a>
+    <a href="Inbox.dc.html">결정함 <span class="cnt">4</span></a>
+    <div style="font-size: 12px; color: #5b6475; font-weight: 600; padding: 16px 10px 4px">프로젝트</div>
+    <a href="Project.dc.html" style="background: #eef0ff; color: #4f46e5; font-weight: 600"><span><span style="color: #b54708">●</span> <span class="mono">P-5</span> Just Ship It…</span></a>
+    <div style="font-size: 12px; color: #5b6475; font-weight: 600; padding: 16px 10px 4px">회사 ▸</div>
+    <div style="flex-grow: 1"></div>
+    <div style="font-size: 12px; color: #5b6475; border-top: 1px solid #e2e5ea; padding: 10px 10px 0"><span style="color: #067647">●</span> 실시간 갱신 중</div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 24px 32px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box">
+    <header style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap">
+        <h1 style="margin: 0; font-size: 22px"><span class="mono" style="font-size: 18px; color: #5b6475">P-5</span> Just Ship It 사업화</h1>
+        <span class="b warn">오너 대기 · 결정 단계</span>
+      </div>
+      <nav aria-label="프로젝트 탭" style="display: flex; gap: 20px; border-bottom: 1px solid #e2e5ea; overflow-x: auto">
+        <a href="Project.dc.html" class="tab">개요</a>
+        <a href="Tasks.dc.html" class="tab" style="color: #1b1f27; font-weight: 600; border-bottom-color: #4f46e5">업무 <span class="mono">25</span></a>
+        <a href="#dec" class="tab">결정 <span class="mono">3</span></a>
+        <a href="#ev" class="tab">근거 <span class="mono">630</span></a>
+        <a href="#docs" class="tab">문서 <span class="mono">22</span></a>
+        <a href="#dev" class="tab">개발</a>
+      </nav>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <div style="flex: 999 1 420px; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 6px"><h2 style="margin: 0; font-size: 13px">대기 <span style="color: #5b6475">0</span></h2><div style="font-size: 12px; color: #5b6475">없음</div></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><h2 style="margin: 0; font-size: 13px">진행 <span style="color: #5b6475">0</span></h2><div style="font-size: 12px; color: #5b6475">없음</div></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><h2 style="margin: 0; font-size: 13px">검토 <span style="color: #5b6475">0</span></h2><div style="font-size: 12px; color: #5b6475">없음</div></div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <h2 style="margin: 0; font-size: 13px">완료 <span style="color: #5b6475">19</span></h2>
+          <a href="Tasks.dc.html" class="tk"><div style="display: flex; justify-content: space-between"><span class="mono">T-68</span><span style="color: #5b6475; font-size: 12px">전략</span></div>권고 보고서 v3 (최종본)</a>
+          <a href="Tasks.dc.html" class="tk"><div style="display: flex; justify-content: space-between"><span class="mono">T-67</span><span style="color: #5b6475; font-size: 12px">데이터 분석</span></div>손익분기·API 원가 코드 재계산</a>
+          <a href="Tasks.dc.html" class="tk" aria-current="true" style="border: 2px solid #4f46e5"><div style="display: flex; justify-content: space-between"><span class="mono">T-57</span><span style="color: #5b6475; font-size: 12px">전략</span></div>오픈소스 사업화 종합 권고 보고서</a>
+          <div style="font-size: 12px; color: #5b6475">외 16</div>
+        </div>
+        <div style="grid-column: 1 / -1; font-size: 12px; color: #5b6475; border-top: 1px solid #e2e5ea; padding-top: 8px">실패·취소 6 ▸ (오너 지시 REQ-46으로 취소됨)</div>
+      </div>
+
+      <aside aria-labelledby="t-h" style="flex: 1 1 380px; max-width: 520px; min-width: 0; background: #ffffff; border: 1px solid #c9ced6; border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 6px 20px rgba(27, 31, 39, 0.06)">
+        <div style="display: flex; justify-content: space-between; gap: 8px">
+          <h2 id="t-h" style="margin: 0; font-size: 17px; line-height: 1.35"><span class="mono" style="color: #5b6475">T-57</span> 오픈소스 사업화 종합 권고 보고서</h2>
+          <a href="Tasks.dc.html" aria-label="닫기" style="color: #5b6475; min-width: 24px; text-align: center">✕</a>
+        </div>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px; align-items: center"><span class="b ok">완료</span><span class="b ok">독립 검토 통과</span><span style="color: #5b6475">전략 · 시도 1 · 검토 리스크·감사(다른 계열) 1회차</span></div>
+        <section>
+          <h3 style="margin: 0 0 4px; font-size: 13px; color: #5b6475">완료 기준</h3>
+          <ul style="margin: 0; padding-left: 18px; font-size: 13px">
+            <li>권고 판정과 근거 id를 인용하고, 반대 근거를 함께 제시</li>
+            <li>권장 수익 모델과 대안 1개를 손익분기 수치와 함께 비교</li>
+            <li>미해결 질문, 결정을 뒤집을 조건, 보류된 문의·자문 시점</li>
+            <li>오너 승인 필요 항목 목록을 하나로 정리</li>
+          </ul>
+        </section>
+        <section>
+          <h3 style="margin: 0 0 6px; font-size: 13px; color: #5b6475">근거 확신도 · 13개</h3>
+          <div role="img" aria-label="출처 있는 주장 8, 가설 3, 가정 2" style="display: flex; height: 8px; border-radius: 999px; overflow: hidden">
+            <span style="width: 62%; background: #175cd3"></span><span style="width: 23%; background: repeating-linear-gradient(90deg, #f2c48f 0 4px, #fef4e6 4px 7px)"></span><span style="width: 15%; background: #b54708"></span>
+          </div>
+          <div style="font-size: 12px; margin-top: 4px">○ 출처 있는 주장 8 · ◌ 가설 3 · ◌ 가정 2 <span style="color: #5b6475">· 검증: 약함 5 · 미확인 4 · 인용 확인 2 · 출처 접속 2</span></div>
+        </section>
+        <section>
+          <h3 style="margin: 0 0 4px; font-size: 13px; color: #5b6475">검토자 반론</h3>
+          <ul style="margin: 0; padding-left: 18px; font-size: 13px">
+            <li>기준 시나리오에서 12개월 안에 흑자가 없고 퍼널로는 유료 고객이 0.7곳 수준이다. 이 조건이면 '조건부 go'보다 '오너 시간을 쓰지 말라'가 맞을 수 있다.</li>
+            <li>약관 문구가 사용자가 자기 PC에서 <span class="mono">claude -p</span>를 구동하는 구조에도 적용되는지 미확인.</li>
+          </ul>
+        </section>
+        <div style="display: flex; gap: 16px; font-size: 13px; flex-wrap: wrap; border-top: 1px solid #e2e5ea; padding-top: 10px">
+          <a href="#sum">요약 ▾</a><a href="#detail">상세 결과 ▾</a><a href="#oq">미해결 질문 11 ▾</a><a href="#doc">문서로 열기 →</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

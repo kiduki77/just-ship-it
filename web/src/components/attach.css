@@ -1,0 +1,44 @@
+/* Attached files: a dashed drop zone (the console's empty-area hairline), then rows split by hairlines, never boxed. */
+.att { display: flex; flex-direction: column; gap: 8px; }
+.att-zone { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border: 1px dashed var(--line-strong); border-radius: var(--r-container);
+  background: var(--panel); transition: border-color .15s ease-out, background-color .15s ease-out; }
+.att-zone.over { border-color: var(--accent); background: var(--accent-soft); }
+.att-zone.full { border-style: solid; border-color: var(--line); background: var(--panel-2); }
+.att-zone-l { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.att-pick .ico, .att-add .ico { flex: none; }
+.att-limits { max-width: 72ch; word-break: keep-all; }
+
+.att-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.att-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 2px; border-top: 1px solid var(--line); }
+.att-row:first-child { border-top: 0; }
+.att-row > .ico { flex: none; margin-top: 2px; color: var(--muted); }
+.att-row.refused > .ico { color: var(--bad); }
+.att-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.att-name { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.att-meta { font-variant-numeric: tabular-nums; overflow-wrap: anywhere; word-break: keep-all; }
+.att-row.reading .att-name { color: var(--muted); }
+.att-x { flex: none; display: inline-grid; place-items: center; width: 28px; height: 28px; padding: 0; border-radius: 6px;
+  border: 1px solid transparent; background: none; color: var(--muted); }
+.att-x:hover { border-color: var(--line-strong); color: var(--text); }
+
+/* In the chat the files sit in the owner's message, under the pasted notes. */
+.att-read { margin-top: 8px; padding-top: 4px; border-top: 1px solid var(--line); align-self: stretch; }
+.att-read .att-row { padding: 6px 0; }
+.att-read .att-row:first-child { border-top: 0; }
+
+/* In the kickoff dock the files of this turn sit above the answer box. */
+.dock .att-list { background: var(--panel-2); border-radius: 8px; padding: 2px 12px; }
+.dock .att-row { border-top-color: var(--line-strong); }
+.dock .att-row:first-child { border-top: 0; }
+button.att-add { display: inline-flex; align-items: center; gap: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .att-zone { transition: none; }
+}
+.msg-h + .att-read { margin-top: 0; padding-top: 0; border-top: 0; }
+.dock.drop-over { outline: 1px dashed var(--accent); outline-offset: 4px; border-radius: 8px; }
+.dock-note { margin: 0; }
+.att-lead { margin: 0 0 10px; }
+.bl-cite { display: inline-flex; align-items: center; gap: 4px; margin-top: 2px; overflow-wrap: anywhere; }
+.bl-cite .ico { flex: none; }
+.att-row.removed .att-name { color: var(--muted); text-decoration: line-through; }

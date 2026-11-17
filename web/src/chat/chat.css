@@ -1,0 +1,108 @@
+/* Team chat: the dock opened from the top bar. Existing tokens only, so light and dark come with them. */
+
+/* the Team button */
+.icon-btn.team-btn { width: auto; padding: 0 9px; gap: 6px; font-size: var(--fs-meta); font-weight: 500; }
+.icon-btn.team-btn[aria-expanded="true"] { background: var(--hover); color: var(--text); }
+.team-btn-n { min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--accent); color: var(--on-accent); font-size: 11px; font-weight: 600; line-height: 16px; text-align: center; }
+@container (max-width: 800px) { .team-btn-t { display: none; } }
+
+/* the dock: floating at 1200 and wider, left of the side panel when one is open */
+.chat-dock { position: fixed; z-index: 31; right: 16px; bottom: 16px; width: 400px; height: min(640px, calc(100vh - 96px));
+  display: flex; flex-direction: column; overflow: hidden; background: var(--elevated); border: 1px solid var(--border-strong);
+  border-radius: var(--r-container); box-shadow: var(--shadow-pop); animation: chat-in 150ms var(--ease-out); }
+body.has-panel .chat-dock { right: calc(var(--panel-w) + 16px); }
+@keyframes chat-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* 900 to 1199 with a panel open: a sheet across the panel's width, so the page and the panel keep their room */
+@media (min-width: 901px) and (max-width: 1199px) {
+  body.has-panel .chat-dock { right: 0; bottom: 0; width: var(--panel-w); height: min(55vh, 640px); border-width: 1px 0 0; border-radius: 12px 12px 0 0; }
+}
+/* below 900: a full-height sheet over a scrim, like the menu drawer */
+.chat-scrim { position: fixed; inset: 0; z-index: 30; background: rgb(10 12 16 / .35); }
+.chat-dock.is-sheet, body.has-panel .chat-dock.is-sheet { inset: 0; width: 100%; height: 100%; border: 0; border-radius: 0; }
+
+/* a toast waits left of the dock, as it does left of a panel */
+@media (min-width: 1200px) {
+  body.has-chat .toasts { right: 432px; }
+  body.has-chat.has-panel .toasts { right: calc(var(--panel-w) + 432px); }
+}
+@media (min-width: 901px) and (max-width: 1199px) { body.has-chat:not(.has-panel) .toasts { right: 432px; } }
+
+.chat-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding: 10px 10px 8px 16px; border-bottom: 1px solid var(--border); }
+.chat-head-main { min-width: 0; display: grid; gap: 6px; }
+.chat-head h2 { margin: 0; font-size: var(--fs-section); font-weight: 600; line-height: 30px; }
+.chat-head-a { flex: none; display: flex; align-items: center; gap: 4px; }
+.chat-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.chat-chip { max-width: 100%; padding: 0 8px; overflow: hidden; border-radius: var(--r-pill); background: var(--accent-soft); font-size: var(--fs-meta); line-height: 20px; text-overflow: ellipsis; white-space: nowrap; }
+.chat-switch { flex: none; display: flex; flex-wrap: wrap; gap: 2px 12px; margin: 0; padding: 6px 16px; border-bottom: 1px solid var(--border); background: var(--panel-2); }
+
+.chat-scroll { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 10px; padding: 12px 16px; overflow-y: auto; }
+.chat-empty { margin: auto 0; color: var(--text-2); font-size: var(--fs-body); line-height: 1.5; }
+.chat-earlier { align-self: flex-start; }
+.chat-log { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+
+/* every line is left-aligned under a meta line, so no language's length sets the layout */
+.cm { display: grid; gap: 4px; min-width: 0; }
+.cm-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin: 0; color: var(--text-2); font-size: var(--fs-meta); }
+.cm-who { color: var(--text); font-weight: 600; }
+.cm-body { padding: 8px 10px; border-radius: var(--r-container); background: var(--panel-2); }
+.cm.is-me .cm-body { background: var(--accent-soft); }
+.cm-text { margin: 0; font-size: var(--fs-body); line-height: 1.5; overflow-wrap: anywhere; white-space: pre-wrap; }
+.cm-sys { display: flex; flex-wrap: wrap; gap: 2px 8px; padding-left: 10px; border-left: 2px solid var(--border-strong); color: var(--text-2); font-size: var(--fs-meta); line-height: 1.5; }
+.cm-sys > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.cm-link { font-weight: 500; }
+.cm-recall { display: flex; flex-wrap: wrap; gap: 2px 8px; margin: 0; color: var(--text-2); font-size: var(--fs-meta); line-height: 1.5; }
+.cm-recall > span { min-width: 0; overflow-wrap: anywhere; }
+.chat-recall { margin: 0; padding-left: 10px; border-left: 2px solid var(--border-strong); line-height: 1.5; }
+
+.ct { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: var(--r-container); background: var(--panel); }
+.ct p { margin: 0; }
+.ct-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.ct-title { font-weight: 600; overflow-wrap: anywhere; }
+.ct-head .chip { flex: none; }
+.ct-head .chip .live-dot { margin-left: 0; }
+.ct-branch { overflow-wrap: anywhere; }
+.ct-act { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.ct-refused { color: var(--bad); }
+
+.cm-state { display: grid; gap: 4px; color: var(--text-2); font-size: var(--fs-meta); }
+.cm-state:empty { display: none; }
+.cm-state p { margin: 0; }
+.chat-dot { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: var(--run); animation: livepulse 1.8s ease-out infinite; }
+
+/* the composer */
+.chat-compose { flex: none; display: grid; gap: 6px; padding: 8px 12px 12px; border-top: 1px solid var(--border); background: var(--elevated); }
+.chat-compose p { margin: 0; }
+.chat-failed { color: var(--bad); }
+.chat-step { display: flex; align-items: center; gap: 4px; justify-self: start; max-width: 100%; padding: 0 2px 0 8px; border-radius: var(--r-pill); background: var(--accent-soft); }
+.chat-step-t { min-width: 0; overflow: hidden; line-height: 22px; text-overflow: ellipsis; white-space: nowrap; }
+.chat-step .icon-btn { flex: none; }
+.chat-to { position: relative; justify-self: start; max-width: 100%; }
+.chat-to-btn { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-height: 26px; padding: 2px 6px; border-color: transparent; background: transparent; text-align: left; }
+.chat-input { position: relative; }
+.chat-input textarea { display: block; width: 100%; box-sizing: border-box; resize: none; line-height: 1.45; }
+.chat-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.chat-foot .muted { min-width: 0; }
+.chat-foot button { flex: none; }
+
+.chat-agents { position: absolute; bottom: calc(100% + 4px); left: 0; z-index: 2; min-width: 220px; max-width: 100%; max-height: 220px; margin: 0; padding: 4px; overflow-y: auto;
+  list-style: none; background: var(--elevated); border: 1px solid var(--border-strong); border-radius: var(--r-container); box-shadow: var(--shadow-pop); }
+.chat-agents li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 6px 8px; border-radius: var(--r-control); cursor: pointer; font-size: var(--fs-row); }
+.chat-agents li.on { background: var(--accent-soft); }
+.chat-agents-n { font-weight: 500; }
+.chat-agents-none { padding: 8px 10px; }
+
+/* all conversations */
+.chat-list { display: grid; margin: -12px -16px; padding: 0; list-style: none; }
+.cl-row { display: grid; gap: 2px; width: 100%; min-height: var(--h-row); padding: 8px 16px; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; text-align: left; }
+.cl-row:hover:not(:disabled) { border-color: var(--border); background: var(--hover); }
+.cl-top, .cl-bot { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.cl-top { justify-content: space-between; }
+.cl-title { min-width: 0; overflow: hidden; font-size: var(--fs-row); font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.cl-last { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cl-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-dock { animation: none; }
+  .chat-dot, .ct-head .live-dot { animation: none; }
+}

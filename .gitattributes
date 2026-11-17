@@ -1,0 +1,4 @@
+scripts/test-linux.sh text eol=lf
+scripts/test-linux-diff.sh text eol=lf
+scripts/test-linux/* text eol=lf
+docker/egress/* text eol=lf

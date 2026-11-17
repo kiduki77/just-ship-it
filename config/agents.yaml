@@ -1,0 +1,112 @@
+# Agent roster. `tools` are logical capabilities mapped by each runtime adapter:
+#   web_search, web_fetch, read_workspace
+# No agent receives side-effect tools. External actions go through Agent Requests.
+# Reviewers are different roles that run as their own calls (see agents/independence.py). Which model
+# reviews is a quality default, never a gate.
+
+agents:
+  project_manager:
+    title: "Project Manager"
+    department: executive
+    provider: claude
+    model: opus
+    tools: []
+    prompt: project_manager.md
+    can_create_tasks: true
+
+  strategy:
+    title: "CSO · 사업전략"
+    department: business
+    provider: claude
+    model: sonnet
+    tools: [web_search, web_fetch]
+    prompt: strategy.md
+
+  research:
+    title: "Research · 시장조사"
+    department: business
+    provider: claude
+    model: sonnet
+    tools: [web_search, web_fetch]
+    prompt: research.md
+
+  marketing:
+    title: "CMO · 마케팅"
+    department: business
+    provider: claude
+    model: sonnet
+    tools: [web_search, web_fetch]
+    prompt: marketing.md
+
+  finance:
+    title: "CFO · 재무"
+    department: business
+    provider: claude
+    model: sonnet
+    tools: [web_search]
+    prompt: finance.md
+
+  product:
+    title: "CPO · 제품기획"
+    department: business
+    provider: claude
+    model: sonnet
+    tools: [web_search, web_fetch]
+    prompt: product.md
+
+  risk:
+    title: "Risk & Audit"
+    department: audit
+    provider: claude
+    model: opus
+    tools: [web_search]
+    prompt: risk.md
+    reviewer: true
+
+  analyst:
+    title: "Data Analyst · 데이터 분석"
+    department: business
+    provider: claude
+    model: sonnet
+    runtime: analysis        # server fetches inputs, runs its scripts offline in ship/analysis
+    tools: [web_search, web_fetch]
+    prompt: analyst.md
+    # An attempt with its review costs $1.35 (p90 $1.69, max $1.85, 18 attempts to 2026-11-05), so three attempts
+    # need more than the company's $3 (hard cap $4.50): T-32 and T-94 were cut off in their third.
+    task_budget_usd: 4
+
+  # Idea review panel: warns why a new idea may not work now, three lenses per round. Advisory only.
+  critic:
+    title: "Critic · 아이디어 평가단"
+    department: advisory
+    provider: claude
+    model: sonnet
+    tools: [web_search]
+    prompt: critic.md
+
+  # Capability team (Skill Factory) — wired in roadmap phase B
+  skill_builder:
+    title: "Skill Builder"
+    department: capability
+    provider: claude
+    model: sonnet
+    tools: [web_search, web_fetch]
+    prompt: skill_builder.md
+
+  # Engineering team — pstack skills, runs inside an isolated git worktree
+  engineer:
+    title: "Engineer (Claude Code + pstack)"
+    department: engineering
+    provider: claude
+    model: opus
+    runtime: engineering
+    tools: []
+    prompt: engineer.md
+
+  eng_reviewer:
+    title: "Engineering Reviewer"
+    department: engineering
+    provider: claude
+    model: sonnet             # default: a different model than the opus engineer
+    tools: [read_workspace]   # Read/Glob/Grep in the exported worktree
+    prompt: eng_reviewer.md

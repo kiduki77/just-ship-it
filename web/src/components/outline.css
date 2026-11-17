@@ -1,0 +1,37 @@
+/* The outline (components/Outline.tsx): the work as a nested list, and the text version of the path view. Tokens only, so
+   the dark theme follows. Every row wraps, so neither language's length is cut. */
+
+.ol { display: grid; gap: var(--s-3); min-width: 0; }
+.ol-goal { display: flex; align-items: baseline; gap: var(--s-2); margin: 0; font-size: var(--fs-body); font-weight: 600; overflow-wrap: anywhere; }
+.ol-goal .ico { flex: none; align-self: center; color: var(--text-2); }
+.ol-empty { margin: 0; color: var(--text-2); }
+
+.ol-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-1); min-width: 0; }
+.ol-list .ol-list { margin: var(--s-1) 0 0 var(--s-2); padding-left: var(--s-3); border-left: 1px solid var(--line); }
+.ol-item { min-width: 0; }
+.ol-item[aria-current="true"] > .ol-row, .ol-item[aria-current="true"].ol-leaf { background: var(--accent-soft); border-radius: var(--r-control); }
+
+.ol-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-2); padding: 5px var(--s-2); min-width: 0; }
+.ol-row > .ico, .ol-leaf > a > .ico { flex: none; align-self: center; color: var(--text-2); }
+.ol-group { font-weight: 600; color: var(--text); }
+.ol-name { overflow-wrap: anywhere; word-break: keep-all; }
+.ol-link { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--s-2); min-width: 0; color: var(--text); text-decoration: none; overflow-wrap: anywhere; word-break: keep-all; }
+.ol-link:hover .ol-title { text-decoration: underline; text-underline-offset: 2px; }
+.ol-link > .ico { align-self: center; flex: none; color: var(--text-2); }
+.ol-ref { font-variant-numeric: tabular-nums; color: var(--text-2); font-size: var(--fs-meta); font-weight: 600; }
+.ol-title { min-width: 0; }
+.ol-sub { margin: 0 0 0 calc(var(--s-2) + 22px); color: var(--text-2); font-size: var(--fs-meta); overflow-wrap: anywhere; }
+
+.ol-facts { display: inline-flex; flex-wrap: wrap; gap: 2px var(--s-3); color: var(--text-2); font-size: var(--fs-meta); }
+.ol-fact { display: inline-flex; align-items: center; gap: 3px; }
+.ol-fact .ico { flex: none; }
+.ol-warn { color: var(--warn); } .ol-bad { color: var(--bad); }
+
+.ol-leaf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--s-3); padding: 4px var(--s-2); }
+.ol-frees { color: var(--text-2); }
+
+/* a project with nothing waiting is one quiet row */
+.ol-folded > .ol-row .ol-title { font-weight: 500; }
+
+.ol-loose { padding-top: var(--s-2); border-top: 1px solid var(--line); }
+.ol-loose h3 { margin: 0 0 var(--s-2); }

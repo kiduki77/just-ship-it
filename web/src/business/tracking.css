@@ -1,0 +1,117 @@
+/*
+ * "Where people came from" on the Numbers tab (business/Tracking.tsx, Places.tsx). Colors are the console's tokens, so
+ * dark mode needs nothing of its own. The table is a table above 780px of its own width and one block per row below,
+ * so a narrow window, a narrow column and the 900px breakpoint all read the same; no label is cut in either language.
+ */
+.tk { scroll-margin-top: 72px; margin-top: var(--s-6); }
+.tk h3 { margin: 0 0 var(--s-1); font-size: var(--fs-section); color: var(--text); }
+.tk-lead, .tk-help { margin: 0 0 var(--s-3); color: var(--text-2); font-size: var(--fs-row); line-height: 1.55; max-width: 72ch; }
+.tk-help { font-size: var(--fs-meta); margin-bottom: var(--s-2); }
+.tk-sub { display: block; margin-top: 2px; color: var(--text-2); font-size: var(--fs-meta); line-height: 1.5; font-weight: 400; overflow-wrap: anywhere; }
+.tk-few { margin: 0 0 var(--s-3); padding: var(--s-2) var(--s-3); background: var(--surface-2); border-radius: var(--r-container); max-width: 80ch; }
+.tk-few p { margin: 0; font-size: var(--fs-row); line-height: 1.5; }
+.tk-few .tk-sub { margin-top: 2px; }
+.tk-warn { margin: var(--s-3) 0 0; padding: var(--s-2) var(--s-3); background: var(--warn-bg); border-radius: var(--r-container); font-size: var(--fs-row); line-height: 1.5; max-width: 80ch; overflow-wrap: anywhere; }
+.tk-bad { display: block; margin-top: var(--s-1); color: var(--bad); font-size: var(--fs-meta); line-height: 1.5; overflow-wrap: anywhere; }
+
+.tk-firsts { margin: 0; display: flex; flex-direction: column; gap: var(--s-2); }
+.tk-first { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: var(--s-3); font-size: var(--fs-body); line-height: 1.55; }
+.tk-first dt { color: var(--text-2); font-weight: 600; }
+.tk-first dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+/* a number and the word for what it rests on: the word has a border, so the basis never rests on color */
+.tk-fig { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0 var(--s-1); font-variant-numeric: tabular-nums; }
+.tk-fig .num { font-weight: 600; }
+.tk-basis { padding: 0 5px; border: 1px solid var(--border-strong); border-radius: var(--r-tag); color: var(--text-2); font-size: 11px; font-weight: 500; line-height: 1.55; white-space: nowrap; }
+.tk-none, .tk-unknown { color: var(--text-2); }
+.tk-unknown { font-size: var(--fs-meta); border-bottom: 1px dotted var(--warn); }
+
+.tk-box { margin-top: var(--s-4); container: tkbox / inline-size; overflow: hidden; }
+.tk-table { width: 100%; border-collapse: collapse; font-size: var(--fs-row); }
+.tk-table th, .tk-table td { padding: var(--s-3); text-align: left; vertical-align: top; border-top: 1px solid var(--border); overflow-wrap: anywhere; }
+.tk-table thead th { border-top: 0; font-size: var(--fs-meta); font-weight: 600; color: var(--text-2); white-space: nowrap; }
+.tk-table tbody th { font-weight: 600; font-size: var(--fs-body); }
+.tk-table td { font-variant-numeric: tabular-nums; }
+.tk-place { display: block; }
+.tk-v { min-width: 0; }
+.tk-open { margin-top: var(--s-1); display: block; padding: 0; font-weight: 500; }
+.tk-tally { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-1); }
+.tk-tap { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-1) var(--s-2); }
+.tk-tap .tk-sub { display: inline; margin: 0; }
+.tk-tap .small { min-height: 26px; }
+.tk-more > td { background: var(--surface-2); }
+.tk-legend { margin: 0; padding: var(--s-3); border-top: 1px solid var(--border); color: var(--text-2); font-size: var(--fs-meta); line-height: 1.5; }
+
+.tk-tags { display: flex; flex-direction: column; gap: var(--s-3); max-width: 72ch; }
+.tk-tag { margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); align-items: flex-end; }
+.tk-tag legend { padding: 0; margin-bottom: var(--s-1); font-size: var(--fs-meta); font-weight: 600; float: left; width: 100%; }
+.tk-tag .field { flex: 1 1 150px; min-width: 0; }
+.tk-tag input { width: 100%; }
+.tk-tags .field-note.bad { margin: 2px 0 0; color: var(--bad); font-size: var(--fs-meta); }
+
+.tk-hosts, .tk-new, .tk-places, .tk-ask { margin-top: var(--s-6); padding-top: var(--s-4); border-top: 1px solid var(--border); }
+.tk-hosts ul, .tk-door-list { list-style: none; margin: 0; padding: 0; }
+.tk-hosts li, .tk-door-list li { padding: var(--s-2) 0; border-top: 1px solid var(--border); min-width: 0; }
+.tk-hosts li:first-child, .tk-door-list li:first-child { border-top: 0; }
+.tk-hosts p, .tk-door-list p { margin: 0; font-size: var(--fs-row); line-height: 1.5; }
+.tk-host { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-3); }
+.tk-host .tk-sub { margin: 0; }
+.tk-host-n { margin-top: 2px !important; }
+.tk-host-n .tk-sub { display: inline; }
+.tk-door-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-3); }
+.tk-url-t { min-width: 0; overflow-wrap: anywhere; font-size: var(--fs-meta); }
+
+.tk-new-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s-2) var(--s-3); }
+.tk-new-row .field { min-width: 0; flex: 0 1 260px; }
+.tk-new-row select { width: 100%; }
+.tk-new-row .tk-sub { display: inline; margin: 0 0 6px; }
+
+.tk-offer { margin: var(--s-2) 0 var(--s-3); padding: var(--s-2) var(--s-3); background: var(--surface-2); border-radius: var(--r-container); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); max-width: 72ch; }
+.tk-offer p { margin: 0; font-size: var(--fs-row); }
+.tk-offer .biz-fail { flex-basis: 100%; margin: 0; }
+.tk-places-form { margin-top: var(--s-3); padding: var(--s-3) var(--s-4); background: var(--surface-2); border-radius: var(--r-container); display: flex; flex-direction: column; gap: var(--s-3); max-width: 80ch; }
+.tk-places-form input, .tk-places-form select { width: 100%; }
+.tk-place-row { margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s-2) var(--s-3); }
+.tk-place-row legend { padding: 0; margin-bottom: var(--s-1); font-size: var(--fs-meta); font-weight: 600; float: left; width: 100%; }
+.tk-place-row .field { min-width: 0; flex: 0 1 170px; }
+.tk-place-row .tk-url { flex: 1 1 260px; }
+.tk-remove { align-self: center; }
+.tk-add { align-self: flex-start; display: inline-flex; align-items: center; gap: var(--s-1); }
+
+.tk-ask > summary { cursor: pointer; font-size: var(--fs-section); font-weight: 600; padding: var(--s-1) 0; }
+.tk-ask[open] > summary { margin-bottom: var(--s-2); }
+.tk-ask-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: var(--s-1) var(--s-3); align-items: start; padding: var(--s-2) 0; border-top: 1px solid var(--border); }
+.tk-ask-k { margin: 0; color: var(--text-2); font-size: var(--fs-meta); font-weight: 600; }
+.tk-ask-v { margin: 0; padding: 0; list-style: none; font-size: var(--fs-body); line-height: 1.55; overflow-wrap: anywhere; min-width: 0; }
+
+/* one block per row: label and value side by side, in a narrow column or a window of 900px or less */
+@container tkbox (max-width: 780px) {
+  .tk-table, .tk-table tbody, .tk-table tr, .tk-table th, .tk-table td { display: block; }
+  .tk-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tk-table tbody tr { padding: var(--s-3) var(--s-4); border-top: 1px solid var(--border); }
+  .tk-table tbody tr:first-child { border-top: 0; }
+  .tk-table th, .tk-table td { padding: 0; border: 0; }
+  .tk-table tbody th { margin-bottom: var(--s-1); }
+  .tk-table td[data-label] { display: grid; grid-template-columns: minmax(5.5em, 8.5em) minmax(0, 1fr); gap: var(--s-3); padding: var(--s-1) 0; align-items: baseline; }
+  .tk-table td[data-label]::before { content: attr(data-label); color: var(--text-2); font-size: var(--fs-meta); font-weight: 600; }
+  .tk-table tbody tr.tk-more { padding: 0; }
+  .tk-table tbody tr.tk-more td { padding: var(--s-3) var(--s-4); }
+  .tk-open { display: inline-block; margin: 0 0 0 var(--s-3); }
+}
+@media (max-width: 900px) {
+  .tk-table, .tk-table tbody, .tk-table tr, .tk-table th, .tk-table td { display: block; }
+  .tk-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tk-table tbody tr { padding: var(--s-3) var(--s-4); border-top: 1px solid var(--border); }
+  .tk-table tbody tr:first-child { border-top: 0; }
+  .tk-table th, .tk-table td { padding: 0; border: 0; }
+  .tk-table tbody th { margin-bottom: var(--s-1); }
+  .tk-table td[data-label] { display: grid; grid-template-columns: minmax(5.5em, 8.5em) minmax(0, 1fr); gap: var(--s-3); padding: var(--s-1) 0; align-items: baseline; }
+  .tk-table td[data-label]::before { content: attr(data-label); color: var(--text-2); font-size: var(--fs-meta); font-weight: 600; }
+  .tk-table tbody tr.tk-more { padding: 0; }
+  .tk-table tbody tr.tk-more td { padding: var(--s-3) var(--s-4); }
+  .tk-open { display: inline-block; margin: 0 0 0 var(--s-3); }
+  .tk-first { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .tk-ask-row { grid-template-columns: minmax(0, 1fr); }
+}
+.tk-heard { display: flex; flex-direction: column; gap: var(--s-3); }
+.tk-warn + .tk-box, .tk-warn + .hint, .tk-warn + div { margin-top: var(--s-3); }

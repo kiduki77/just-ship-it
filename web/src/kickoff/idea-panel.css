@@ -1,0 +1,50 @@
+/* Idea review panel: three lens columns split by hairlines, notes rather than alarms. */
+.ip-lenses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); word-break: keep-all; }
+.ip-lens { min-width: 0; padding: 0 18px; display: flex; flex-direction: column; gap: 10px; }
+.ip-lens:first-child { padding-left: 0; }
+.ip-lens:last-child { padding-right: 0; }
+.ip-lens + .ip-lens { border-left: 1px solid var(--line); }
+.ip-lens-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.ip-lens-h h3 { margin: 0; font-size: 14px; font-weight: 600; }
+.ip-lens-h .small { font-variant-numeric: tabular-nums; }
+.ip-head { margin: 0; font-weight: 600; line-height: 1.5; max-width: 60ch; overflow-wrap: anywhere; }
+.ip-wait { display: flex; align-items: center; gap: 10px; }
+.ip-wait p { margin: 0; }
+
+.ip-ws { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.ip-w { padding: 12px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; overflow-wrap: anywhere; }
+.ip-w p { margin: 0; }
+.ip-w-top { display: flex; align-items: flex-start; gap: 8px; }
+.ip-w-top .chip { flex: none; }
+.ip-w-t { font-weight: 600; line-height: 22px; }
+.ip-why { color: var(--text); max-width: 64ch; }
+.ip-over { background: var(--panel-2); border-radius: 8px; padding: 8px 10px; font-size: 13px; }
+.ip-over-l { font-weight: 600; margin-right: 4px; }
+.ip-src { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; font-size: 12px; }
+.ip-src a { text-underline-offset: 3px; }
+
+.ip-sim { border-top: 1px solid var(--line); padding-top: 10px; }
+.ip-sim > summary { cursor: pointer; font-size: 13px; font-weight: 600; }
+.ip-sim ul { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; overflow-wrap: anywhere; }
+
+.ip-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+.ip-foot p { margin: 0; flex: 1 1 320px; max-width: 80ch; }
+.box > .ip-foot { margin-top: 14px; }
+
+/* On the kickoff page the panel is a one-line band above the page; its detail is a drawer over the conversation column. */
+.ip-band { flex: none; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-container); overflow: hidden; }
+.ip-band-top { display: flex; align-items: center; gap: 8px 16px; padding: 10px 16px; flex-wrap: wrap; }
+.ip-band-t { margin: 0; font-size: 14px; font-weight: 600; flex: none; }
+.ip-band-sum { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.ip-band-l { color: var(--text); }
+.ip-band-top > button { flex: none; margin-left: auto; }
+.ip-drawer { position: absolute; inset: 0; z-index: 2; background: var(--panel); overflow-y: auto; scrollbar-width: thin; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; }
+.ip-drawer .ip-lenses { grid-template-columns: minmax(0, 1fr); }
+.ip-drawer .ip-lens { padding: 0; }
+.ip-drawer .ip-lens + .ip-lens { border-left: 0; border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 1100px) {
+  .ip-lenses { grid-template-columns: minmax(0, 1fr); }
+  .ip-lens { padding: 0; }
+  .ip-lens + .ip-lens { border-left: 0; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; }
+}

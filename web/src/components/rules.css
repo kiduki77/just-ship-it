@@ -1,0 +1,6 @@
+/* The rules mark on a post card (components/rules.tsx): the state in words, then why and the way to the list. */
+.rules-mark { margin: var(--s-2) 0 var(--s-1); }
+.rules-mark p { margin: 0; line-height: 1.6; overflow-wrap: anywhere; }
+.rules-mark p + p { margin-top: 2px; }
+.rules-why { margin-left: var(--s-2); }
+.rules-own { margin: var(--s-2) 0 var(--s-1); }

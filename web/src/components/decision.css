@@ -1,0 +1,152 @@
+/* The decision panel's own parts (components/decision.tsx); the panel frame and report rows are in owner.css. */
+
+.dp-tags .dp-id { color: var(--text-3); font-variant-numeric: tabular-nums; }
+
+/* the CEO's pick, read right under the report, before any option */
+.dp-rec { margin: var(--s-3) 0 0; padding: var(--s-2) var(--s-3); border-radius: var(--r-control); background: var(--surface-2); }
+.dp-rec > p { margin: 0; font-size: var(--fs-row); overflow-wrap: anywhere; }
+.dp-rec-k { color: var(--text-2); font-size: var(--fs-meta); font-weight: 550; }
+.dp-rec-none { color: var(--warn); font-weight: 550; }
+.dp-rec .evsum { margin-top: var(--s-2); }
+
+/* a button the CEO recommends, when no option carries the recommendation */
+.dp-rec-mark { margin-left: var(--s-2); padding: 0 6px; border-radius: var(--r-pill); font-size: var(--fs-meta); font-weight: 500;
+  background: color-mix(in srgb, currentColor 16%, transparent); }
+
+/* the email approving sends */
+.dp-email-h { margin: var(--s-2) 0; }
+.dp-email-body { max-height: 320px; overflow: auto; }
+
+.receipt-list li + li { margin-top: 2px; }
+.receipt-reopen { margin-top: var(--s-2); gap: var(--s-2); align-items: center; }
+
+/* the receipt's facts line up on their text baselines, and its two footer controls share one height, the action left and Close right */
+.receipt-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); margin-bottom: 4px; }
+.receipt-head .receipt-h { margin: 0; }
+.receipt-fix { white-space: nowrap; }
+.receipt .kv { margin-top: var(--s-2); }
+.receipt .kv > div { align-items: baseline; }
+.receipt .kv dt { padding-top: 0; }
+.receipt .sp-next { justify-content: space-between; align-items: center; gap: var(--s-3); }
+.receipt .sp-next > .muted { margin: 0; }
+.receipt-close { min-height: 32px; padding: 5px 14px; margin-left: auto; }
+
+/* a conclusion with no evidence behind it (EvidenceSummary), wherever it is drawn */
+.evnone { margin: var(--s-2) 0; padding: var(--s-1) var(--s-2); border: 1px dashed color-mix(in srgb, var(--warn) 55%, var(--border));
+  border-radius: var(--r-control); color: var(--warn); }
+/* the merge card's review (MergeReview.tsx): the commands, each scenario with the owner's mark, what to doubt */
+.mr-cmds { white-space: pre; }
+.mr-h { display: flex; align-items: center; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-1); }
+.mr-sec .mr-h h3 { margin: 0; }
+.mr-sec > .muted.small { margin: 0 0 var(--s-2); }
+.mr-checks, .mr-doubts, .mr-files { list-style: none; margin: 0; padding: 0; }
+.mr-check { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s-1) var(--s-3); padding: 10px 0;
+  border-top: 1px solid var(--line); }
+.mr-check:first-child { border-top: 0; padding-top: var(--s-1); }
+.mr-check-b { min-width: 0; }
+.mr-label { margin: 0; font-size: var(--fs-row); font-weight: 550; overflow-wrap: anywhere; word-break: keep-all; }
+.mr-line { margin: 2px 0 0; font-size: var(--fs-row); overflow-wrap: anywhere; word-break: keep-all;
+  display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mr-k { color: var(--text-2); font-size: var(--fs-meta); }
+.mr-ev { color: var(--text-2); }
+.mr-more { margin-top: 2px; }
+.mr-more > summary { color: var(--text-2); }
+.mr-more .mr-line { display: block; overflow: visible; }
+.mr-gwt { margin-top: var(--s-1); }
+.mr-marks { align-self: start; }
+.mr-marks button { min-height: 24px; padding: 1px 8px; font-size: var(--fs-meta); white-space: nowrap; }
+.mr-doubts li + li { border-top: 1px solid var(--line); }
+.mr-doubt { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px var(--s-2); align-items: baseline;
+  padding: var(--s-2) 0; font-size: var(--fs-row); cursor: pointer; }
+.mr-doubt-ro { grid-template-columns: minmax(0, 1fr) auto; cursor: default; }
+.mr-doubt input { margin: 0; align-self: center; }
+.mr-doubt-t { overflow-wrap: anywhere; word-break: keep-all; }
+.mr-doubt-w { grid-column: 2 / -1; color: var(--text-2); font-size: var(--fs-meta); overflow-wrap: anywhere; }
+.mr-doubt-ro .mr-doubt-w { grid-column: 1 / -1; }
+.mr-group { margin-top: var(--s-2); padding-top: 0; }
+.mr-files { margin: var(--s-1) 0 0; padding-left: var(--s-3); }
+.mr-files li { font-size: var(--fs-meta); overflow-wrap: anywhere; }
+
+/* Decline or Hold, armed: what it does, then keep or confirm */
+.dp-armed { display: flex; }
+.dp-armed .act-what { max-width: none; margin: 0; color: var(--text); }
+.mr-team { margin: 0 0 var(--s-3); }
+
+/* the merge card's walkthrough (components/Walkthrough.tsx): what it is, what to have, each journey step by step, what the agent got */
+.wt-sec p { overflow-wrap: anywhere; word-break: keep-all; }
+.wt-sec > p.mr-k { margin: var(--s-2) 0 var(--s-1); }
+.wt-what { margin: 0 0 var(--s-1); font-size: var(--fs-prose); font-weight: 550; }
+.wt-note { margin: 0 0 var(--s-3); padding: var(--s-2) var(--s-3); border-radius: var(--r-control); background: var(--surface-2); font-size: var(--fs-row); }
+.wt-cmds, .wt-steps, .wt-items { list-style: none; margin: 0; padding: 0; }
+.wt-cmds { counter-reset: cmd; margin-top: var(--s-1); }
+.wt-cmds > li, .wt-step { display: grid; grid-template-columns: 1.75em minmax(0, 1fr); column-gap: var(--s-2); }
+.wt-cmds > li { counter-increment: cmd; padding: var(--s-1) 0; }
+.wt-cmds > li::before, .wt-step::before { color: var(--text-2); font-variant-numeric: tabular-nums; font-size: var(--fs-row); font-weight: 550; }
+.wt-cmds > li::before { content: counter(cmd); }
+.wt-cmds > li > *, .wt-step > * { grid-column: 2; min-width: 0; }
+.wt-steps { counter-reset: step; margin-top: var(--s-2); }
+.wt-step { counter-increment: step; padding: var(--s-3) 0; border-top: 1px solid var(--line); }
+.wt-step::before { content: counter(step); }
+.wt-fold { margin-top: var(--s-1); }
+.wt-fold > summary { margin: 0 0 var(--s-1); }
+.wt-fold > summary .chip { margin-left: var(--s-1); }
+
+/* a step: what to do beside the command, wrapped under it on a narrow screen */
+.wt-head { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--s-2) var(--s-4); }
+.wt-say { flex: 1 1 14em; min-width: 0; }
+.wt-do { margin: 0; font-weight: 600; }
+.wt-why { margin: 2px 0 0; }
+.wt-act { flex: 1 1 16em; min-width: 0; display: flex; align-items: flex-start; gap: var(--s-2); }
+.wt-act .btn-copy { flex: none; }
+.wt-code { flex: 1 1 auto; min-width: 0; padding: 5px var(--s-2); border-radius: var(--r-control); background: var(--surface-2);
+  font: var(--fs-meta)/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+a.wt-code { color: var(--accent); }
+.wt-see { margin: var(--s-2) 0 0; }
+.wt-got { margin: var(--s-3) 0 var(--s-1); }
+.wt-end { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-2); }
+@media (max-width: 900px) {
+  .wt-head { flex-direction: column; }
+  .wt-say, .wt-act { flex: 0 0 auto; width: 100%; }
+}
+
+/* a journey: its title, who the owner plays, its steps, and when it worked */
+.wt-journey { margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--line); }
+.wt-journey:first-of-type { margin-top: var(--s-1); padding-top: 0; border-top: 0; }
+.wt-journey > summary { margin: 0; color: var(--text); }
+.wt-journey > summary > :not(:first-child) { margin-left: var(--s-2); }
+.wt-title { font-weight: 600; font-size: var(--fs-row); overflow-wrap: anywhere; word-break: keep-all; }
+.wt-play { margin: var(--s-2) 0 var(--s-1); }
+.wt-seed { margin-top: var(--s-2); }
+.wt-success { margin: var(--s-3) 0 var(--s-2); font-weight: 550; }
+
+/* what the agent got: its state, its reading, and the capture as plain text in a box that scrolls sideways by itself */
+.wt-res { min-width: 0; }
+.wt-state { margin: 0 0 var(--s-1); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) var(--s-2); }
+.wt-state .chip .ico { flex: none; }
+.wt-looks { color: var(--text-2); min-width: 0; overflow-wrap: anywhere; }
+.wt-fault { margin: var(--s-1) 0 0; }
+.wt-cap { min-width: 0; }
+.wt-cap > p { margin: var(--s-1) 0 0; }
+.wt-pre { display: block; max-width: 100%; margin: var(--s-1) 0; padding: var(--s-2) var(--s-3); border: 1px solid var(--line); border-radius: var(--r-control);
+  background: var(--surface-2); font: var(--fs-meta)/1.5 var(--mono); white-space: pre; overflow-x: auto; tab-size: 4; }
+.wt-vol { text-decoration: underline dotted; text-underline-offset: 3px; }
+.wt-cut { display: inline-block; color: var(--text-2); font-style: italic; user-select: none; }
+.wt-file { margin: var(--s-2) 0 0; }
+.wt-shot { display: block; max-width: 360px; margin: var(--s-1) 0; }
+.wt-shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); }
+.wt-shot:hover img, .wt-shot:focus-visible img { border-color: var(--accent); }
+
+/* the journeys a spec card lists under its stories (components/decision.tsx) */
+.dp-journey-s { display: block; }
+.dp-journeys li > span { min-width: 0; }
+
+/* the checks the agent already ran, folded */
+.wt-checked > p.muted { margin: 0 0 var(--s-2); }
+.wt-group { margin-top: var(--s-4); }
+.wt-group .mr-h { margin-bottom: 0; }
+.wt-group-t { margin: 0; font-size: var(--fs-row); font-weight: 600; overflow-wrap: anywhere; word-break: keep-all; }
+.wt-group > p.muted { margin: 0 0 var(--s-1); }
+.wt-item { padding: var(--s-2) 0; border-top: 1px solid var(--line); }
+.wt-item-h { display: flex; align-items: flex-start; gap: var(--s-2); }
+.wt-item-h .chip { flex: none; }
+.wt-line { min-width: 0; font-size: var(--fs-row); overflow-wrap: anywhere; word-break: keep-all; }

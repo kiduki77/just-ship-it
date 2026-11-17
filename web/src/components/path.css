@@ -1,0 +1,50 @@
+/* The decision card's "Where this sits" block (components/WhereSits.tsx). Colours come from the tokens, so the dark
+   theme follows; a status is always an icon and a word. Text wraps, so neither language truncates. */
+
+.ws { margin: var(--s-3) 0 0; padding: var(--s-3); border: 1px solid var(--line); border-radius: var(--r-container); min-width: 0; }
+.ws-h { margin: 0 0 var(--s-2); font-size: var(--fs-meta); font-weight: 600; letter-spacing: .02em; color: var(--text-2); }
+.ws-h2 { margin: var(--s-2) 0 var(--s-1); }
+.ws-skel { min-height: 120px; }
+.ws-skel .skel-bar { margin-bottom: var(--s-2); }
+
+/* each fact: its name above, its words below, so a long name in either language never squeezes the words */
+.ws-rows { margin: 0; display: grid; gap: var(--s-2); }
+.ws-rows + .ws-rows, .ws-chain + .ws-rows, .ws-once + .ws-rows { margin-top: var(--s-3); }
+.ws-rows > div { min-width: 0; }
+.ws-rows dt { color: var(--text-2); font-size: var(--fs-meta); font-weight: 600; }
+.ws-rows dd { margin: 2px 0 0; min-width: 0; overflow-wrap: anywhere; word-break: keep-all; font-size: var(--fs-row); line-height: 1.6; }
+.ws-p { margin: 0; }
+.ws-p + .ws-p, .ws-p + .ws-tasks, .ws-tasks + .muted { margin-top: var(--s-1); }
+.ws-unk-t { color: var(--text-2); font-style: italic; }
+.ws-note { margin: var(--s-1) 0 0; color: var(--text-2); font-size: var(--fs-meta); }
+.ws-note > span { white-space: nowrap; }
+.ws-stale { display: flex; align-items: baseline; gap: var(--s-1); margin: var(--s-1) 0 0; color: var(--warn); font-size: var(--fs-meta); }
+.ws-stale .ico { flex: none; align-self: center; }
+
+/* the chain wraps from one line to the next, so nothing is cut */
+.ws-chain { list-style: none; margin: var(--s-3) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-1); align-items: center; }
+.ws-step { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--s-1) 6px; max-width: 100%; min-width: 0; padding: 3px 9px;
+  border: 1px solid var(--line); border-radius: var(--r-control); background: var(--surface); font-size: var(--fs-row);
+  overflow-wrap: anywhere; word-break: keep-all; }
+.ws-sep { display: inline-flex; color: var(--text-3); }
+.ws-step .ico { flex: none; color: var(--text-2); }
+.ws-step a { color: inherit; text-decoration: underline; text-decoration-color: var(--border-strong); text-underline-offset: 2px; }
+.ws-k-this { font-weight: 600; background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+.ws-unk { border-style: dashed; color: var(--text-2); font-style: italic; background: transparent; }
+.ws-tag { color: var(--text-2); font-size: var(--fs-meta); font-weight: 400; font-style: normal; }
+.ws-once { margin: var(--s-1) 0 0; }
+
+.ws-state { display: inline-flex; align-items: center; gap: 3px; font-size: var(--fs-meta); font-weight: 500; font-style: normal; color: var(--text-2); }
+.ws-state .ico { flex: none; }
+.ws-ok { color: var(--ok); } .ws-run { color: var(--run); } .ws-warn { color: var(--warn); } .ws-bad { color: var(--bad); }
+
+.ws-tasks, .ws-list { margin: var(--s-1) 0 0; padding: 0; list-style: none; }
+.ws-tasks li + li, .ws-list li + li { margin-top: 2px; }
+.ws-ended { color: var(--text-2); }
+.ws-fold { margin-top: var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--line); font-size: var(--fs-row); }
+.ws-fold > summary { color: var(--text-2); }
+.ws-fold[open] > summary { margin-bottom: var(--s-1); }
+.ws-fold .ws-chain { margin-top: var(--s-1); }
+
+.ws-show { margin: var(--s-3) 0 0; }
+.ws-show a { display: inline-flex; align-items: center; gap: var(--s-1); font-weight: 500; }

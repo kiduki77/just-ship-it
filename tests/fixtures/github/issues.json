@@ -1,0 +1,351 @@
+[
+ {
+  "number": 23072,
+  "title": "link-mode = \"symlink\" breaks mlx library on macOS due to unresolved @rpath/libmlx.dylib",
+  "html_url": "https://github.com/astral-sh/uv/issues/23072",
+  "created_at": "2026-11-03T04:36:17Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "ufosky",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23071,
+  "title": "Wrap console-script shebangs in `/bin/sh` for any whitespace in the path",
+  "html_url": "https://github.com/astral-sh/uv/pull/23071",
+  "created_at": "2026-11-03T03:43:12Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "Vivek1898",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23070,
+  "title": "Use the `/bin/sh` launcher for interpreter paths containing any whitespace",
+  "html_url": "https://github.com/astral-sh/uv/pull/23070",
+  "created_at": "2026-11-03T03:29:27Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "Aschenbath",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23069,
+  "title": "docs: drop the GitLab note suggesting the distroless image works with an empty entrypoint",
+  "html_url": "https://github.com/astral-sh/uv/pull/23069",
+  "created_at": "2026-11-03T03:20:03Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "Aschenbath",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23068,
+  "title": "Bump version to 0.13.7",
+  "html_url": "https://github.com/astral-sh/uv/pull/23068",
+  "created_at": "2026-11-03T01:55:31Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "astral-automations-bot[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23067,
+  "title": "Escape fish prompt and location literals in virtualenv activation scripts",
+  "html_url": "https://github.com/astral-sh/uv/pull/23067",
+  "created_at": "2026-11-03T00:02:31Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "AdamMagued",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23066,
+  "title": "Add a vendored TPU wheel variant provider",
+  "html_url": "https://github.com/astral-sh/uv/pull/23066",
+  "created_at": "2026-11-02T23:38:35Z",
+  "author_association": "MEMBER",
+  "user": {
+   "login": "konstin",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23065,
+  "title": "Remove misleading note from uv documentation",
+  "html_url": "https://github.com/astral-sh/uv/issues/23065",
+  "created_at": "2026-11-02T21:08:13Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "EuklidAlexandria",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23063,
+  "title": "Keep environment variable references in `uv add --raw` URLs",
+  "html_url": "https://github.com/astral-sh/uv/pull/23063",
+  "created_at": "2026-11-02T15:23:52Z",
+  "author_association": "MEMBER",
+  "user": {
+   "login": "zanieb",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23062,
+  "title": "tree --outdated should indicate when a newer version exists but is excluded by exclude-newer",
+  "html_url": "https://github.com/astral-sh/uv/issues/23062",
+  "created_at": "2026-11-02T15:16:45Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "sk-",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23061,
+  "title": "Make tracing-durations-export optional in uv-dev",
+  "html_url": "https://github.com/astral-sh/uv/pull/23061",
+  "created_at": "2026-11-02T12:51:17Z",
+  "author_association": "MEMBER",
+  "user": {
+   "login": "konstin",
+   "type": "User"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23060,
+  "title": "activate.fish runs commands from a path or prompt",
+  "html_url": "https://github.com/astral-sh/uv/issues/23060",
+  "created_at": "2026-11-02T12:40:12Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23059,
+  "title": "virtualenv activate runs commands from the environment name in zsh with PROMPT_SUBST",
+  "html_url": "https://github.com/astral-sh/uv/issues/23059",
+  "created_at": "2026-11-02T12:37:34Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23058,
+  "title": "Bash prompt values can change meaning under older compatibility modes (POSIX)",
+  "html_url": "https://github.com/astral-sh/uv/issues/23058",
+  "created_at": "2026-11-02T12:32:31Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23057,
+  "title": "Generated POSIX console launchers interpret destination paths as shell syntax",
+  "html_url": "https://github.com/astral-sh/uv/issues/23057",
+  "created_at": "2026-11-02T12:29:22Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23056,
+  "title": "Generated files can follow existing destination links",
+  "html_url": "https://github.com/astral-sh/uv/issues/23056",
+  "created_at": "2026-11-02T12:27:23Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23055,
+  "title": "Builtin creation follows linked environment directories",
+  "html_url": "https://github.com/astral-sh/uv/issues/23055",
+  "created_at": "2026-11-02T12:25:04Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23054,
+  "title": "Venv configuration readback can reinterpret path boundaries",
+  "html_url": "https://github.com/astral-sh/uv/issues/23054",
+  "created_at": "2026-11-02T12:21:15Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "hroncok",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23053,
+  "title": "No paging in uv help?",
+  "html_url": "https://github.com/astral-sh/uv/issues/23053",
+  "created_at": "2026-11-02T12:00:49Z",
+  "author_association": "NONE",
+  "user": {
+   "login": "Vrihub",
+   "type": "User"
+  }
+ },
+ {
+  "number": 23052,
+  "title": "Update Rust crate uuid to v1.27.0",
+  "html_url": "https://github.com/astral-sh/uv/pull/23052",
+  "created_at": "2026-11-02T02:21:59Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23051,
+  "title": "Update Rust crate insta to v1.49.0",
+  "html_url": "https://github.com/astral-sh/uv/pull/23051",
+  "created_at": "2026-11-02T02:21:44Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23050,
+  "title": "Update dependency @openai/codex to v0.160.0",
+  "html_url": "https://github.com/astral-sh/uv/pull/23050",
+  "created_at": "2026-11-02T02:21:26Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23049,
+  "title": "Update CodSpeedHQ/action action to v5.4.0",
+  "html_url": "https://github.com/astral-sh/uv/pull/23049",
+  "created_at": "2026-11-02T02:21:11Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23048,
+  "title": "Update Rust crate tokio-rustls to v0.26.6",
+  "html_url": "https://github.com/astral-sh/uv/pull/23048",
+  "created_at": "2026-11-02T02:21:01Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23047,
+  "title": "Update Rust crate spdx to v0.13.6",
+  "html_url": "https://github.com/astral-sh/uv/pull/23047",
+  "created_at": "2026-11-02T02:20:47Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23046,
+  "title": "Update Rust crate libc to v0.2.190",
+  "html_url": "https://github.com/astral-sh/uv/pull/23046",
+  "created_at": "2026-11-02T02:20:30Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23045,
+  "title": "Update Rust crate cargo-util to v0.2.32",
+  "html_url": "https://github.com/astral-sh/uv/pull/23045",
+  "created_at": "2026-11-02T02:20:17Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23044,
+  "title": "Update Rust crate async-compression to v0.4.50",
+  "html_url": "https://github.com/astral-sh/uv/pull/23044",
+  "created_at": "2026-11-02T02:20:01Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23043,
+  "title": "Update dependency buildx to v0.37.2",
+  "html_url": "https://github.com/astral-sh/uv/pull/23043",
+  "created_at": "2026-11-02T02:19:00Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ },
+ {
+  "number": 23042,
+  "title": "Update dependency astral-sh/uv to v0.13.6",
+  "html_url": "https://github.com/astral-sh/uv/pull/23042",
+  "created_at": "2026-11-02T02:18:51Z",
+  "author_association": "CONTRIBUTOR",
+  "user": {
+   "login": "renovate[bot]",
+   "type": "Bot"
+  },
+  "pull_request": {}
+ }
+]
